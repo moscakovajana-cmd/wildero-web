@@ -15,12 +15,6 @@ window.addEventListener('scroll', () => {
 // Mobile Menu Toggle
 toggleBtn.addEventListener('click', () => {
     nav.classList.toggle('open');
-    // Animate burger TODO if needed, but simple display toggle works for now via CSS class
-    if(nav.classList.contains('open')) {
-        menu.style.display = 'flex';
-    } else {
-        menu.style.display = '';
-    }
 });
 
 // Smooth Scrolling & Active Link Highlighting
@@ -52,7 +46,6 @@ navLinks.forEach(link => {
     link.addEventListener('click', () => {
         if(window.innerWidth <= 768) {
              nav.classList.remove('open');
-             menu.style.display = '';
         }
     });
 });

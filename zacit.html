@@ -18,21 +18,44 @@
     <!-- Header -->
     <header class="header" id="main-header">
         <div class="container header__container">
+            <!-- Left Nav (Desktop) -->
+            <nav class="header__nav header__nav--left hide-mobile">
+                <ul class="header__menu">
+                    <li><a href="index.html#home" class="header__link">O projektu</a></li>
+                    <li><a href="odmeny.html" class="header__link">Odměny</a></li>
+                </ul>
+            </nav>
+
+            <!-- Centered Logo -->
             <a href="index.html" class="header__logo">
                 <img src="logo_new.png" alt="Wildero Logo">
             </a>
-            <nav class="header__nav">
+
+            <!-- Right Nav (Desktop) -->
+            <nav class="header__nav header__nav--right hide-mobile">
                 <ul class="header__menu">
-                    <li><a href="index.html#about" class="header__link">Co je Wildero</a></li>
-                    <li><a href="index.html#audience" class="header__link">Pro koho</a></li>
-                    <li><a href="index.html#how" class="header__link">Jak funguje</a></li>
-                    <li><a href="index.html#rewards" class="header__link">Odměny</a></li>
+                    <li><a href="zacit.html" class="header__link active">Aplikace</a></li>
+                    <li><a href="kontakt.html" class="header__link">Kontakt</a></li>
                 </ul>
             </nav>
-            <a href="app.html" class="btn btn--primary header__cta">Začít dobrodružství</a>
+
+            <!-- CTA Button -->
+            <a href="zacit.html" class="btn btn--primary header__cta header__cta--scroll">Do aplikace</a>
+
+            <!-- Mobile Menu Toggle -->
             <button class="header__toggle" aria-label="Otevřít menu">
                 <span></span>
             </button>
+
+            <!-- Mobile Navigation (Hidden on Desktop) -->
+            <nav class="header__nav header__nav--mobile">
+                <ul class="header__menu">
+                    <li><a href="index.html#home" class="header__link">O projektu</a></li>
+                    <li><a href="odmeny.html" class="header__link">Odměny</a></li>
+                    <li><a href="zacit.html" class="header__link active">Aplikace</a></li>
+                    <li><a href="kontakt.html" class="header__link">Kontakt</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
@@ -55,7 +78,9 @@
                     </div>
                 </div>
                 <div class="hero__app-visual">
-                    <img src="app-hero-new.png" alt="Wildero App Illustration" class="app-hero-img">
+                    <div class="phone-mockup phone-mockup--large">
+                        <div class="phone-mockup__screen" style="background-image: url('app-trips.png');"></div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -106,12 +131,12 @@
         </section>
     </main>
 
-    <footer class="footer">
+    <footer class="footer" id="footer">
         <div class="container footer__container">
             <div class="footer__links">
-                <a href="#">Kontakt</a>
-                <a href="#">Podmínky</a>
-                <a href="#">Ochrana soukromí</a>
+                <a href="kontakt.html">Kontakt</a>
+                <a href="podminky.html">Podmínky</a>
+                <a href="soukromi.html">Ochrana soukromí</a>
             </div>
             <div class="footer__copyright">
                 &copy; 2026 Wildero. Všechna práva vyhrazena.

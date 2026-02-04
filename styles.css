@@ -305,6 +305,106 @@ p {
     padding-bottom: 3rem;
 }
 
+.hero--app {
+    min-height: 80vh;
+    padding-top: calc(var(--header-height) + 10vh);
+    text-align: left;
+    background: radial-gradient(circle at 15% 50%, rgba(56, 94, 60, 0.04) 0%, transparent 40%),
+        radial-gradient(circle at 85% 30%, rgba(244, 235, 217, 0.6) 0%, transparent 40%),
+        radial-gradient(circle at 50% 80%, rgba(56, 94, 60, 0.02) 0%, transparent 50%);
+}
+
+.hero--app .hero__container {
+    flex-direction: row;
+    gap: 4rem;
+    text-align: left;
+    align-items: center;
+}
+
+.hero--app .hero__content {
+    flex: 1.2;
+    text-align: left;
+    margin: 0;
+}
+
+.hero--app .hero__title {
+    text-align: left;
+}
+
+.hero--app .hero__subtitle {
+    text-align: left;
+    max-width: 550px;
+}
+
+.hero--app .hero__actions {
+    align-items: flex-start;
+}
+
+.hero__app-visual {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 10;
+}
+
+.app-hero-img {
+    max-width: 130%;
+    /* Allow it to be slightly larger and bleed out */
+    height: auto;
+    filter: drop-shadow(0 20px 40px rgba(56, 94, 60, 0.15));
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+.app-features-mini {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1rem;
+    font-size: 1rem;
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+@media (max-width: 900px) {
+    .hero--app {
+        padding-top: calc(var(--header-height) + 4rem);
+        min-height: auto;
+    }
+
+    .hero--app .hero__container {
+        flex-direction: column;
+        text-align: center;
+        gap: 3rem;
+    }
+
+    .hero--app .hero__content,
+    .hero--app .hero__title,
+    .hero--app .hero__subtitle {
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    .hero--app .hero__actions {
+        align-items: center;
+    }
+
+    .app-hero-img {
+        max-width: 100%;
+    }
+}
+
 .watercolor-cloud {
     position: relative;
     overflow: hidden;
@@ -853,6 +953,15 @@ p {
         /* Center title on mobile */
     }
 
+    .header__logo img {
+        height: 50px;
+        /* Reduced from default (~85px) for better fit */
+    }
+
+    .header.scrolled .header__logo img {
+        height: 40px;
+    }
+
     .hero__content {
         max-width: 100%;
         text-align: center;
@@ -942,6 +1051,58 @@ p {
 
     .header__toggle {
         display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        /* Standard touch target size */
+        height: 44px;
+        padding: 10px;
+        margin-right: -10px;
+        /* Offset padding to align with container edge */
+    }
+
+    .header__toggle span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background-color: var(--color-primary);
+        border-radius: 2px;
+        position: relative;
+    }
+
+    .header__toggle span::before,
+    .header__toggle span::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: inherit;
+        border-radius: inherit;
+        transition: 0.3s;
+    }
+
+    .header__toggle span::before {
+        top: -8px;
+    }
+
+    .header__toggle span::after {
+        top: 8px;
+    }
+
+    /* Active state for hamburger */
+    .header__nav.open .header__toggle span {
+        background-color: transparent;
+    }
+
+    .header__nav.open .header__toggle span::before {
+        top: 0;
+        transform: rotate(45deg);
+    }
+
+    .header__nav.open .header__toggle span::after {
+        top: 0;
+        transform: rotate(-45deg);
     }
 
     .header__container {
@@ -949,16 +1110,43 @@ p {
     }
 
     /* Mobile Menu (simplified logic needed in JS or CSS target) */
+    .header__nav {
+        display: flex;
+        align-items: center;
+    }
+
     .header__nav.open .header__menu {
         display: flex;
         flex-direction: column;
-        position: absolute;
-        top: var(--header-height);
+        position: fixed;
+        /* Using fixed for better mobile coverage */
+        top: 0;
         left: 0;
         width: 100%;
-        background: #fff;
-        padding: 2rem;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        height: 100vh;
+        background: var(--color-bg);
+        padding: 100px 2rem 2rem;
+        /* Space for the header */
+        z-index: 999;
+        overflow-y: auto;
+    }
+
+    .header__nav.open .header__toggle {
+        position: relative;
+        z-index: 1001;
+        /* Above the menu */
+    }
+
+    .header__menu li {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .header__link {
+        font-size: 1.5rem;
+        display: block;
+        padding: 1rem;
     }
 
     .grid--3,
@@ -967,7 +1155,8 @@ p {
     }
 
     .container {
-        padding: 0 1.5rem;
+        padding: 0 1.25rem;
+        /* Slightly more compact on mobile */
     }
 }
 
@@ -977,8 +1166,14 @@ p {
     }
 
     .hero {
-        padding-top: calc(var(--header-height) + 1rem);
-        padding-bottom: 4rem;
+        padding-top: calc(70px + 2rem);
+        /* Using a smaller constant for header height on very small mobile */
+        padding-bottom: 3rem;
+    }
+
+    .hero__subtitle {
+        margin-bottom: 1.5rem;
+        font-size: 1.1rem;
     }
 
     .phone-mockup {

@@ -49,3 +49,23 @@ navLinks.forEach(link => {
         }
     });
 });
+
+// Header CTA Visibility Logic
+const heroCta = document.getElementById('hero-cta');
+const headerCta = document.querySelector('.header__cta');
+
+if (heroCta && headerCta) {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Hero CTA is visible -> Hide Header CTA
+                headerCta.classList.remove('visible');
+            } else {
+                // Hero CTA is NOT visible -> Show Header CTA
+                headerCta.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    observer.observe(heroCta);
+}

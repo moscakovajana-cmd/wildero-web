@@ -1323,3 +1323,55 @@ p {
     pointer-events: auto;
     transform: translateY(0);
 }
+
+/* Centered Header Layout */
+.header--centered .header__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+}
+
+.header__logo--centered {
+    order: 2;
+    margin: 0;
+}
+
+.header__nav--left {
+    order: 1;
+    margin: 0;
+}
+
+.header__nav--right {
+    order: 3;
+    margin: 0;
+}
+
+.header--centered .header__cta {
+    order: 4;
+    margin-left: auto;
+}
+
+.header--centered .header__toggle {
+    order: 5;
+}
+
+@media (max-width: 900px) {
+    .header--centered .header__nav--left,
+    .header--centered .header__nav--right {
+        display: none;
+    }
+    
+    .header--centered .header__logo--centered {
+        order: 1;
+    }
+    
+    .header--centered .header__cta {
+        order: 2;
+        margin-left: 0;
+    }
+    
+    .header--centered .header__toggle {
+        order: 3;
+    }
+}

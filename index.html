@@ -16,19 +16,29 @@
 <body>
 
     <!-- Header -->
-    <header class="header" id="main-header">
+    <header class="header header--centered" id="main-header">
         <div class="container header__container">
-            <a href="#home" class="header__logo">
-                <img src="logo_new.png" alt="Wildero Logo">
-            </a>
-            <nav class="header__nav">
+            <!-- Left Navigation -->
+            <nav class="header__nav header__nav--left">
                 <ul class="header__menu">
-                    <li><a href="#about" class="header__link">Co je Wildero</a></li>
-                    <li><a href="#audience" class="header__link">Pro koho</a></li>
-                    <li><a href="#how" class="header__link">Jak funguje</a></li>
-                    <li><a href="#rewards" class="header__link">Odměny</a></li>
+                    <li><a href="odmeny.html" class="header__link">Svět odměn</a></li>
+                    <li><a href="kontakt.html" class="header__link">Kontakt</a></li>
                 </ul>
             </nav>
+
+            <!-- Centered Logo -->
+            <a href="index.html" class="header__logo header__logo--centered">
+                <img src="logo_new.png" alt="Wildero Logo">
+            </a>
+
+            <!-- Right Navigation -->
+            <nav class="header__nav header__nav--right">
+                <ul class="header__menu">
+                    <li><a href="soukromi.html" class="header__link">Soukromí</a></li>
+                    <li><a href="podminky.html" class="header__link">Ochrana údajů</a></li>
+                </ul>
+            </nav>
+
             <a href="app.html" class="btn btn--primary header__cta">Do aplikace</a>
             <button class="header__toggle" aria-label="Otevřít menu">
                 <span></span>
@@ -39,7 +49,8 @@
     <main>
         <!-- Hero Section -->
         <section id="home" class="hero">
-            <div class="hero__bg-placeholder" style="background-image: url('hero_bg_landscape.jpg');"></div>
+            <div class="hero__bg-placeholder"
+                style="background-image: url('hero_bg_landscape.jpg'); background-position: center 60%;"></div>
             <div class="container hero__container">
                 <div class="hero__content">
                     <h1 class="hero__title">Dobrodružství <br>začíná venku</h1>

@@ -1313,10 +1313,9 @@ p {
 
 /* Header CTA Visibility */
 .header__cta {
-    opacity: 0;
-    pointer-events: none;
+    opacity: 1;
+    pointer-events: auto;
     transition: opacity 0.3s ease, transform 0.3s ease;
-    transform: translateY(-10px);
 }
 
 .header__cta.visible {

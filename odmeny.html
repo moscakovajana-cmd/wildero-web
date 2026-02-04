@@ -17,46 +17,31 @@
 <body>
 
     <!-- Header -->
-    <header class="header" id="main-header">
+    <header class="header header--centered" id="main-header">
         <div class="container header__container">
-            <!-- Left Nav (Desktop) -->
-            <nav class="header__nav header__nav--left hide-mobile">
+            <!-- Left Navigation -->
+            <nav class="header__nav header__nav--left">
                 <ul class="header__menu">
-                    <li><a href="index.html#home" class="header__link">O projektu</a></li>
                     <li><a href="odmeny.html" class="header__link active">Odměny</a></li>
                 </ul>
             </nav>
 
             <!-- Centered Logo -->
-            <a href="index.html" class="header__logo">
+            <a href="index.html" class="header__logo header__logo--centered">
                 <img src="logo_new.png" alt="Wildero Logo">
             </a>
 
-            <!-- Right Nav (Desktop) -->
-            <nav class="header__nav header__nav--right hide-mobile">
+            <!-- Right Navigation -->
+            <nav class="header__nav header__nav--right">
                 <ul class="header__menu">
-                    <li><a href="zacit.html" class="header__link">Aplikace</a></li>
                     <li><a href="kontakt.html" class="header__link">Kontakt</a></li>
                 </ul>
             </nav>
 
-            <!-- CTA Button -->
-            <a href="zacit.html" class="btn btn--primary header__cta header__cta--scroll">Do aplikace</a>
-
-            <!-- Mobile Menu Toggle -->
+            <a href="app.html" class="btn btn--primary header__cta">Do aplikace</a>
             <button class="header__toggle" aria-label="Otevřít menu">
                 <span></span>
             </button>
-
-            <!-- Mobile Navigation (Hidden on Desktop) -->
-            <nav class="header__nav header__nav--mobile">
-                <ul class="header__menu">
-                    <li><a href="index.html#home" class="header__link">O projektu</a></li>
-                    <li><a href="odmeny.html" class="header__link active">Odměny</a></li>
-                    <li><a href="zacit.html" class="header__link">Aplikace</a></li>
-                    <li><a href="kontakt.html" class="header__link">Kontakt</a></li>
-                </ul>
-            </nav>
         </div>
     </header>
 

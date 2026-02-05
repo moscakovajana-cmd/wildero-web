@@ -23,7 +23,7 @@ const navLinks = document.querySelectorAll('.header__link');
 
 window.addEventListener('scroll', () => {
     let current = '';
-    
+
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
         const sectionHeight = section.clientHeight;
@@ -44,8 +44,8 @@ window.addEventListener('scroll', () => {
 // Close mobile menu on link click
 navLinks.forEach(link => {
     link.addEventListener('click', () => {
-        if(window.innerWidth <= 768) {
-             nav.classList.remove('open');
+        if (window.innerWidth <= 768) {
+            nav.classList.remove('open');
         }
     });
 });
@@ -55,6 +55,7 @@ const heroCta = document.getElementById('hero-cta');
 const headerCta = document.querySelector('.header__cta');
 
 if (heroCta && headerCta) {
+    // Index page - show when hero CTA is out of view
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -68,4 +69,13 @@ if (heroCta && headerCta) {
     }, { threshold: 0.1 });
 
     observer.observe(heroCta);
+} else if (headerCta) {
+    // Other pages - show on scroll
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 100) {
+            headerCta.classList.add('visible');
+        } else {
+            headerCta.classList.remove('visible');
+        }
+    });
 }

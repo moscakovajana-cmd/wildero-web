@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="cs">
 
 <head>
@@ -9,7 +9,7 @@
         content="Wildero je aplikace, která motivuje k pohybu v přírodě pomocí výprav, úkolů a odměn.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -21,7 +21,8 @@
             <!-- Left Navigation -->
             <nav class="header__nav header__nav--left">
                 <ul class="header__menu">
-                    <li><a href="odmeny.html" class="header__link">Odměny</a></li>
+                    <li><a href="onas.html" class="header__link">O nás</a></li>
+                    <li><a href="kontakt.html" class="header__link">Kontakt</a></li>
                 </ul>
             </nav>
 
@@ -33,11 +34,12 @@
             <!-- Right Navigation -->
             <nav class="header__nav header__nav--right">
                 <ul class="header__menu">
-                    <li><a href="kontakt.html" class="header__link">Kontakt</a></li>
+                    <li><a href="odmeny.html" class="header__link">Odměny</a></li>
+                    <li><a href="shop.html" class="header__link">Wildův svět</a></li>
                 </ul>
             </nav>
 
-            <a href="app.html" class="btn btn--primary header__cta">Do aplikace</a>
+            <a href="zacit.html" class="btn btn--primary header__cta">Do aplikace</a>
             <button class="header__toggle" aria-label="Otevřít menu">
                 <span></span>
             </button>
@@ -48,7 +50,7 @@
         <!-- Hero Section -->
         <section id="home" class="hero">
             <div class="hero__bg-placeholder"
-                style="background-image: url('hero_bg_landscape.jpg'); background-position: center 30%;"></div>
+                style="background-image: url('hero_bg_landscape.jpg'); background-position: center 20%;"></div>
             <div class="container hero__container">
                 <div class="hero__content">
                     <h1 class="hero__title">Dobrodružství <br>začíná venku</h1>
@@ -58,11 +60,8 @@
                         kdo si chce jít provětrat hlavu.
                     </p>
                     <div class="hero__actions">
-                        <a href="app.html" class="btn btn--primary" id="hero-cta">Vyzkoušej Wildero</a>
-                        <p class="hero__note">
-                            Nejde jen o aplikaci.<br>
-                            Výpravy pokračují venku – a někdy i nálepkou nebo odznakem do kapsy.
-                        </p>
+                        <a href="zacit.html" class="btn btn--primary" id="hero-cta">Vyzkoušej Wildero</a>
+                        <div class="hero__note-card"><img src="hero_note_card.png" alt="Cedulka"><div class="hero__note-text">Nejde jen o aplikaci.<br>Výpravy pokračují venku  a někdy i nálepkou nebo odznakem do kapsy.</div></div>
                     </div>
                 </div>
                 <div class="hero__visual hide-mobile">
@@ -215,10 +214,6 @@
 
                 <div class="rewards-text-block" style="max-width: 800px; margin: 0 auto;">
                     <p>Ve Wilderu nejsou odměny cílem. Jsou tichým zakončením výpravy.</p>
-                    <p style="font-size: 1rem;">
-                        Děti si někdy odnášejí nálepku, kartičku nebo odznak — drobnou připomínku toho, že byly venku,
-                        něco objevily a něco dokázaly samy.
-                    </p>
                 </div>
             </div>
         </section>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stáhnout Wildero - Dobrodružství v kapse</title>
+    <meta name="description"
+        content="Zjistěte, jak si snadno přidat Wildero na plochu svého telefonu a vyrazit na výpravu.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header" id="main-header">
+        <div class="container header__container">
+            <a href="index.html" class="header__logo">
+                <img src="logo_new.png" alt="Wildero Logo">
+            </a>
+            <nav class="header__nav">
+                <ul class="header__menu">
+                    <li><a href="index.html#about" class="header__link">Co je Wildero</a></li>
+                    <li><a href="index.html#audience" class="header__link">Pro koho</a></li>
+                    <li><a href="index.html#how" class="header__link">Jak funguje</a></li>
+                    <li><a href="index.html#rewards" class="header__link">Odměny</a></li>
+                    <!-- Right Navigation Group -->
+                    <div class="header__nav-group header__nav-group--right">
+                        <nav class="header__nav header__nav--right">
+                            <ul class="header__menu">
+                                <li><a href="odmeny.html" class="header__link">Odměny</a></li>
+                                <li><a href="shop.html" class="header__link">Wildův svět</a></li>
+                            </ul>
+                        </nav>
+                        <a href="app.html" class="btn btn--primary header__cta">Začít dobrodružství</a>
+                    </div>
+                    <button class="header__toggle" aria-label="Otevřít menu">
+                        <span></span>
+                    </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Subpage with PWA Priority -->
+        <section class="hero hero--app watercolor-cloud">
+            <div class="container hero__container">
+                <div class="hero__content">
+                    <h1 class="hero__title">Wildero ve vašem <br>mobilu</h1>
+                    <p class="hero__subtitle">
+                        Wildero není klasická aplikace z obchodu. Funguje jako moderní webová aplikace (PWA),
+                        která je rychlejší, úspornější a vždy aktuální.
+                    </p>
+                    <div class="hero__actions">
+                        <a href="https://app.wildero.cz" class="btn btn--primary">Spustit aplikaci</a>
+                        <div class="app-features-mini">
+                            <span>✨ Nezabírá místo</span>
+                            <span>✨ Vždy aktuální</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero__app-visual">
+                    <div class="phone-mockup">
+                        <div class="phone-mockup__screen"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Subtle Instructions -->
+        <section class="section" style="padding-top: 4rem; padding-bottom: 6rem; background-color: var(--color-bg);">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 3.5rem;">
+                    <h2 style="font-size: 1.5rem; color: var(--color-text-light); margin-bottom: 0.5rem;">Jak si přidat
+                        Wildero na plochu?</h2>
+                    <p style="font-size: 0.95rem; color: var(--color-text-light); opacity: 0.8;">Pro nejlepší zážitek
+                        doporučujeme tento krátký postup:</p>
+                </div>
+
+                <div class="grid grid--2" style="gap: 4rem; max-width: 1000px; margin: 0 auto;">
+                    <!-- iOS -->
+                    <div class="instruction-block"
+                        style="background: rgba(255,255,255,0.5); padding: 2.5rem; border-radius: 20px;">
+                        <h3
+                            style="font-size: 1.25rem; margin-bottom: 1.5rem; color: var(--color-text-main); text-align: center;">
+                            iPhone (iOS)</h3>
+                        <ol class="list-check" style="margin-left: 0; font-size: 0.95rem;">
+                            <li class="has-icon">Klepněte na <strong>Spustit aplikaci</strong> výše.</li>
+                            <li class="has-icon">V Safari klepněte na <strong>Sdílet</strong> (čtvereček se šipkou).
+                            </li>
+                            <li class="has-icon">Vyberte <strong>Přidat na plochu</strong>.</li>
+                            <li class="has-icon">Potvrďte tlačítkem <strong>Přidat</strong> v rohu.</li>
+                        </ol>
+                    </div>
+
+                    <!-- Android -->
+                    <div class="instruction-block"
+                        style="background: rgba(255,255,255,0.5); padding: 2.5rem; border-radius: 20px;">
+                        <h3
+                            style="font-size: 1.25rem; margin-bottom: 1.5rem; color: var(--color-text-main); text-align: center;">
+                            Android (Chrome)</h3>
+                        <ol class="list-check" style="margin-left: 0; font-size: 0.95rem;">
+                            <li class="has-icon">Klepněte na <strong>Spustit aplikaci</strong> výše.</li>
+                            <li class="has-icon">V Chrome klepněte na <strong>tři tečky</strong> v rohu.</li>
+                            <li class="has-icon">Vyberte <strong>Přidat na plochu</strong> či
+                                <strong>Instalovat</strong>.
+                            </li>
+                            <li class="has-icon">V okně potvrďte instalaci na plochu.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer__container">
+            <div class="footer__links">
+                <a href="kontakt.html">Kontakt</a>
+                <a href="podminky.html">Podmínky</a>
+                <a href="soukromi.html">Ochrana soukromí</a>
+            </div>
+            <div class="footer__copyright">
+                &copy; 2026 Wildero. Všechna práva vyhrazena.
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

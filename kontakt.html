@@ -1,0 +1,149 @@
+﻿<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontakt | Wildero</title>
+    <meta name="description"
+        content="Máte dotaz nebo nápad na spolupráci? Ozvěte se nám. Jsme tu pro všechny malé i velké dobrodruhy.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header header--centered" id="main-header">
+        <div class="container header__container">
+            <!-- Left Navigation -->
+            <nav class="header__nav header__nav--left">
+                <ul class="header__menu">
+                    <li><a href="onas.html" class="header__link">O nás</a></li>
+                    <li><a href="kontakt.html" class="header__link active">Kontakt</a></li>
+                </ul>
+            </nav>
+
+            <!-- Centered Logo -->
+            <a href="index.html" class="header__logo header__logo--centered">
+                <img src="logo_new.png" alt="Wildero Logo">
+            </a>
+
+            <!-- Right Navigation -->
+            <!-- Right Navigation Group -->
+            <div class="header__nav-group header__nav-group--right">
+                <nav class="header__nav header__nav--right">
+                    <ul class="header__menu">
+                        <li><a href="odmeny.html" class="header__link">Odměny</a></li>
+                        <li><a href="shop.html" class="header__link">Wildův svět</a></li>
+                    </ul>
+                </nav>
+
+                <a href="zacit.html" class="btn btn--primary header__cta">Do aplikace</a>
+            </div>
+            <button class="header__toggle" aria-label="Otevřít menu">
+                <span></span>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div class="header__mobile-menu" id="mobile-menu">
+            <ul>
+                <li><a href="onas.html" class="header__link">O nás</a></li>
+                <li><a href="kontakt.html" class="header__link active">Kontakt</a></li>
+                <li><a href="odmeny.html" class="header__link">Odměny</a></li>
+                <li><a href="shop.html" class="header__link">Wildův svět</a></li>
+                <li><a href="zacit.html" class="header__link">Do aplikace</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Small -->
+        <section class="hero hero--small watercolor-cloud">
+            <div class="container hero__container">
+                <div class="hero__content">
+                    <h1 class="hero__title">Spojte se s námi</h1>
+                    <p class="hero__subtitle">
+                        Máte otázku k výpravám, e-shopu nebo byste s námi chtěli spolupracovat?
+                        Jsme jedno ucho a rádi vám odpovíme.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Content -->
+        <section class="section" style="padding-top: 2rem;">
+            <div class="container">
+                <div class="grid grid--2" style="max-width: 1000px; margin: 0 auto; gap: 4rem; align-items: start;">
+
+                    <!-- Contact Info -->
+                    <div class="card" style="text-align: left; align-items: flex-start; padding: 3rem;">
+                        <h2 class="section__title" style="text-align: left; margin-bottom: 2rem; font-size: 1.8rem;">
+                            Kontaktní údaje</h2>
+
+                        <div style="margin-bottom: 2rem;">
+                            <p style="font-weight: 700; color: var(--color-primary); margin-bottom: 0.5rem;">E-mail</p>
+                            <a href="mailto:ahoj@wildero.cz" class="header__link"
+                                style="font-size: 1.2rem; padding: 0;">ahoj@wildero.cz</a>
+                        </div>
+
+                        <div style="margin-bottom: 2rem;">
+                            <p style="font-weight: 700; color: var(--color-primary); margin-bottom: 0.5rem;">Sociální
+                                sítě</p>
+                            <div style="display: flex; gap: 1.5rem; font-size: 1.1rem;">
+                                <a href="#" class="header__link" style="padding: 0;">Instagram</a>
+                                <a href="#" class="header__link" style="padding: 0;">Facebook</a>
+                            </div>
+                        </div>
+
+                        <div>
+                            <p style="font-weight: 700; color: var(--color-primary); margin-bottom: 0.5rem;">
+                                Provozovatel</p>
+                            <p style="color: var(--color-text-light); line-height: 1.6;">
+                                Wildero s.r.o.<br>
+                                Přírodní 123, 100 00 Praha<br>
+                                IČ: 12345678
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form Placeholder/Message -->
+                    <div style="padding-top: 1rem;">
+                        <h2 class="section__title" style="text-align: left; margin-bottom: 1.5rem; font-size: 1.8rem;">
+                            Napište nám</h2>
+                        <p style="color: var(--color-text-light); margin-bottom: 2rem; line-height: 1.7;">
+                            Nejrychleji nás zastihnete na e-mailu. Odpovídáme obvykle do druhého dne (pokud zrovna
+                            nejsme na výpravě v lese bez signálu).
+                        </p>
+                        <div class="watercolor-cloud"
+                            style="background: rgba(244, 235, 217, 0.4); padding: 2rem; border-radius: 20px; text-align: center;">
+                            <p style="font-style: italic; color: var(--color-primary); font-weight: 500;">
+                                "Cesta k dobrodružství začíná první otázkou."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" id="footer">
+        <div class="container footer__container">
+            <div class="footer__links">
+                <a href="kontakt.html">Kontakt</a>
+                <a href="podminky.html">Podmínky</a>
+                <a href="soukromi.html">Ochrana soukromí</a>
+            </div>
+            <div class="footer__copyright">
+                &copy; 2026 Wildero. Všechna práva vyhrazena.
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

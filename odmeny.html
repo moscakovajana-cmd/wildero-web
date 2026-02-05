@@ -1,0 +1,212 @@
+﻿<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Světa odměn Wildero - Vzpomínky na výpravy</title>
+    <meta name="description"
+        content="Odkryjte svět fyzických odměn Wildero. Odznaky, nálepky a kartičky, které dětem připomenou každé dobrodružství.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="zigzag_styles.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header header--centered" id="main-header">
+        <div class="container header__container">
+            <!-- Left Navigation -->
+            <nav class="header__nav header__nav--left">
+                <ul class="header__menu">
+                    <li><a href="onas.html" class="header__link">O nás</a></li>
+                    <li><a href="kontakt.html" class="header__link">Kontakt</a></li>
+                </ul>
+            </nav>
+
+            <!-- Centered Logo -->
+            <a href="index.html" class="header__logo header__logo--centered">
+                <img src="logo_new.png" alt="Wildero Logo">
+            </a>
+
+            <!-- Right Navigation Group -->
+            <div class="header__nav-group header__nav-group--right">
+                <nav class="header__nav header__nav--right">
+                    <ul class="header__menu">
+                        <li><a href="odmeny.html" class="header__link active">Odměny</a></li>
+                        <li><a href="shop.html" class="header__link">Wildův svět</a></li>
+                    </ul>
+                </nav>
+
+                <a href="zacit.html" class="btn btn--primary header__cta">Do aplikace</a>
+            </div>
+            <button class="header__toggle" aria-label="Otevřít menu">
+                <span></span>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div class="header__mobile-menu" id="mobile-menu">
+            <ul>
+                <li><a href="onas.html" class="header__link">O nás</a></li>
+                <li><a href="kontakt.html" class="header__link">Kontakt</a></li>
+                <li><a href="odmeny.html" class="header__link active">Odměny</a></li>
+                <li><a href="shop.html" class="header__link">Wildův svět</a></li>
+                <li><a href="zacit.html" class="header__link">Do aplikace</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <!-- Modern Hero Section -->
+        <section class="section watercolor-cloud" style="padding-top: 8rem; padding-bottom: 4rem;">
+            <div class="container" style="text-align: center;">
+                <h1 class="section__title" style="margin-bottom: 1rem;">Žádné virtuální odměny,<br>
+                    jen ty skutečné</h1>
+                <p class="text-lead" style="margin: 0 auto; max-width: 700px;">
+                    Ve Wilderu jsou odměny připomínkou skutečného dobrodružství. Aby si děti mohly své vítězství hrdě
+                    vystavit, připravili jsme k výpravám tematické doplňky. Ty lze pořídit nad rámec výprav v aplikaci.
+                </p>
+            </div>
+        </section>
+
+        <!-- Story Zig-Zag Section -->
+        <section class="section">
+            <div class="container section--zigzag">
+                <!-- Row 1: Image 45 (Left), Text (Right) -->
+                <div class="zigzag-row">
+                    <div class="zigzag__image">
+                        <img src="reward_zigzag_1.png" alt="Odměny Wildero" style="max-width: 450px;">
+                    </div>
+                    <div class="zigzag__content">
+                        <h2 class="zigzag__title">Nejde o výhru, <br>jde o vzpomínku</h2>
+                        <p class="zigzag__text">
+                            Odměny ve Wilderu nejsou odměnou za výkon, ale příjemným zakončením společné cesty.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Grid Section: Title "Co děti získávají" and the 3 items -->
+        <section class="section section--light" style="padding: 6rem 0;">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 4rem;">
+                    <h2 class="section__title" style="margin-bottom: 1rem;">Co děti mohou získávají</h2>
+                    <p style="color: var(--color-text-light);">Drobné připomínky výprav, které si děti odnášejí z
+                        výletu do přírody.</p>
+                </div>
+
+                <div class="rewards-grid-new">
+                    <!-- Nálepky: Image 42 -->
+                    <div class="reward-item-new">
+                        <div class="reward-item-new__img">
+                            <img src="reward_hero_stickers.png" alt="Nálepky">
+                        </div>
+                        <h3 class="reward-item-new__title">Nálepky</h3>
+                        <p class="reward-item-new__desc">
+                            Nálepky do deníku, na láhev nebo doma na nástěnku.
+                        </p>
+                    </div>
+
+                    <!-- Odznaky: Image 44 -->
+                    <div class="reward-item-new">
+                        <div class="reward-item-new__img">
+                            <img src="reward_44.png" alt="Odznaky">
+                        </div>
+                        <h3 class="reward-item-new__title">Odznaky</h3>
+                        <p class="reward-item-new__desc">
+                            Některé výpravy si zaslouží místo na batohu nebo v podobě magnetů ozdobí lednici.
+                        </p>
+                    </div>
+
+                    <!-- Kartička: Image card hero -->
+                    <div class="reward-item-new">
+                        <div class="reward-item-new__img">
+                            <img src="reward_hero_card.png" alt="Kartička">
+                        </div>
+                        <h3 class="reward-item-new__title">Kartička</h3>
+                        <p class="reward-item-new__desc">
+                            Během výpravy si děti mohou lepit kulaté nálepky na kartičku a sledovat, jak se blíží do
+                            cíle dané výpravy.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Wilda Section -->
+        <section class="section">
+            <div class="container">
+                <!-- Centered title -->
+                <div style="text-align: center; margin-bottom: 4rem;">
+                    <h2 class="section__title">Kdo je Wilda</h2>
+                </div>
+
+                <!-- Zigzag row with image and first two paragraphs -->
+                <div class="zigzag-row">
+                    <div class="zigzag__image">
+                        <img src="wilda_fox_new.png" alt="Liška Wilda" style="max-width: 400px;">
+                    </div>
+                    <div class="zigzag__content">
+                        <p class="zigzag__text">
+                            Wilda je tichý průvodce výpravami. Neříká, co máš dělat. Jen občas pošeptá, kam se podívat.
+                        </p>
+                        <p class="zigzag__text">
+                            Není to instruktor ani učitel. Je to ten hlas větru v korunách stromů a praskání větviček
+                            pod nohama, který vás vytáhne od obrazovek zpět ke kořenům. Wilda vás nepovede za ruku po
+                            vyšlapaných cestách; raději vám ukáže nenápadnou stezku v mechu nebo podivně tvarovaný
+                            kámen, který ostatní přehlédli.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Full-width final paragraph -->
+                <div style="margin-top: 4rem; text-align: center;">
+                    <p class="zigzag__text"
+                        style="max-width: 900px; margin: 0 auto; font-size: 1.3rem; line-height: 1.8;">
+                        Pomáhá dětem (i dospělým) znovu objevit schopnost opravdu vidět. Zatímco aplikace v kapse
+                        tiše hlídá směr, Wilda otevírá oči pro detaily, které dělají z obyčejné procházky skutečné
+                        dobrodružství.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="section" style="padding: 6rem 0; text-align: center;">
+            <div class="container">
+                <a href="index.html" class="btn btn--secondary">Zpět na hlavní stránku</a>
+            </div>
+        </section>
+        <!-- CTA Section -->
+        <section class="section" style="padding-top: 2rem; padding-bottom: 4rem; text-align: center;">
+            <div class="container">
+                <a href="shop.html" class="btn btn--primary" style="font-size: 1.1rem; padding: 1rem 2.5rem;">Chci
+                    koupit
+                    odměny</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" id="footer">
+        <div class="container footer__container">
+            <div class="footer__links">
+                <a href="kontakt.html">Kontakt</a>
+                <a href="podminky.html">Podmínky</a>
+                <a href="soukromi.html">Ochrana soukromí</a>
+            </div>
+            <div class="footer__copyright">
+                &copy; 2026 Wildero. Všechna práva vyhrazena.
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

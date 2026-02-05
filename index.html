@@ -1,0 +1,260 @@
+﻿<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wildero - Dobrodružství začíná venku</title>
+    <meta name="description"
+        content="Wildero je aplikace, která motivuje k pohybu v přírodě pomocí výprav, úkolů a odměn.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header header--centered header--home" id="main-header">
+        <div class="container header__container">
+            <!-- Left Navigation -->
+            <nav class="header__nav header__nav--left">
+                <ul class="header__menu">
+                    <li><a href="onas.html" class="header__link">O nás</a></li>
+                    <li><a href="kontakt.html" class="header__link">Kontakt</a></li>
+                </ul>
+            </nav>
+
+            <!-- Centered Logo -->
+            <a href="index.html" class="header__logo header__logo--centered">
+                <img src="logo_new.png" alt="Wildero Logo">
+            </a>
+
+            <!-- Right Navigation -->
+            <!-- Right Navigation Group -->
+            <div class="header__nav-group header__nav-group--right">
+                <nav class="header__nav header__nav--right">
+                    <ul class="header__menu">
+                        <li><a href="odmeny.html" class="header__link">Odměny</a></li>
+                        <li><a href="shop.html" class="header__link">Wildův svět</a></li>
+                    </ul>
+                </nav>
+
+                <a href="zacit.html" class="btn btn--primary header__cta">Do aplikace</a>
+            </div>
+            <button class="header__toggle" aria-label="Otevřít menu">
+                <span></span>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div class="header__mobile-menu" id="mobile-menu">
+            <ul>
+                <li><a href="onas.html" class="header__link">O nás</a></li>
+                <li><a href="kontakt.html" class="header__link">Kontakt</a></li>
+                <li><a href="odmeny.html" class="header__link">Odměny</a></li>
+                <li><a href="shop.html" class="header__link">Wildův svět</a></li>
+                <li><a href="zacit.html" class="header__link">Do aplikace</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero__bg-placeholder"
+                style="background-image: url('hero_bg_landscape.jpg'); background-position: center 20%;"></div>
+            <div class="container hero__container">
+                <div class="hero__content">
+                    <h1 class="hero__title">Dobrodružství <br>začíná venku</h1>
+                    <p class="hero__subtitle">
+                        Objevte kouzlo přírody s jemným průvodcem, který dává směr, ale nechává prostor pro vlastní
+                        objevování. Wildero promění obyčejnou procházku ve výpravu – pro rodiny s dětmi i každého,
+                        kdo si chce jít provětrat hlavu.
+                    </p>
+                    <div class="hero__actions">
+                        <a href="zacit.html" class="btn btn--primary" id="hero-cta">Vyzkoušej Wildero</a>
+                        <div class="hero__note-card">
+                            <img src="hero_note_card.png" alt="Cedulka">
+                            <div class="hero__note-text">
+                                Nejde jen o aplikaci.<br>
+                                Výpravy pokračují venku a někdy i nálepkou nebo odznakem do kapsy.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero__visual hide-mobile">
+                    <div class="phone-mockup">
+                        <div class="phone-mockup__screen"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Co je Wildero -->
+        <section id="about" class="section">
+            <div class="container" style="text-align: center;">
+                <h2 class="section__title">Co je Wildero</h2>
+                <div
+                    style="max-width: 700px; margin: 0 auto; color: var(--color-text-main); font-size: 1.15rem; line-height: 1.8;">
+                    <p style="margin-bottom: 2rem;">
+                        Wildero je jemný průvodce výpravami do přírody.<br>
+                        Pomáhá dát procházce směr, aniž by bral dětem nebo dospělým svobodu objevovat svět po svém.
+                    </p>
+                    <p style="margin-bottom: 2rem;">
+                        Není to hra, kterou je potřeba „dohrát“.<br>
+                        A není to ani seznam úkolů, které je nutné splnit.
+                    </p>
+                    <p style="font-weight: 600; color: var(--color-primary); margin-top: 2rem;">
+                        Wildero je pozvání ven.<br>
+                        Do lesa, na louku, k pohybu, zvídavosti i klidu.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Audience -->
+        <section id="audience" class="section section--light">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 4rem;">
+                    <h2 class="section__title" style="margin-bottom: 0.5rem;">Pro koho je Wildero</h2>
+                    <p class="text-lead" style="margin: 0 auto; font-size: 1.1rem; color: var(--color-text-light);">
+                        Pro každého, kdo chce jít ven — a najít v tom radost i smysl.
+                    </p>
+                </div>
+
+                <div class="grid grid--3 audience-grid">
+                    <!-- Block 1: Rodiny -->
+                    <div class="audience-item">
+                        <div class="audience-icon">
+                            <img src="audience_family.png" alt="Ilustrace rodiny venku" class="audience-image">
+                        </div>
+                        <h3 class="audience-title">Pro rodiny s dětmi</h3>
+                        <p class="audience-text">
+                            Pro ty, kteří chtějí trávit čas spolu venku, ale ne vždy mají chuť vymýšlet program.<br>
+                            Wildero dá procházce směr — a dětem nechá prostor běhat, lézt i objevovat po svém.
+                        </p>
+                    </div>
+
+                    <!-- Block 2: Děti -->
+                    <div class="audience-item">
+                        <div class="audience-icon">
+                            <img src="audience_kids.png" alt="Ilustrace dětí objevujících přírodu"
+                                class="audience-image">
+                        </div>
+                        <h3 class="audience-title">Pro zvídavé i divoké děti</h3>
+                        <p class="audience-text">
+                            Pro děti, které si všimnou brouka v trávě i pro ty, které potřebují běžet k prvnímu
+                            stromu.<br>
+                            Každé dítě si ve výpravě najde vlastní cestu.
+                        </p>
+                    </div>
+
+                    <!-- Block 3: Dospělí -->
+                    <div class="audience-item">
+                        <div class="audience-icon">
+                            <img src="audience_adults.png" alt="Ilustrace dospělého v přírodě" class="audience-image">
+                        </div>
+                        <h3 class="audience-title">Pro dospělé, kteří si chtějí provětrat hlavu</h3>
+                        <p class="audience-text">
+                            Pro chvíle, kdy chcete jít ven, mít cíl, ale žádný tlak.<br>
+                            Výprava může být tichá, klidná — jen pro vás.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="how" class="section section--light">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 4rem; position: relative; z-index: 5;">
+                    <h2 class="section__title" style="margin-bottom: 0.5rem;">Jak funguje Wildero</h2>
+                    <p class="text-lead" style="margin: 0 auto; font-size: 1.1rem; color: var(--color-text-light);">
+                        Jednoduše. Přirozeně. Venku.
+                    </p>
+                </div>
+
+                <div class="grid grid--3 how-grid">
+                    <img src="path_line.png" class="how-path-line" alt="">
+                    <!-- Step 1 -->
+                    <div class="how-item">
+                        <div class="how-icon">
+                            <img src="how_map.png" alt="Ilustrace mapy a kompasu" class="how-image">
+                        </div>
+                        <h3 class="how-title">1. Vyberete si výpravu</h3>
+                        <p class="how-text">
+                            V aplikaci si vyberete výpravu podle chuti — krátkou nebo delší, klidnou nebo hravou.<br>
+                            Výprava dává směr, ne omezení.
+                        </p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="how-item">
+                        <div class="how-icon">
+                            <img src="how_hike.png" alt="Ilustrace rodiny na cestě" class="how-image">
+                        </div>
+                        <h3 class="how-title">2. Vyrazíte ven</h3>
+                        <p class="how-text">
+                            Telefon zůstává spíš v kapse.<br>
+                            Výprava vás vede do přírody — k pohybu, objevování i obyčejnému bytí venku.
+                        </p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="how-item">
+                        <div class="how-icon">
+                            <img src="how_stickers.png" alt="Ilustrace nálepek a odznaků" class="how-image">
+                        </div>
+                        <h3 class="how-title">3. Výprava pokračuje i po návratu</h3>
+                        <p class="how-text">
+                            Některé výpravy nekončí návratem domů.<br>
+                            Děti si odnášejí nálepku, kartičku nebo odznak — drobnou připomínku zážitku, který byl
+                            skutečný.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- World of Rewards -->
+        <section id="rewards" class="section section--light">
+            <div class="container" style="text-align: center;">
+                <div style="margin-bottom: 3rem;">
+                    <h2 class="section__title" style="margin-bottom: 0.5rem;">Odměny, které mají smysl</h2>
+                    <p class="text-lead" style="margin: 0 auto; font-size: 1.1rem; color: var(--color-text-light);">
+                        Nejde o výhru. Jde o vzpomínku.
+                    </p>
+                </div>
+
+                <div class="rewards-visual" style="margin-bottom: 3rem;">
+                    <img src="rewards_showcase.png" alt="Ukázka odměn Wildero" class="rewards-main-img">
+                </div>
+
+                <div class="rewards-text-block" style="max-width: 800px; margin: 0 auto;">
+                    <p>Ve Wilderu nejsou odměny cílem. Jsou tichým zakončením výpravy.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer__container">
+            <div class="footer__links">
+                <a href="kontakt.html">Kontakt</a>
+                <a href="podminky.html">Podmínky</a>
+                <a href="soukromi.html">Ochrana soukromí</a>
+            </div>
+            <div class="footer__copyright">
+                &copy; 2026 Wildero. Všechna práva vyhrazena.
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

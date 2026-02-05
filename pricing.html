@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ceny - Wildero</title>
+    <meta name="description"
+        content="Wildero je aplikace, která motivuje k pohybu v přírodě pomocí výprav, úkolů a odměn.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .pricing-page {
+            padding-top: calc(var(--header-height) + 4rem);
+            padding-bottom: 6rem;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+            margin-top: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .download-section {
+            background-color: var(--color-primary);
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: var(--radius-card);
+            text-align: center;
+        }
+
+        .download-section h2 {
+            color: white;
+        }
+
+        .download-section p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        @media (max-width: 900px) {
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header" id="main-header">
+        <div class="container header__container">
+            <a href="index.html#home" class="header__logo">
+                <img src="logo_new.png" alt="Wildero Logo">
+            </a>
+            <nav class="header__nav">
+                <ul class="header__menu">
+                    <li><a href="index.html#about" class="header__link">Co je Wildero</a></li>
+                    <li><a href="index.html#audience" class="header__link">Pro koho</a></li>
+                    <li><a href="index.html#how" class="header__link">Jak funguje</a></li>
+                    <li><a href="index.html#rewards" class="header__link">Odměny</a></li>
+                </ul>
+            </nav>
+            <a href="pricing.html" class="btn btn--primary header__cta">Vyzkoušet zdarma</a>
+            <button class="header__toggle" aria-label="Otevřít menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Pricing -->
+        <section class="hero hero--small">
+            <div class="hero__bg-placeholder" style="background-image: url('hero-bg.jpg');"></div>
+            <div class="container hero__container">
+                <div class="hero__content">
+                    <h1 class="hero__title">Vyberte si své dobrodružství</h1>
+                    <p class="hero__subtitle" style="max-width: 700px; margin: 0 auto 2rem;">
+                        Wildero je tu pro každého. Vyzkoušejte základní výpravy nebo získejte plný přístup k celému
+                        světu
+                        dobrodružství.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Grid -->
+        <section class="section">
+            <div class="container">
+                <div class="grid grid--2" style="gap: 3rem; align-items: stretch;">
+                    <!-- Trial -->
+                    <div class="card card--pricing">
+                        <h3 class="card__title">Vyzkoušej aplikaci</h3>
+                        <div class="pricing-options" style="margin-bottom: 2rem;">Bez závazků</div>
+                        <ul class="list-check" style="margin-left: 0; text-align: left;">
+                            <li>3 plnohodnotné výpravy na zkoušku</li>
+                            <li>Okamžitý start bez registrace</li>
+                            <li>Zjištění, jak Wildero funguje v terénu</li>
+                            <li>Ideální pro první seznámení</li>
+                        </ul>
+                        <a href="zacit.html" class="btn btn--secondary" style="margin-top: auto;">Chci to jen zkusit</a>
+                    </div>
+
+                    <!-- Full Access -->
+                    <div class="card card--highlight">
+                        <div
+                            style="background: var(--color-primary); color: #fff; padding: 0.25rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 700; display: inline-block; margin-bottom: 1.5rem;">
+                            PLNÝ ZÁŽITEK</div>
+                        <h3 class="card__title">Stát se dobrodruhem</h3>
+                        <div class="pricing-options" style="margin-bottom: 2rem;">Vše v jedné kapse</div>
+                        <ul class="list-check" style="margin-left: 0; text-align: left;">
+                            <li><strong>Neomezený přístup</strong> ke stovkám výprav</li>
+                            <li>Sbírání odznaků a ukládání pokroku</li>
+                            <li>Offline režim pro místa bez signálu</li>
+                            <li>Exkluzivní rodinný obsah</li>
+                        </ul>
+                        <p class="hero__note" style="margin-top: 2.5rem; transform: rotate(1deg); font-size: 0.95rem;">
+                            Cenově od 149 Kč měsíčně.<br>
+                            Nebo zvýhodněně za celý rok.
+                        </p>
+                        <a href="https://app.wildero.cz" class="btn btn--primary" style="margin-top: 2rem;">Chci se
+                            registrovat</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Download Section -->
+        <section id="download" class="section watercolor-cloud">
+            <div class="container" style="text-align: center;">
+                <h2 class="section__title">Jak začít?</h2>
+                <p class="text-lead" style="margin: 0 auto 2rem;">
+                    Wildero je webová aplikace. Stačí si přidat zástupce na plochu a můžete vyrazit!
+                </p>
+                <div class="cta-centered">
+                    <a href="zacit.html" class="btn btn--secondary">Jak přidat na plochu?</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer__container">
+            <div class="footer__links">
+                <a href="kontakt.html">Kontakt</a>
+                <a href="podminky.html">Podmínky</a>
+                <a href="soukromi.html">Ochrana soukromí</a>
+            </div>
+            <div class="footer__copyright">
+                &copy; 2026 Wildero. Všechna práva vyhrazena.
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

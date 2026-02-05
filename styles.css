@@ -555,7 +555,7 @@ p {
     width: 100%;
     height: 100%;
     background-color: #F5F0E8;
-    background-image: url('app-splash.png');
+    background-image: url('nahled_aplikace.png');
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -598,7 +598,7 @@ p {
 
 .hero--app .phone-mockup__screen {
     border-radius: 35px;
-    background-image: url('app-trips.png');
+    background-image: url('nahled_aplikace.png');
 }
 
 .hero--app .phone-mockup::after {

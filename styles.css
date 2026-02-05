@@ -230,6 +230,7 @@ p {
 
 .header__menu {
     display: flex;
+    align-items: center;
     gap: 3rem;
     /* Zvětšený rozestup pro vzdušnější vzhled */
     margin-right: 0;
@@ -608,6 +609,10 @@ p {
 
 .hero--app .phone-mockup:hover {
     transform: rotate(0deg) scale(1.05);
+}
+
+.phone-mockup--right {
+    transform: rotate(6deg) !important;
 }
 
 /* Cards & Grid */
@@ -1082,7 +1087,6 @@ p {
         /* Standard touch target size */
         height: 44px;
         padding: 10px;
-        margin-right: -10px;
         /* Offset padding to align with container edge */
     }
 

@@ -1413,7 +1413,7 @@ p {
 
 @media (max-width: 900px) {
     .header--centered .header__container {
-        grid-template-columns: auto 1fr auto;
+        grid-template-columns: 1fr auto 1fr;
     }
 
     .header--centered .header__nav--left,
@@ -1425,12 +1425,18 @@ p {
 
 
     .header--centered .header__logo--centered {
-        grid-column: 1;
+        grid-column: 2;
+        justify-self: center;
+        text-align: center;
+    }
+
+    .header--centered .header__logo--centered img {
+        height: 48px;
+        width: auto;
     }
 
     .header--centered .header__cta {
-        grid-column: 2;
-        margin-left: 0;
+        display: none;
     }
 
     .header--centered .header__toggle {

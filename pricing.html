@@ -67,13 +67,11 @@
 
 <body>
 
-    <!-- Header -->
-    <header class="header" id="main-header">
+
+    <header class="header header--centered" id="main-header">
         <div class="container header__container">
-            <a href="index.html#home" class="header__logo">
-                <img src="logo_new.png" alt="Wildero Logo">
-            </a>
-            <nav class="header__nav">
+            <!-- Left Navigation -->
+            <nav class="header__nav header__nav--left">
                 <ul class="header__menu">
                     <li><a href="index.html" class="header__link header__link--icon" aria-label="Domů"><svg
                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -82,18 +80,42 @@
                                 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                                 <polyline points="9 22 9 12 15 12 15 22"></polyline>
                             </svg></a></li>
-                    <li><a href="index.html#about" class="header__link">Co je Wildero</a></li>
-                    <li><a href="index.html#audience" class="header__link">Pro koho</a></li>
-                    <li><a href="index.html#how" class="header__link">Jak funguje</a></li>
-                    <li><a href="index.html#rewards" class="header__link">Odměny</a></li>
+                    <li><a href="onas.html" class="header__link">O nás</a></li>
+                    <li><a href="kontakt.html" class="header__link">Kontakt</a></li>
                 </ul>
             </nav>
-            <a href="pricing.html" class="btn btn--primary header__cta">Vyzkoušet zdarma</a>
+
+            <!-- Centered Logo -->
+            <a href="index.html" class="header__logo header__logo--centered">
+                <img src="logo_new.png" alt="Wildero Logo">
+            </a>
+
+            <!-- Right Navigation -->
+            <!-- Right Navigation Group -->
+            <div class="header__nav-group header__nav-group--right">
+                <nav class="header__nav header__nav--right">
+                    <ul class="header__menu">
+                        <li><a href="odmeny.html" class="header__link">Odměny</a></li>
+                        <li><a href="shop.html" class="header__link">Wildův svět</a></li>
+                    </ul>
+                </nav>
+
+                <a href="zacit.html" class="btn btn--primary header__cta">Do aplikace</a>
+            </div>
             <button class="header__toggle" aria-label="Otevřít menu">
                 <span></span>
-                <span></span>
-                <span></span>
             </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div class="header__mobile-menu" id="mobile-menu">
+            <ul>
+                <li><a href="onas.html" class="header__link">O nás</a></li>
+                <li><a href="kontakt.html" class="header__link">Kontakt</a></li>
+                <li><a href="odmeny.html" class="header__link">Odměny</a></li>
+                <li><a href="shop.html" class="header__link">Wildův svět</a></li>
+                <li><a href="zacit.html" class="header__link">Do aplikace</a></li>
+            </ul>
         </div>
     </header>
 

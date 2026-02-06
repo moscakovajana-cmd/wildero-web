@@ -317,7 +317,7 @@ p {
 
 .hero--app .hero__container {
     flex-direction: row;
-    gap: 4rem;
+    gap: 2rem;
     text-align: left;
     align-items: center;
 }
@@ -390,11 +390,19 @@ p {
         gap: 3rem;
     }
 
-    .hero--app .hero__content,
-    .hero--app .hero__title,
-    .hero--app .hero__subtitle {
+    .hero--app .hero__content {
         text-align: center;
         margin: 0 auto;
+    }
+
+    .hero--app .hero__title {
+        text-align: center;
+        margin: 0 auto 2rem auto;
+    }
+
+    .hero--app .hero__subtitle {
+        text-align: center;
+        margin: 0 auto 3rem auto;
     }
 
     .hero--app .hero__actions {
@@ -565,9 +573,7 @@ p {
     transition: background-image 0.5s ease;
 }
 
-.phone-mockup:hover .phone-mockup__screen {
-    background-image: url('app-trips.png');
-}
+
 
 
 
@@ -1088,6 +1094,8 @@ p {
         height: 44px;
         padding: 10px;
         /* Offset padding to align with container edge */
+        transform: translateY(-8px);
+        /* Move icon higher */
     }
 
     .header__toggle span {
@@ -1429,6 +1437,10 @@ p {
         display: flex;
         grid-column: 3;
         margin-left: 1rem;
+        z-index: 1002;
+        position: relative;
+        color: var(--color-primary);
+        /* Ensure color is set */
     }
 }
 

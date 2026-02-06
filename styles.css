@@ -1094,7 +1094,7 @@ p {
         height: 44px;
         padding: 10px;
         /* Offset padding to align with container edge */
-        transform: translateY(-8px);
+        transform: translateY(-13px);
         /* Move icon higher */
     }
 

@@ -240,11 +240,33 @@ p {
     font-weight: 600;
     font-size: 1.1rem;
     color: var(--color-text-main);
+    position: relative;
+    /* For pseudo-element */
 }
 
-.header__link:hover,
+.header__link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background-color: var(--color-primary);
+    transition: width 0.3s ease;
+    border-radius: 3px;
+}
+
+.header__link:hover {
+    color: var(--color-primary);
+}
+
 .header__link.active {
     color: var(--color-primary);
+}
+
+.header__link:hover::after,
+.header__link.active::after {
+    width: 100%;
 }
 
 .header__toggle {

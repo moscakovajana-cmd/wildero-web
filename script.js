@@ -24,21 +24,23 @@ if (toggleBtn && mobileMenu) {
 const sections = document.querySelectorAll('section');
 const navLinks = document.querySelectorAll('.header__link');
 
-window.addEventListener('scroll', () => {
-    let current = '';
-
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        // Offset for header height
-        if (pageYOffset >= (sectionTop - 150)) {
-            current = section.getAttribute('id');
-        }
-    });
+// Active Link Highlighting based on URL
+document.addEventListener('DOMContentLoaded', () => {
+    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+    const navLinks = document.querySelectorAll('.header__link');
 
     navLinks.forEach(link => {
+        // Remove hardcoded active class to avoid conflicts, logic will set it
         link.classList.remove('active');
-        if (link.getAttribute('href').includes(current)) {
+
+        const href = link.getAttribute('href');
+
+        // Exact match
+        if (href === currentPath) {
+            link.classList.add('active');
+        }
+        // Handle root path / resolving to index.html
+        else if ((currentPath === '' || currentPath === '/') && href === 'index.html') {
             link.classList.add('active');
         }
     });

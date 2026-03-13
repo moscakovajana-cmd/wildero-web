@@ -17,6 +17,7 @@ const mobileMenu = document.getElementById('mobile-menu');
 if (toggleBtn && mobileMenu) {
     toggleBtn.addEventListener('click', () => {
         mobileMenu.classList.toggle('open');
+        nav.classList.toggle('open');
     });
 }
 
@@ -49,10 +50,28 @@ document.addEventListener('DOMContentLoaded', () => {
 // Close mobile menu on link click
 navLinks.forEach(link => {
     link.addEventListener('click', () => {
-        if (window.innerWidth <= 768) {
+        if (window.innerWidth <= 900) {
             nav.classList.remove('open');
+            if (mobileMenu) mobileMenu.classList.remove('open');
         }
     });
+});
+
+// AOS Scroll Animation Logic
+document.addEventListener('DOMContentLoaded', () => {
+    const aosElements = document.querySelectorAll('.aos');
+    const aosObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('aos-visible');
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: "0px"
+    });
+
+    aosElements.forEach(el => aosObserver.observe(el));
 });
 
 // Header CTA Visibility Logic - DISABLED (User wants button always visible)

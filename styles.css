@@ -1,4 +1,4 @@
-﻿:root {
+:root {
     /* Colors */
     --color-primary: #385E3C;
     /* Dark Moss Green matching image */
@@ -140,6 +140,10 @@ p {
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     border: none;
+}
+
+.btn:active {
+    transform: scale(0.95);
 }
 
 .btn--primary {
@@ -1097,9 +1101,21 @@ p {
         display: flex !important;
         /* enforcing flex for the visual container */
     }
+
+    .show-mobile-inline {
+        display: inline !important;
+    }
 }
 
 @media (max-width: 768px) {
+    .show-mobile-inline {
+        display: inline !important;
+        font-weight: 500;
+        line-height: 1.5;
+        font-size: 1.15rem;
+        /* Slightly larger and more readable text on mobile */
+        color: var(--color-text-main);
+    }
 
     .header__menu,
     .header__cta {
@@ -1116,8 +1132,6 @@ p {
         height: 44px;
         padding: 10px;
         /* Offset padding to align with container edge */
-        transform: translateY(-17px);
-        /* Move icon higher */
     }
 
     .header__toggle span {
@@ -1216,6 +1230,24 @@ p {
     .container {
         padding: 0 1.25rem;
         /* Slightly more compact on mobile */
+    }
+
+    .hero .btn--primary {
+        width: 100%;
+        max-width: 320px;
+        /* Very large punchy button */
+        padding: 1.125rem 2rem;
+        font-size: 1.15rem;
+        font-weight: 800;
+        box-shadow: 0 8px 25px rgba(56, 94, 60, 0.25);
+        /* Stronger shadow to pop */
+        margin-top: 1rem;
+    }
+
+    .hero__note-card {
+        margin-top: 2rem;
+        /* Move the note card further down to give button space */
+        transform: rotate(-1deg) scale(1.05); /* slightly more visible */
     }
 }
 
@@ -1454,6 +1486,7 @@ p {
         margin-left: auto;
         /* Pushes to right */
         order: 2;
+        gap: 0.5rem; /* add gap between CTA and toggle */
     }
 
     .header--centered .header__logo--centered {
@@ -1484,58 +1517,95 @@ p {
     .header--centered .header__toggle {
         display: flex;
         order: 3;
-        margin-left: 0.75rem;
+        margin-left: 0;
         z-index: 1002;
         position: relative;
         color: var(--color-primary);
         /* Ensure color is set */
+        transform: none; /* remove earlier vertical transform from toggle */
     }
 }
 
-/* Mobile Menu Dropdown */
+/* Mobile Menu Fullscreen Glassmorphism */
 .header__mobile-menu {
     display: none;
-    /* Hidden by default on desktop */
     position: fixed;
-    top: var(--header-height);
+    top: 0;
     left: 0;
     width: 100%;
-    background: rgba(253, 251, 246, 0.98);
-    backdrop-filter: blur(12px);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
+    height: 100vh;
+    background: rgba(253, 251, 246, 0.90); /* Semi-transparent */
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.4s;
     z-index: 999;
+    padding-top: calc(var(--header-height) + 2rem);
+    flex-direction: column;
 }
 
 @media (max-width: 900px) {
     .header__mobile-menu {
-        display: block;
+        display: flex; /* Active in DOM, just invisible */
     }
 }
 
 .header__mobile-menu.open {
-    max-height: 400px;
+    opacity: 1;
+    visibility: visible;
 }
 
 .header__mobile-menu ul {
     list-style: none;
-    padding: 1.5rem 2rem;
+    padding: 0;
     margin: 0;
+    text-align: center;
+    width: 100%;
+    margin-top: 2rem;
 }
 
 .header__mobile-menu li {
-    margin-bottom: 1rem;
+    margin-bottom: 2.5rem;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.header__mobile-menu.open li {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Staggered animation for menu items */
+.header__mobile-menu.open li:nth-child(1) { transition-delay: 0.1s; }
+.header__mobile-menu.open li:nth-child(2) { transition-delay: 0.15s; }
+.header__mobile-menu.open li:nth-child(3) { transition-delay: 0.2s; }
+.header__mobile-menu.open li:nth-child(4) { transition-delay: 0.25s; }
+.header__mobile-menu.open li:nth-child(5) { transition-delay: 0.3s; }
+
 .header__mobile-menu a {
-    display: block;
-    padding: 0.75rem 0;
-    font-size: 1.1rem;
-    font-weight: 600;
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    font-size: 2.2rem;
+    font-weight: 700;
     color: var(--color-text-main);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    border-bottom: none;
+    position: relative;
+    letter-spacing: -0.02em;
+}
+
+.header__mobile-menu a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 3px;
+    background-color: var(--color-primary);
+    transition: width 0.3s ease;
+    border-radius: 3px;
 }
 
 .header__mobile-menu a:hover,
@@ -1543,8 +1613,25 @@ p {
     color: var(--color-primary);
 }
 
+.header__mobile-menu a:hover::after,
+.header__mobile-menu a.active::after {
+    width: 100%;
+}
+
+
 .hide-mobile {
     display: none !important;
+}
+
+/* Global visibility classes */
+.show-mobile-inline {
+    display: none !important;
+}
+
+@media (max-width: 900px) {
+    .show-mobile-inline {
+        display: inline !important;
+    }
 }
 
 
@@ -2002,3 +2089,24 @@ input:disabled+.slider {
         flex-direction: row;
     }
 }
+
+/* =========================================
+   AOS (Animate On Scroll) & Micro-interactions
+   ========================================= */
+
+.aos {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+    will-change: opacity, transform;
+}
+
+.aos-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.aos-delay-1 { transition-delay: 0.1s; }
+.aos-delay-2 { transition-delay: 0.2s; }
+.aos-delay-3 { transition-delay: 0.3s; }
+.aos-delay-4 { transition-delay: 0.4s; }

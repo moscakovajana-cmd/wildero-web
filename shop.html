@@ -1,29 +1,30 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="cs">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-shop s odměnami | Wildero</title>
-    <meta name="description" content="E-shop s balíčky odměn Wildero bude brzy k dispozici.">
+    <title>Wildův svět – E-shop | Wildero</title>
+    <meta name="description"
+        content="Nakupujte originální Wildero zboží – nálepky, omalovánky, sešity, odznaky a balíčky odměn pro vaše výpravy.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Caveat:wght@600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="shop.css">
 
     <!-- SEO & Social -->
     <link rel="canonical" href="https://wildero.cz/shop.html">
     <link rel="icon" type="image/png" href="logo_new.png">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://wildero.cz/shop.html">
-    <meta property="og:title" content="E-shop s odměnami | Wildero">
-    <meta property="og:description" content="E-shop s balíčky odměn Wildero bude brzy k dispozici.">
+    <meta property="og:title" content="Wildův svět – E-shop | Wildero">
+    <meta property="og:description"
+        content="Nakupujte originální Wildero zboží – nálepky, omalovánky, sešity, odznaky a balíčky odměn.">
     <meta property="og:image" content="https://wildero.cz/hero_bg_landscape.jpg">
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://wildero.cz/shop.html">
-    <meta property="twitter:title" content="E-shop s odměnami | Wildero">
-    <meta property="twitter:description" content="E-shop s balíčky odměn Wildero bude brzy k dispozici.">
-    <meta property="twitter:image" content="https://wildero.cz/hero_bg_landscape.jpg">
 </head>
 
 <body>
@@ -66,43 +67,405 @@
                 <span></span>
             </button>
         </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div class="header__mobile-menu" id="mobile-menu">
+            <ul>
+                <li><a href="onas.html" class="header__link">O nás</a></li>
+                <li><a href="kontakt.html" class="header__link">Kontakt</a></li>
+                <li><a href="odmeny.html" class="header__link">Odměny</a></li>
+                <li><a href="shop.html" class="header__link">Wildův svět</a></li>
+                <li><a href="zacit.html" class="header__link">Do aplikace</a></li>
+            </ul>
+        </div>
     </header>
 
     <main>
-        <!-- Coming Soon Section -->
-        <section class="section watercolor-cloud"
-            style="padding-top: 10rem; padding-bottom: 8rem; min-height: 70vh; display: flex; align-items: center;">
-            <div class="container" style="text-align: center;">
-                <h1 class="section__title" style="font-size: 2.5rem; margin-bottom: 2rem;">
-                    E-shop s odměnami již brzy
-                </h1>
 
-                <p
-                    style="font-size: 1.2rem; color: var(--color-text-light); max-width: 600px; margin: 0 auto 3rem; line-height: 1.7;">
-                    Pracujeme na e-shopu s balíčky odměn pro vaše výpravy. Nálepky, odznaky a kartičky budou brzy k
-                    dispozici.
-                </p>
-
-                <div
-                    style="background: rgba(255,255,255,0.6); padding: 2.5rem; border-radius: 20px; max-width: 500px; margin: 0 auto;">
-                    <p style="font-size: 1.1rem; font-weight: 600; color: var(--color-primary); margin-bottom: 1rem;">
-                        ✨ Co chystáme
-                    </p>
-                    <ul
-                        style="text-align: left; list-style: none; padding: 0; font-size: 1rem; color: var(--color-text-main);">
-                        <li style="margin-bottom: 0.8rem;">📦 Balíčky odměn pro celou rodinu</li>
-                        <li style="margin-bottom: 0.8rem;">🏅 Originální nálepky a odznaky</li>
-                        <li style="margin-bottom: 0.8rem;">🗺️ Speciální kartičky Wildero</li>
-                        <li>🚚 Pohodlné doručení až domů</li>
-                    </ul>
+        <!-- Shop Hero -->
+        <section class="shop-hero">
+            <div class="shop-hero__bg"></div>
+            <div class="container shop-hero__container">
+                <div class="shop-hero__content aos">
+                    <span class="shop-hero__badge">🌿 Wildův svět</span>
+                    <h1 class="shop-hero__title">Skutečné odměny<br>pro skutečná dobrodružství</h1>
+                    <p class="shop-hero__subtitle">Nálepky, omalovánky, sešity a odznaky – vše, co si z výpravy
+                        odnesete domů.</p>
+                    <div class="shop-hero__actions">
+                        <a href="#produkty" class="btn btn--primary shop-btn-scroll">Prozkoumat zboží</a>
+                        <a href="#balicky" class="btn btn--secondary">Balíčky výprav</a>
+                    </div>
                 </div>
-
-                <div style="margin-top: 3rem;">
-                    <a href="odmeny.html" class="btn btn--secondary">Zpět na odměny</a>
+                <div class="shop-hero__visual aos aos-delay-2">
+                    <div class="shop-hero__imgs">
+                        <img src="reward_hero_stickers.png" alt="Nálepky" class="shop-hero__img shop-hero__img--1">
+                        <img src="reward_card.png" alt="Kartičky" class="shop-hero__img shop-hero__img--2">
+                        <img src="reward_badges.png" alt="Odznaky" class="shop-hero__img shop-hero__img--3">
+                    </div>
                 </div>
             </div>
         </section>
+
+        <!-- Category Filter -->
+        <section class="shop-filters" id="produkty">
+            <div class="container">
+                <div class="shop-filters__inner">
+                    <button class="shop-filter-btn active" data-filter="all" id="filter-all">Vše</button>
+                    <button class="shop-filter-btn" data-filter="nalepky" id="filter-nalepky">🎯 Nálepky</button>
+                    <button class="shop-filter-btn" data-filter="omalovánky" id="filter-omalovinky">🎨 Omalovánky</button>
+                    <button class="shop-filter-btn" data-filter="sesity" id="filter-sesity">📓 Sešity</button>
+                    <button class="shop-filter-btn" data-filter="odznaky" id="filter-odznaky">🏅 Odznaky</button>
+                    <button class="shop-filter-btn" data-filter="balicky" id="filter-balicky">📦 Balíčky</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Grid -->
+        <section class="shop-products">
+            <div class="container">
+                <div class="shop-grid" id="shop-grid">
+
+                    <!-- Product 1: Sticker Sheet -->
+                    <article class="shop-card" data-category="nalepky" id="product-nalepky-vyprava">
+                        <div class="shop-card__badge shop-card__badge--new">Novinka</div>
+                        <div class="shop-card__img-wrap">
+                            <img src="shop_stickers.png" alt="Sada nálepek Wildero – lesní zvířátka"
+                                class="shop-card__img">
+                            <div class="shop-card__overlay">
+                                <button class="shop-card__quick" aria-label="Přidat do košíku"
+                                    onclick="addToCart('nalepky-vyprava')">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+                                        <line x1="3" y1="6" x2="21" y2="6" />
+                                        <path d="M16 10a4 4 0 01-8 0" />
+                                    </svg>
+                                    Přidat do košíku
+                                </button>
+                            </div>
+                        </div>
+                        <div class="shop-card__body">
+                            <span class="shop-card__cat">Nálepky</span>
+                            <h2 class="shop-card__title">Sada nálepek – Výprava do lesa</h2>
+                            <p class="shop-card__desc">20 originálních vodovkových nálepek s lesními zvířátky. Perfektní
+                                odměna za splněnou výpravu.</p>
+                            <div class="shop-card__footer">
+                                <div class="shop-card__price">
+                                    <span class="shop-card__price-current">69 Kč</span>
+                                </div>
+                                <button class="btn btn--primary shop-card__btn"
+                                    onclick="addToCart('nalepky-vyprava')" id="btn-nalepky-vyprava">Přidat do
+                                    košíku</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Product 2: Coloring Book -->
+                    <article class="shop-card" data-category="omalovánky" id="product-omalovanka-les">
+                        <div class="shop-card__badge shop-card__badge--popular">Oblíbené</div>
+                        <div class="shop-card__img-wrap">
+                            <img src="shop_coloring.png" alt="Omalovánky Wildero – Wildiny dobrodružství"
+                                class="shop-card__img">
+                            <div class="shop-card__overlay">
+                                <button class="shop-card__quick" aria-label="Přidat do košíku"
+                                    onclick="addToCart('omalovanka-les')">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+                                        <line x1="3" y1="6" x2="21" y2="6" />
+                                        <path d="M16 10a4 4 0 01-8 0" />
+                                    </svg>
+                                    Přidat do košíku
+                                </button>
+                            </div>
+                        </div>
+                        <div class="shop-card__body">
+                            <span class="shop-card__cat">Omalovánky</span>
+                            <h2 class="shop-card__title">Wildiny dobrodružství – Omalovánky</h2>
+                            <p class="shop-card__desc">24 stran plných lesních scén k vymalování. Pro děti od 4 let.
+                                Kvalitní papír pro vodovky i pastelky.</p>
+                            <div class="shop-card__footer">
+                                <div class="shop-card__price">
+                                    <span class="shop-card__price-current">149 Kč</span>
+                                </div>
+                                <button class="btn btn--primary shop-card__btn" onclick="addToCart('omalovanka-les')"
+                                    id="btn-omalovanka-les">Přidat do košíku</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Product 3: Activity Notebook -->
+                    <article class="shop-card" data-category="sesity" id="product-sešit-výpravník">
+                        <div class="shop-card__img-wrap">
+                            <img src="shop_notebook.png" alt="Výpravník – sešit pro dobrodruhy"
+                                class="shop-card__img">
+                            <div class="shop-card__overlay">
+                                <button class="shop-card__quick" aria-label="Přidat do košíku"
+                                    onclick="addToCart('sesit-vypravnik')">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+                                        <line x1="3" y1="6" x2="21" y2="6" />
+                                        <path d="M16 10a4 4 0 01-8 0" />
+                                    </svg>
+                                    Přidat do košíku
+                                </button>
+                            </div>
+                        </div>
+                        <div class="shop-card__body">
+                            <span class="shop-card__cat">Sešity</span>
+                            <h2 class="shop-card__title">Wildero Výpravník – Zápisník dobrodruha</h2>
+                            <p class="shop-card__desc">Kroužkový sešit s linkami, stránkami pro skici a místem pro
+                                sbírání zážitků. Ideální parťák každé výpravy.</p>
+                            <div class="shop-card__footer">
+                                <div class="shop-card__price">
+                                    <span class="shop-card__price-current">199 Kč</span>
+                                </div>
+                                <button class="btn btn--primary shop-card__btn" onclick="addToCart('sesit-vypravnik')"
+                                    id="btn-sesit-vypravnik">Přidat do košíku</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Product 4: Reward Package -->
+                    <article class="shop-card" data-category="balicky" id="product-balicek-start">
+                        <div class="shop-card__badge shop-card__badge--sale">Balíček</div>
+                        <div class="shop-card__img-wrap">
+                            <img src="shop_bag.png" alt="Startovní balíček Wildero" class="shop-card__img">
+                            <div class="shop-card__overlay">
+                                <button class="shop-card__quick" aria-label="Přidat do košíku"
+                                    onclick="addToCart('balicek-start')">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+                                        <line x1="3" y1="6" x2="21" y2="6" />
+                                        <path d="M16 10a4 4 0 01-8 0" />
+                                    </svg>
+                                    Přidat do košíku
+                                </button>
+                            </div>
+                        </div>
+                        <div class="shop-card__body">
+                            <span class="shop-card__cat">Balíčky</span>
+                            <h2 class="shop-card__title">Startovní balíček dobrodruha</h2>
+                            <p class="shop-card__desc">Vše potřebné pro první výpravu: sešit, nálepky, 3 odznaky a
+                                kartička Wildy. Skvělý dárek pro každé dítě.</p>
+                            <div class="shop-card__footer">
+                                <div class="shop-card__price">
+                                    <span class="shop-card__price-old">389 Kč</span>
+                                    <span class="shop-card__price-current">299 Kč</span>
+                                </div>
+                                <button class="btn btn--primary shop-card__btn" onclick="addToCart('balicek-start')"
+                                    id="btn-balicek-start">Přidat do košíku</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Product 5: Badges Set -->
+                    <article class="shop-card" data-category="odznaky" id="product-odznaky-set">
+                        <div class="shop-card__img-wrap">
+                            <img src="shop_badges.png" alt="Sada odznaků Wildero – lesní zvířátka"
+                                class="shop-card__img">
+                            <div class="shop-card__overlay">
+                                <button class="shop-card__quick" aria-label="Přidat do košíku"
+                                    onclick="addToCart('odznaky-set')">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+                                        <line x1="3" y1="6" x2="21" y2="6" />
+                                        <path d="M16 10a4 4 0 01-8 0" />
+                                    </svg>
+                                    Přidat do košíku
+                                </button>
+                            </div>
+                        </div>
+                        <div class="shop-card__body">
+                            <span class="shop-card__cat">Odznaky</span>
+                            <h2 class="shop-card__title">Kolekce odznaků – Lesní přátelé</h2>
+                            <p class="shop-card__desc">Sada 5 sběratelských napichovacích odznaků s kreslenými lesními
+                                zvířátky. Každý odznak nosí kousek výpravy.</p>
+                            <div class="shop-card__footer">
+                                <div class="shop-card__price">
+                                    <span class="shop-card__price-current">129 Kč</span>
+                                </div>
+                                <button class="btn btn--primary shop-card__btn" onclick="addToCart('odznaky-set')"
+                                    id="btn-odznaky-set">Přidat do košíku</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Product 6: Big Reward Pack -->
+                    <article class="shop-card" data-category="balicky omalovánky nalepky" id="product-balicek-rodina">
+                        <div class="shop-card__badge shop-card__badge--popular">Nejprodávanější</div>
+                        <div class="shop-card__img-wrap">
+                            <img src="reward_stickers.png" alt="Rodinný balíček odměn Wildero"
+                                class="shop-card__img">
+                            <div class="shop-card__overlay">
+                                <button class="shop-card__quick" aria-label="Přidat do košíku"
+                                    onclick="addToCart('balicek-rodina')">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+                                        <line x1="3" y1="6" x2="21" y2="6" />
+                                        <path d="M16 10a4 4 0 01-8 0" />
+                                    </svg>
+                                    Přidat do košíku
+                                </button>
+                            </div>
+                        </div>
+                        <div class="shop-card__body">
+                            <span class="shop-card__cat">Balíčky</span>
+                            <h2 class="shop-card__title">Rodinný balíček odměn</h2>
+                            <p class="shop-card__desc">Velký balíček pro celou rodinu – 2 sady nálepek, omalovánky, 2
+                                sešity a 6 odznaků. Stačí na celé léto výprav.</p>
+                            <div class="shop-card__footer">
+                                <div class="shop-card__price">
+                                    <span class="shop-card__price-old">790 Kč</span>
+                                    <span class="shop-card__price-current">549 Kč</span>
+                                </div>
+                                <button class="btn btn--primary shop-card__btn" onclick="addToCart('balicek-rodina')"
+                                    id="btn-balicek-rodina">Přidat do košíku</button>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+
+                <!-- Empty state when filter finds nothing -->
+                <div class="shop-empty" id="shop-empty" style="display:none;">
+                    <div class="shop-empty__icon">🌿</div>
+                    <p class="shop-empty__text">V této kategorii zatím nic nemáme.<br>Ale brzy přibude!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reward Packages Feature Section -->
+        <section class="section shop-feature-section" id="balicky">
+            <div class="container">
+                <div class="shop-feature-header aos" style="text-align:center; margin-bottom:3rem;">
+                    <h2 class="section__title">Balíčky výprav</h2>
+                    <p class="text-lead" style="margin:0 auto; text-align:center;">Připravené kombinace pro každý věk a
+                        příležitost.</p>
+                </div>
+                <div class="shop-packages">
+                    <div class="shop-package aos aos-delay-1" id="package-start">
+                        <div class="shop-package__icon">🌱</div>
+                        <h3 class="shop-package__title">Startovní</h3>
+                        <p class="shop-package__desc">Pro první výpravu. Sešit + nálepky + 3 odznaky.</p>
+                        <div class="shop-package__price">299 Kč</div>
+                        <button class="btn btn--primary" onclick="addToCart('balicek-start')">Do košíku</button>
+                    </div>
+                    <div class="shop-package shop-package--featured aos aos-delay-2" id="package-family">
+                        <div class="shop-package__badge">Nejoblíbenější</div>
+                        <div class="shop-package__icon">🌳</div>
+                        <h3 class="shop-package__title">Rodinný</h3>
+                        <p class="shop-package__desc">Pro celou rodinu na celé léto. 2× sešit + 2× nálepky + omalovánky
+                            + 6 odznaků.</p>
+                        <div class="shop-package__price">
+                            <span class="shop-package__price-old">790 Kč</span>
+                            549 Kč
+                        </div>
+                        <button class="btn btn--primary" onclick="addToCart('balicek-rodina')">Do košíku</button>
+                    </div>
+                    <div class="shop-package aos aos-delay-3" id="package-custom">
+                        <div class="shop-package__icon">✨</div>
+                        <h3 class="shop-package__title">Na přání</h3>
+                        <p class="shop-package__desc">Složte si balíček přesně jak chcete. Napište nám a poradíme.</p>
+                        <div class="shop-package__price">Dle výběru</div>
+                        <a href="kontakt.html" class="btn btn--secondary">Napsat nám</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Shipping Info Banner -->
+        <section class="shop-shipping">
+            <div class="container">
+                <div class="shop-shipping__items">
+                    <div class="shop-shipping__item">
+                        <span class="shop-shipping__icon">🚚</span>
+                        <div>
+                            <strong>Doprava od 79 Kč</strong>
+                            <span>Česká pošta / zásilkovna</span>
+                        </div>
+                    </div>
+                    <div class="shop-shipping__item">
+                        <span class="shop-shipping__icon">📦</span>
+                        <div>
+                            <strong>Zdarma od 599 Kč</strong>
+                            <span>Doprava zdarma při nákupu nad 599 Kč</span>
+                        </div>
+                    </div>
+                    <div class="shop-shipping__item">
+                        <span class="shop-shipping__icon">🌿</span>
+                        <div>
+                            <strong>Ekologické balení</strong>
+                            <span>Pouze recyklovatelné materiály</span>
+                        </div>
+                    </div>
+                    <div class="shop-shipping__item">
+                        <span class="shop-shipping__icon">↩️</span>
+                        <div>
+                            <strong>Vrácení do 14 dní</strong>
+                            <span>Bez udání důvodu</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
+
+    <!-- Shopping Cart Drawer -->
+    <div class="cart-overlay" id="cart-overlay"></div>
+    <aside class="cart-drawer" id="cart-drawer" aria-label="Košík">
+        <div class="cart-drawer__header">
+            <h2 class="cart-drawer__title">🛒 Váš košík</h2>
+            <button class="cart-drawer__close" id="cart-close" aria-label="Zavřít košík">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+            </button>
+        </div>
+        <div class="cart-drawer__body" id="cart-body">
+            <div class="cart-empty" id="cart-empty">
+                <div class="cart-empty__icon">🧺</div>
+                <p>Košík je prázdný.</p>
+                <p style="font-size:0.9rem;">Přidejte produkty, ať začneme dobrodružství 🌿</p>
+            </div>
+            <ul class="cart-items" id="cart-items"></ul>
+        </div>
+        <div class="cart-drawer__footer" id="cart-footer" style="display:none;">
+            <div class="cart-total">
+                <span>Celkem</span>
+                <span id="cart-total-price">0 Kč</span>
+            </div>
+            <p class="cart-shipping-note" id="cart-shipping-note"></p>
+            <a href="kontakt.html" class="btn btn--primary cart-checkout-btn">Dokončit objednávku</a>
+            <p class="cart-note">Objednávky nyní vyřizujeme přes <strong>e-mail</strong> nebo kontaktní formulář.<br>Brzy
+                spustíme plnohodnotný platební systém.</p>
+        </div>
+    </aside>
+
+    <!-- Cart Floating Button -->
+    <button class="cart-fab" id="cart-fab" aria-label="Otevřít košík">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <path d="M16 10a4 4 0 01-8 0" />
+        </svg>
+        <span class="cart-fab__label">Košík</span>
+        <span class="cart-fab__count" id="cart-fab-count" style="display:none;">0</span>
+    </button>
 
     <footer class="footer" id="footer">
         <div class="container footer__container">
@@ -118,6 +481,7 @@
     </footer>
 
     <script src="script.js"></script>
+    <script src="shop.js"></script>
 </body>
 
 </html>

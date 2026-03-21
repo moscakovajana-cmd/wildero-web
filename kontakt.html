@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="cs">
 
 <head>
@@ -28,6 +28,51 @@
         content="Máte dotaz nebo nápad na spolupráci? Ozvěte se nám. Jsme tu pro všechny malé i velké dobrodruhy.">
     <meta property="twitter:image" content="https://wildero.cz/hero_bg_landscape.jpg">
     <meta name="robots" content="noindex, nofollow">
+
+    <style>
+        .contact-form {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(56, 94, 60, 0.1);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 20px rgba(56, 94, 60, 0.05);
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+        .form-control {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            border: 1px solid rgba(56, 94, 60, 0.2);
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 1rem;
+            color: var(--color-text-main);
+            background: #fff;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .form-control:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(56, 94, 60, 0.1);
+        }
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+        .btn-submit {
+            width: 100%;
+            margin-top: 0.5rem;
+        }
+    </style>
 </head>
 
 <body>
@@ -159,15 +204,24 @@
                         <h2 class="section__title" style="text-align: left; margin-bottom: 1.5rem; font-size: 1.8rem;">
                             Napište nám</h2>
                         <p style="color: var(--color-text-light); margin-bottom: 2rem; line-height: 1.7;">
-                            Nejrychleji nás zastihnete na e-mailu. Odpovídáme obvykle do druhého dne (pokud zrovna
-                            nejsme na výpravě v lese bez signálu).
+                            Nejrychleji nám napíšete přes tento formulář nebo na e-mail. Odpovídáme obvykle do druhého dne.
                         </p>
-                        <div class="watercolor-cloud"
-                            style="background: rgba(244, 235, 217, 0.4); padding: 2rem; border-radius: 20px; text-align: center;">
-                            <p style="font-style: italic; color: var(--color-primary); font-weight: 500;">
-                                "Cesta k dobrodružství začíná první otázkou."
-                            </p>
-                        </div>
+                        
+                        <form action="#" method="POST" class="contact-form">
+                            <div class="form-group">
+                                <label for="form-name" class="form-label">Vaše jméno</label>
+                                <input type="text" id="form-name" name="name" class="form-control" placeholder="Např. Jan Novák" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="form-email" class="form-label">E-mail pro odpověď</label>
+                                <input type="email" id="form-email" name="email" class="form-control" placeholder="váš@email.cz" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="form-message" class="form-label">Vzkaz, dotaz nebo nápad</label>
+                                <textarea id="form-message" name="message" class="form-control" placeholder="Dobrý den, ..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn--primary btn-submit">Odeslat zprávu</button>
+                        </form>
                     </div>
                 </div>
             </div>

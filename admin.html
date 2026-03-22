@@ -56,6 +56,18 @@
         .admin-section { display: none; animation: fadeIn 0.4s ease; }
         .admin-section.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        /* Modal */
+        .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center; }
+        .modal-overlay.active { display: flex; }
+        .modal { background: #fff; width: 500px; max-width: 90vw; border-radius: 16px; padding: 2.5rem; box-shadow: 0 10px 40px rgba(0,0,0,0.1); position: relative; }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+        .modal-title { font-size: 1.5rem; font-weight: 800; margin: 0; color: #0f172a; }
+        .modal-close { background: none; border: none; font-size: 1.8rem; cursor: pointer; color: #64748b; padding: 0; line-height: 1; }
+        .form-col { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.2rem; }
+        .form-col input, .form-col select { padding: 0.8rem 1rem; border: 1px solid #cbd5e1; border-radius: 8px; font-family: inherit; font-size: 1rem; color: #334155; }
+        .form-col input:focus, .form-col select:focus { border-color: var(--color-primary); outline: none; box-shadow: 0 0 0 3px rgba(56, 94, 60, 0.1); }
+        .modal-footer { display: flex; justify-content: flex-end; gap: 1rem; margin-top: 2rem; }
     </style>
 </head>
 <body>
@@ -98,7 +110,7 @@
         <div id="products" class="admin-section">
             <div class="header">
                 <h1 class="title">Správa produktů</h1>
-                <button class="btn btn-primary">+ Přidat nový produkt</button>
+                <button class="btn btn-primary" onclick="openAddModal()">+ Přidat nový produkt</button>
             </div>
             <div class="card" style="padding: 0; overflow: hidden;">
                 <table class="table">
@@ -112,36 +124,13 @@
                             <th>Akce</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Rodinný balíček odměn</strong></td>
-                            <td>Balíčky</td>
-                            <td>549 Kč</td>
-                            <td>45 ks</td>
-                            <td><span class="status active">Aktivní na webu</span></td>
-                            <td><a href="#" style="color: var(--color-primary); font-weight:600; text-decoration: none;">Upravit</a></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Omalovánky Wildero</strong></td>
-                            <td>Omalovánky</td>
-                            <td>149 Kč</td>
-                            <td>120 ks</td>
-                            <td><span class="status active">Aktivní na webu</span></td>
-                            <td><a href="#" style="color: var(--color-primary); font-weight:600; text-decoration: none;">Upravit</a></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Plátěný pytlík Výprava</strong></td>
-                            <td>Doplňky</td>
-                            <td>199 Kč</td>
-                            <td>0 ks</td>
-                            <td><span class="status inactive">Skryto</span></td>
-                            <td><a href="#" style="color: var(--color-primary); font-weight:600; text-decoration: none;">Upravit</a></td>
-                        </tr>
+                    <tbody id="products-tbody">
+                        <tr><td colspan="6" style="text-align: center; color: #64748b; padding: 3rem;">Načítám produkty...</td></tr>
                     </tbody>
                 </table>
             </div>
             <p style="color: #64748b; font-size: 0.9rem;">
-                <em>Poznámka: Ve statické HTMl verzi weby se produkty momentálně upravují přímo v souboru shop.html. Připojením na databázi se zde přidávání plně automatizuje.</em>
+                <em>Poznámka: Tabulka nyní čerpá živá data z <strong>Supabase</strong>! Přidáním/úpravou produktu ihned změníte data v cloudové databázi.</em>
             </p>
         </div>
         
@@ -192,45 +181,165 @@
     </main>
 </div>
 
+<!-- Add/Edit Product Modal -->
+<div class="modal-overlay" id="product-modal">
+    <div class="modal">
+        <div class="modal-header">
+            <h2 class="modal-title" id="modal-title">Přidat produkt</h2>
+            <button class="modal-close" onclick="closeModal()">×</button>
+        </div>
+        <form id="product-form" onsubmit="saveProduct(event)">
+            <input type="hidden" id="product-id">
+            <div class="form-col">
+                <label>Název produktu</label>
+                <input type="text" id="product-title" required>
+            </div>
+            <div class="form-col">
+                <label>Kategorie</label>
+                <input type="text" id="product-category" required>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div class="form-col">
+                    <label>Cena (Kč)</label>
+                    <input type="number" id="product-price" required>
+                </div>
+                <div class="form-col">
+                    <label>Skladem (ks)</label>
+                    <input type="number" id="product-stock" required>
+                </div>
+            </div>
+            <div class="form-col">
+                <label>Status</label>
+                <select id="product-status">
+                    <option value="active">Aktivní na webu</option>
+                    <option value="inactive">Skryté</option>
+                </select>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn" style="background: #f1f5f9; color: #334155;" onclick="closeModal()">Zrušit</button>
+                <button type="submit" class="btn btn-primary">Uložit produkt</button>
+            </div>
+        </form>
+    </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-    // Inicializace připojení k Supabase
     const supabaseUrl = 'https://ttwyryduxqfssyetqhxw.supabase.co';
     const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR0d3lyeWR1eHFmc3N5ZXRxaHh3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ1MzU1ODcsImV4cCI6MjA4MDExMTU4N30.FvW-ejXi8XC4juPYKZkW2lS0CL6ui8bmP9mJblxGvp8';
     window.supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
-    // Jednoduché přepínání záložek
+    let currentProducts = [];
+
     function switchTab(tabId, element) {
         document.querySelectorAll('.admin-section').forEach(el => el.classList.remove('active'));
         document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
         
         document.getElementById(tabId).classList.add('active');
-        element.classList.add('active');
+        if(element) element.classList.add('active');
         
-        // Zkus načíst produkty z databáze Supabase, pokud jsme otevřeli tab Správa produktů
         if(tabId === 'products') loadProducts();
     }
 
-    // Příklad fukce pro napojení na produkty do budoucna
     async function loadProducts() {
+        const tbody = document.getElementById('products-tbody');
+        tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: #64748b; padding: 2rem;">Načítám z databáze...</td></tr>';
+        
         try {
-            console.log("Připojuji se k tabulce 'products' ve vašem Supabase...");
-            const { data, error } = await window.supabase.from('products').select('*');
-            if (error) {
-                console.warn("Tabulka products zatím zřejmě neexistuje nebo nemáte práva číst data. Supabase Error:", error.message);
+            const { data, error } = await window.supabase.from('products').select('*').order('id', { ascending: true });
+            if (error) throw error;
+            
+            currentProducts = data || [];
+            if (currentProducts.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: #64748b; padding: 2rem;">Tabulka "products" je zatím prázdná, nebo ještě neexistuje v Supabase databázi. Vytvořte ji a přidejte produkty.</td></tr>';
                 return;
             }
-            if (data && data.length > 0) {
-                console.log("Produkty ze Supabase načené:", data);
-                // Zde bychom pak dynamicky přepsali tabulku
-            } else {
-                console.log("Tabulka v Supabase je prázdná.");
-            }
+
+            tbody.innerHTML = currentProducts.map(p => `
+                <tr>
+                    <td><strong>${p.title}</strong></td>
+                    <td>${p.category || '-'}</td>
+                    <td>${p.price} Kč</td>
+                    <td>${p.stock} ks</td>
+                    <td><span class="status ${p.status === 'active' ? 'active' : 'inactive'}">${p.status === 'active' ? 'Aktivní' : 'Skryto'}</span></td>
+                    <td style="display: flex; gap: 0.75rem;">
+                        <a href="javascript:void(0)" onclick="openEditModal('${p.id}')" style="color: var(--color-primary); font-weight:600; text-decoration: none;">Upravit</a>
+                        <a href="javascript:void(0)" onclick="deleteProduct('${p.id}')" style="color: #ef4444; font-weight:600; text-decoration: none;">Smazat</a>
+                    </td>
+                </tr>
+            `).join('');
         } catch (e) {
-            console.error("Supabase nebylo načteno nebo selhalo připojení.", e);
+            console.error(e);
+            tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: #ef4444; padding: 2rem;">Chyba při stahování: ${e.message}.<br><span style="font-size:0.9rem; color:#64748b; margin-top:0.5rem; display:block;">Pravděpodobně v Supabase ještě <strong>nemáte vytvořenou tabulku "products"</strong> s povolenými RLS pravidly.</span></td></tr>`;
         }
     }
-</script>
 
-</body>
-</html>
+    function openAddModal() {
+        document.getElementById('modal-title').innerText = 'Přidat nový produkt';
+        document.getElementById('product-form').reset();
+        document.getElementById('product-id').value = '';
+        document.getElementById('product-modal').classList.add('active');
+    }
+
+    function openEditModal(id) {
+        const product = currentProducts.find(p => String(p.id) === String(id));
+        if (!product) return;
+
+        document.getElementById('modal-title').innerText = 'Upravit produkt';
+        document.getElementById('product-id').value = product.id;
+        document.getElementById('product-title').value = product.title;
+        document.getElementById('product-category').value = product.category || '';
+        document.getElementById('product-price').value = product.price;
+        document.getElementById('product-stock').value = product.stock;
+        document.getElementById('product-status').value = product.status || 'active';
+        
+        document.getElementById('product-modal').classList.add('active');
+    }
+
+    function closeModal() {
+        document.getElementById('product-modal').classList.remove('active');
+    }
+
+    async function saveProduct(e) {
+        e.preventDefault();
+        
+        const id = document.getElementById('product-id').value;
+        const payload = {
+            title: document.getElementById('product-title').value,
+            category: document.getElementById('product-category').value,
+            price: Number(document.getElementById('product-price').value),
+            stock: Number(document.getElementById('product-stock').value),
+            status: document.getElementById('product-status').value
+        };
+
+        try {
+            if (id) {
+                // UPDATE (edit)
+                const { error } = await window.supabase.from('products').update(payload).eq('id', id);
+                if (error) throw error;
+            } else {
+                // INSERT (add)
+                const { error } = await window.supabase.from('products').insert([payload]);
+                if (error) throw error;
+            }
+            closeModal();
+            loadProducts();
+        } catch (error) {
+            alert('Chyba při zapisu do databáze: ' + error.message + '\n\nTabulka "products" možná neexistuje, nebo jí chybí správné datové sloupce (title, category, price, stock, status).');
+        }
+    }
+
+    async function deleteProduct(id) {
+        if (!confirm('Opravdu chcete tento produkt smazat? Změna se ihned projeví v databázi.')) return;
+        try {
+            const { error } = await window.supabase.from('products').delete().eq('id', id);
+            if (error) throw error;
+            loadProducts();
+        } catch (error) {
+            alert('Chyba při mazání: ' + error.message);
+        }
+    }
+
+    // Pro initial startup (protože tab je už otevřený z HTML, JS načte dashboard)
+    // Pokud bychom chtěli rovnou produkty: switchTab('products', document.querySelectorAll('.nav-item')[1])
+</script>

@@ -190,30 +190,38 @@
         </div>
         <form id="product-form" onsubmit="saveProduct(event)">
             <input type="hidden" id="product-id">
-            <div class="form-col">
-                <label>Název produktu</label>
-                <input type="text" id="product-title" required>
-            </div>
-            <div class="form-col">
-                <label>Kategorie</label>
-                <input type="text" id="product-category" required>
-            </div>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                <div class="form-col">
+                <div class="form-col" style="grid-column: 1 / -1; margin-bottom: 0;">
+                    <label>Název produktu</label>
+                    <input type="text" id="product-title" required>
+                </div>
+                <div class="form-col" style="grid-column: 1 / -1; margin-bottom: 0;">
+                    <label>Popis produktu</label>
+                    <textarea id="product-description" rows="3" style="padding: 0.8rem 1rem; border: 1px solid #cbd5e1; border-radius: 8px; font-family: inherit; font-size: 1rem; color: #334155; resize: vertical;" required></textarea>
+                </div>
+                <div class="form-col" style="margin-bottom: 0;">
+                    <label>Kategorie</label>
+                    <input type="text" id="product-category" required>
+                </div>
+                <div class="form-col" style="margin-bottom: 0;">
+                    <label>Status</label>
+                    <select id="product-status">
+                        <option value="active">Aktivní na webu</option>
+                        <option value="inactive">Skryté</option>
+                    </select>
+                </div>
+                <div class="form-col" style="margin-bottom: 0;">
                     <label>Cena (Kč)</label>
                     <input type="number" id="product-price" required>
                 </div>
-                <div class="form-col">
+                <div class="form-col" style="margin-bottom: 0;">
                     <label>Skladem (ks)</label>
                     <input type="number" id="product-stock" required>
                 </div>
-            </div>
-            <div class="form-col">
-                <label>Status</label>
-                <select id="product-status">
-                    <option value="active">Aktivní na webu</option>
-                    <option value="inactive">Skryté</option>
-                </select>
+                <div class="form-col" style="grid-column: 1 / -1;">
+                    <label>Odkazy na obrázky <small style="font-weight:400; color:#64748b;">(Jeden odkaz/název na každý řádek)</small></label>
+                    <textarea id="product-images" rows="3" placeholder="např. shop_bag.png&#10;https://domena.cz/image2.jpg" style="padding: 0.8rem 1rem; border: 1px solid #cbd5e1; border-radius: 8px; font-family: inherit; font-size: 1rem; color: #334155; resize: vertical;"></textarea>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn" style="background: #f1f5f9; color: #334155;" onclick="closeModal()">Zrušit</button>
@@ -287,11 +295,13 @@
 
         document.getElementById('modal-title').innerText = 'Upravit produkt';
         document.getElementById('product-id').value = product.id;
-        document.getElementById('product-title').value = product.title;
+        document.getElementById('product-title').value = product.title || '';
+        document.getElementById('product-description').value = product.description || '';
         document.getElementById('product-category').value = product.category || '';
-        document.getElementById('product-price').value = product.price;
-        document.getElementById('product-stock').value = product.stock;
+        document.getElementById('product-price').value = product.price || 0;
+        document.getElementById('product-stock').value = product.stock || 0;
         document.getElementById('product-status').value = product.status || 'active';
+        document.getElementById('product-images').value = (product.images || []).join('\n');
         
         document.getElementById('product-modal').classList.add('active');
     }
@@ -304,12 +314,17 @@
         e.preventDefault();
         
         const id = document.getElementById('product-id').value;
+        const rawImages = document.getElementById('product-images').value.split('\n');
+        const imagesArray = rawImages.map(url => url.trim()).filter(url => url !== '');
+
         const payload = {
             title: document.getElementById('product-title').value,
+            description: document.getElementById('product-description').value,
             category: document.getElementById('product-category').value,
             price: Number(document.getElementById('product-price').value),
             stock: Number(document.getElementById('product-stock').value),
-            status: document.getElementById('product-status').value
+            status: document.getElementById('product-status').value,
+            images: imagesArray
         };
 
         try {
@@ -325,7 +340,7 @@
             closeModal();
             loadProducts();
         } catch (error) {
-            alert('Chyba při zapisu do databáze: ' + error.message + '\n\nTabulka "products" možná neexistuje, nebo jí chybí správné datové sloupce (title, category, price, stock, status).');
+            alert('Chyba při zapisu do databáze: ' + error.message);
         }
     }
 

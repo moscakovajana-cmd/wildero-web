@@ -3,44 +3,12 @@
 // ============================================
 
 // ---------- Product Catalogue ----------
-const PRODUCTS = {
-    'nalepky-vyprava': {
-        name: 'Sada nálepek – Výprava do lesa',
-        price: 69,
-        img: 'shop_stickers.png',
-        cat: 'nalepky'
-    },
-    'omalovanka-les': {
-        name: 'Wildiny dobrodružství – Omalovánky',
-        price: 149,
-        img: 'shop_coloring.png',
-        cat: 'omalovánky'
-    },
-    'sesit-vypravnik': {
-        name: 'Wildero Výpravník – Zápisník dobrodruha',
-        price: 199,
-        img: 'shop_notebook.png',
-        cat: 'sesity'
-    },
-    'balicek-start': {
-        name: 'Startovní balíček dobrodruha',
-        price: 299,
-        img: 'shop_bag.png',
-        cat: 'balicky'
-    },
-    'odznaky-set': {
-        name: 'Kolekce odznaků – Lesní přátelé',
-        price: 129,
-        img: 'shop_badges.png',
-        cat: 'odznaky'
-    },
-    'balicek-rodina': {
-        name: 'Rodinný balíček odměn',
-        price: 549,
-        img: 'reward_stickers.png',
-        cat: 'balicky'
-    }
-};
+let PRODUCTS = {};
+
+// Supabase Init
+const supabaseUrl = 'https://ttwyryduxqfssyetqhxw.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR0d3lyeWR1eHFmc3N5ZXRxaHh3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ1MzU1ODcsImV4cCI6MjA4MDExMTU4N30.FvW-ejXi8XC4juPYKZkW2lS0CL6ui8bmP9mJblxGvp8';
+const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
 
 // ---------- Cart State ----------
 let cart = JSON.parse(localStorage.getItem('wildero_cart') || '{}');
@@ -241,6 +209,113 @@ document.querySelector('.shop-btn-scroll')?.addEventListener('click', (e) => {
     }
 });
 
+// ---------- Load Shop from Supabase ----------
+async function loadShop() {
+    try {
+        const { data, error } = await supabaseClient.from('products').select('*').eq('status', 'active').order('created_at', { ascending: true });
+        if (error) throw error;
+        
+        PRODUCTS = {};
+        const grid = document.getElementById('shop-grid');
+        grid.innerHTML = '';
+        
+        data.forEach(p => {
+            PRODUCTS[p.id] = {
+                name: p.title,
+                price: p.price,
+                img: p.images && p.images.length > 0 ? p.images[0] : 'public/placeholder.png',
+                desc: p.description,
+                cat: p.category ? p.category.toLowerCase() : '',
+                stock: p.stock,
+                images: p.images || []
+            };
+            
+            const mainImg = PRODUCTS[p.id].img;
+            const article = document.createElement('article');
+            article.className = 'shop-card';
+            article.dataset.category = PRODUCTS[p.id].cat;
+            article.id = `product-${p.id}`;
+            
+            article.innerHTML = `
+                <div class="shop-card__img-wrap" style="cursor: pointer;" onclick="openProductModal('${p.id}')">
+                    <img src="${mainImg}" alt="${p.title}" class="shop-card__img">
+                    <div class="shop-card__overlay">
+                        <button class="btn btn--primary" style="pointer-events: none;">Zobrazit detaily</button>
+                    </div>
+                </div>
+                <div class="shop-card__body">
+                    <span class="shop-card__cat">${p.category}</span>
+                    <h2 class="shop-card__title" style="cursor: pointer;" onclick="openProductModal('${p.id}')">${p.title}</h2>
+                    <p class="shop-card__desc">${p.description ? p.description.substring(0, 80) + '...' : ''}</p>
+                    <div class="shop-card__footer">
+                        <div class="shop-card__price">
+                            <span class="shop-card__price-current">${p.price} Kč</span>
+                        </div>
+                        <button class="btn btn--primary shop-card__btn" onclick="addToCart('${p.id}')" id="btn-${p.id}">Přidat do košíku</button>
+                    </div>
+                </div>
+            `;
+            grid.appendChild(article);
+        });
+        
+        initFilters(); // Musíme reinicializovat filtry po vytvoření DOM
+        renderCart();  // Re-render košíku, protože tam může být staré ID
+    } catch (err) {
+        console.error("Chyba při načítání produktů ze Supabase:", err);
+    }
+}
+
+// ---------- Product Modal Logic ----------
+function openProductModal(id) {
+    const p = PRODUCTS[id];
+    if (!p) return;
+    
+    document.getElementById('modal-title').innerText = p.name;
+    document.getElementById('modal-category').innerText = p.cat;
+    document.getElementById('modal-desc').innerText = p.desc || 'Tento produkt zatím nemá podrobný popis.';
+    document.getElementById('modal-price').innerText = `${p.price} Kč`;
+    document.getElementById('modal-stock').innerText = p.stock || 0;
+    
+    document.getElementById('modal-add-cart').onclick = () => {
+        addToCart(id);
+        closeProductModal();
+    };
+    
+    const mainImg = document.getElementById('modal-main-img');
+    const thumbsContainer = document.getElementById('modal-thumbnails');
+    
+    mainImg.src = p.images.length > 0 ? p.images[0] : 'public/placeholder.png';
+    thumbsContainer.innerHTML = '';
+    
+    if (p.images.length > 1) {
+        p.images.forEach((imgUrl, i) => {
+            const thumb = document.createElement('img');
+            thumb.src = imgUrl;
+            thumb.className = 'product-modal-thumb' + (i === 0 ? ' active' : '');
+            thumb.onclick = () => {
+                mainImg.src = imgUrl;
+                document.querySelectorAll('.product-modal-thumb').forEach(t => t.classList.remove('active'));
+                thumb.classList.add('active');
+            };
+            thumbsContainer.appendChild(thumb);
+        });
+    }
+    
+    document.getElementById('product-detail-modal').style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+}
+
+function closeProductModal() {
+    document.getElementById('product-detail-modal').style.display = 'none';
+    document.body.style.overflow = '';
+}
+
+// Umožní zavřít modál kliknutím mimo obsah
+document.getElementById('product-detail-modal')?.addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeProductModal();
+    }
+});
+
 // ---------- INIT ----------
-renderCart();
-initFilters();
+loadShop();

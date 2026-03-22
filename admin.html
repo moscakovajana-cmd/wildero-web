@@ -192,7 +192,13 @@
     </main>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
+    // Inicializace připojení k Supabase
+    const supabaseUrl = 'https://ttwyryduxqfssyetqhxw.supabase.co';
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR0d3lyeWR1eHFmc3N5ZXRxaHh3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ1MzU1ODcsImV4cCI6MjA4MDExMTU4N30.FvW-ejXi8XC4juPYKZkW2lS0CL6ui8bmP9mJblxGvp8';
+    window.supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
     // Jednoduché přepínání záložek
     function switchTab(tabId, element) {
         document.querySelectorAll('.admin-section').forEach(el => el.classList.remove('active'));
@@ -200,6 +206,29 @@
         
         document.getElementById(tabId).classList.add('active');
         element.classList.add('active');
+        
+        // Zkus načíst produkty z databáze Supabase, pokud jsme otevřeli tab Správa produktů
+        if(tabId === 'products') loadProducts();
+    }
+
+    // Příklad fukce pro napojení na produkty do budoucna
+    async function loadProducts() {
+        try {
+            console.log("Připojuji se k tabulce 'products' ve vašem Supabase...");
+            const { data, error } = await window.supabase.from('products').select('*');
+            if (error) {
+                console.warn("Tabulka products zatím zřejmě neexistuje nebo nemáte práva číst data. Supabase Error:", error.message);
+                return;
+            }
+            if (data && data.length > 0) {
+                console.log("Produkty ze Supabase načené:", data);
+                // Zde bychom pak dynamicky přepsali tabulku
+            } else {
+                console.log("Tabulka v Supabase je prázdná.");
+            }
+        } catch (e) {
+            console.error("Supabase nebylo načteno nebo selhalo připojení.", e);
+        }
     }
 </script>
 

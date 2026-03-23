@@ -33,3 +33,30 @@ INSERT INTO public.products (title, description, images, category, price, stock,
 ('Startovní balíček dobrodruha', 'Vše potřebné pro první výpravu: sešit, nálepky, 3 odznaky a kartička Wildy.', ARRAY['shop_bag.png'], 'Balíčky', 299, 15, 'active'),
 ('Kolekce odznaků – Lesní přátelé', 'Sada 5 sběratelských napichovacích odznaků s kreslenými lesními zvířátky.', ARRAY['shop_badges.png'], 'Odznaky', 129, 200, 'active'),
 ('Rodinný balíček odměn', 'Velký balíček pro celou rodinu – 2 sady nálepek, omalovánky, 2 sešity a 6 odznaků.', ARRAY['shop_bag.png'], 'Balíčky', 549, 45, 'active');
+
+-- Vytvoření tabulky orders pro správu objednávek
+CREATE TABLE IF NOT EXISTS public.orders (
+    id uuid default gen_random_uuid() primary key,
+    customer_name text not null,
+    customer_email text not null,
+    customer_phone text,
+    address text,
+    delivery_method text,
+    total_price integer not null,
+    items jsonb not null default '[]'::jsonb,
+    status text not null default 'new',
+    created_at timestamp with time zone default timezone('utc'::text, now()) not null
+);
+
+-- Zapnutí RLS pro orders
+ALTER TABLE public.orders ENABLE ROW LEVEL SECURITY;
+
+-- Povolit komukoliv vytvořit objednávku (z webu)
+CREATE POLICY "Allow anonymous insert orders" 
+ON public.orders FOR INSERT 
+TO public WITH CHECK (true);
+
+-- Povolit anonymní správu (pro testovací admin panel)
+CREATE POLICY "Allow anonymous full access for testing orders" 
+ON public.orders FOR ALL 
+TO public USING (true) WITH CHECK (true);

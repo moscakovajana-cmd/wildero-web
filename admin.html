@@ -136,6 +136,31 @@
             </p>
         </div>
         
+        <!-- Tab: Orders -->
+        <div id="orders" class="admin-section">
+            <div class="header">
+                <h1 class="title">Správa objednávek</h1>
+                <button class="btn btn-primary" onclick="loadOrders()">🔄 Obnovit seznam</button>
+            </div>
+            <div class="card" style="padding: 0; overflow: hidden;">
+                <table class="table">
+                    <thead style="background: #f8fafc;">
+                        <tr>
+                            <th>Datum a ID</th>
+                            <th>Zákazník</th>
+                            <th>Items</th>
+                            <th>Celkem</th>
+                            <th>Status</th>
+                            <th>Akce</th>
+                        </tr>
+                    </thead>
+                    <tbody id="orders-tbody">
+                        <tr><td colspan="6" style="text-align: center; color: #64748b; padding: 3rem;">Načítám objednávky...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
         <!-- Tab: Shipping & Integrations -->
         <div id="shipping" class="admin-section">
             <div class="header">
@@ -264,6 +289,71 @@
         if(element) element.classList.add('active');
         
         if(tabId === 'products') loadProducts();
+        if(tabId === 'orders') loadOrders();
+    }
+
+    async function loadOrders() {
+        const tbody = document.getElementById('orders-tbody');
+        tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: #64748b; padding: 2rem;">Načítám objednávky...</td></tr>';
+        
+        try {
+            const { data, error } = await window.supabase.from('orders').select('*').order('created_at', { ascending: false });
+            if (error) throw error;
+            
+            if (!data || data.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: #64748b; padding: 2rem;">Zatím žádné objednávky.</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = data.map(o => {
+                const date = new Date(o.created_at).toLocaleDateString('cs-CZ') + ' ' + new Date(o.created_at).toLocaleTimeString('cs-CZ', {hour: '2-digit', minute:'2-digit'});
+                const itemsCount = Array.isArray(o.items) ? o.items.length : 0;
+                
+                return `
+                <tr>
+                    <td>
+                        <div style="font-weight: 700; font-size: 0.85rem;">${date}</div>
+                        <div style="font-size: 0.75rem; color: #64748b;">ID: ${o.id.substring(0,8)}...</div>
+                    </td>
+                    <td>
+                        <div style="font-weight: 600;">${o.customer_name}</div>
+                        <div style="font-size: 0.8rem; color: #64748b;">${o.customer_email}</div>
+                    </td>
+                    <td style="font-size: 0.85rem;">${itemsCount} položek</td>
+                    <td style="font-weight: 700; color: var(--color-primary);">${o.total_price} Kč</td>
+                    <td>
+                        <select onchange="changeOrderStatus('${o.id}', this.value)" style="width: auto; padding: 0.3rem 0.6rem; font-size: 0.8rem; height: auto;">
+                            <option value="new" ${o.status === 'new' ? 'selected' : ''}>Nová</option>
+                            <option value="processing" ${o.status === 'processing' ? 'selected' : ''}>Zpracovává se</option>
+                            <option value="shipped" ${o.status === 'shipped' ? 'selected' : ''}>Odesláno</option>
+                            <option value="completed" ${o.status === 'completed' ? 'selected' : ''}>Hotovo</option>
+                            <option value="cancelled" ${o.status === 'cancelled' ? 'selected' : ''}>Zrušeno</option>
+                        </select>
+                    </td>
+                    <td>
+                        <button class="btn" style="background: #f1f5f9; padding: 0.4rem 0.8rem; font-size: 0.75rem;" onclick="viewOrderDetails('${o.id}')">Detail</button>
+                    </td>
+                </tr>
+                `;
+            }).join('');
+        } catch (e) {
+            console.error(e);
+            tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: #ef4444; padding: 2rem;">Chyba: ' + e.message + '</td></tr>';
+        }
+    }
+
+    async function changeOrderStatus(id, newStatus) {
+        try {
+            const { error } = await window.supabase.from('orders').update({ status: newStatus }).eq('id', id);
+            if (error) throw error;
+            // success style update or reload
+        } catch (error) {
+            alert('Chyba při změně stavu: ' + error.message);
+        }
+    }
+
+    function viewOrderDetails(id) {
+        alert('Detail objednávky ' + id + ' bude v příští verzi. Zatím se podívejte do Supabase :)');
     }
 
     async function loadProducts() {

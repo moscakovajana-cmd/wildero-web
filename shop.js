@@ -320,6 +320,31 @@ function openProductModal(id) {
     
     stockEl.innerText = stockLabel;
     
+    // Reset a kontrola scrollování pro indikátor
+    const descBox = document.getElementById('modal-desc');
+    const indicator = document.getElementById('modal-scroll-indicator');
+    const descWrap = document.querySelector('.product-modal__desc-wrap');
+    
+    descBox.scrollTop = 0;
+    
+    setTimeout(() => {
+        const hasOverflow = descBox.scrollHeight > descBox.clientHeight;
+        indicator.style.display = hasOverflow ? 'flex' : 'none';
+        
+        // Přidání třídy pro fade-out efekt pouze při overflow
+        if (hasOverflow) {
+            descWrap.classList.add('has-overflow');
+        } else {
+            descWrap.classList.remove('has-overflow');
+        }
+    }, 50);
+    
+    descBox.onscroll = () => {
+        const isBottom = descBox.scrollHeight - descBox.scrollTop <= descBox.clientHeight + 20;
+        indicator.style.opacity = isBottom ? '0' : '0.8';
+        indicator.style.pointerEvents = 'none';
+    };
+    
     document.getElementById('modal-add-cart').onclick = () => {
         addToCart(id);
         closeProductModal();

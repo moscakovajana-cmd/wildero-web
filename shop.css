@@ -1042,35 +1042,15 @@
     padding: 2.5rem 2.5rem 2rem;
     display: flex;
     flex-direction: column;
-    overflow: hidden; /* Důležité: zabrání scrollu celého okna */
+    overflow: hidden;
     text-align: center;
     align-items: center;
 }
 
-.product-modal__scroll-area {
-    flex: 1;
-    overflow-y: auto;
+.product-modal__title-section {
     width: 100%;
     margin-bottom: 2rem;
-    padding-right: 0.5rem; /* Místo pro scrollbar */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* Zelený scrollbar pro popis produktu */
-.product-modal__scroll-area::-webkit-scrollbar {
-    width: 6px;
-}
-.product-modal__scroll-area::-webkit-scrollbar-track {
-    background: transparent;
-}
-.product-modal__scroll-area::-webkit-scrollbar-thumb {
-    background: rgba(56, 94, 60, 0.4);
-    border-radius: 10px;
-}
-.product-modal__scroll-area::-webkit-scrollbar-thumb:hover {
-    background: var(--color-primary);
+    flex-shrink: 0;
 }
 
 .product-modal__category {
@@ -1091,11 +1071,81 @@
     line-height: 1.2;
 }
 
+.product-modal__desc-wrap {
+    flex: 1;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
 .product-modal__desc {
+    height: 100%;
+    overflow-y: auto;
     font-size: 1.05rem;
     color: #4a5568;
     line-height: 1.7;
-    margin-bottom: 1.5rem;
+    padding: 0 1rem 3rem 1rem; /* Padding at bottom for scroll indicator space */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(56, 94, 60, 0.3) transparent;
+}
+
+/* Zelený scrollbar jen u popisu */
+.product-modal__desc::-webkit-scrollbar {
+    width: 5px;
+}
+.product-modal__desc::-webkit-scrollbar-track {
+    background: transparent;
+}
+.product-modal__desc::-webkit-scrollbar-thumb {
+    background: rgba(56, 94, 60, 0.35);
+    border-radius: 10px;
+}
+
+/* Náznak pokračujícího textu – jemný přechod do ztracena (jen pokud je přetékání) */
+.product-modal__desc-wrap.has-overflow::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 44px;
+    background: linear-gradient(to top, #fff 15%, transparent 100%);
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Jemná šipka dolů u scrollovatelného textu */
+.product-modal__scroll-indicator {
+    display: none; /* Skryto dokud JS nepotvrdí overflow */
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--color-primary);
+    background: #fff;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(56, 94, 60, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    animation: modalBounce 2s infinite;
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+.product-modal__scroll-indicator svg {
+    width: 16px;
+    height: 16px;
+}
+
+@keyframes modalBounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);}
+    40% {transform: translateX(-50%) translateY(4px);}
+    60% {transform: translateX(-50%) translateY(2px);}
 }
 
 .product-modal__footer {

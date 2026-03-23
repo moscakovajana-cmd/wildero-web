@@ -219,7 +219,7 @@ async function submitOrder(e) {
     const totalPrice = currentOrderItems.reduce((sum, item) => sum + (item.price * item.qty), 0);
     
     try {
-        // Znovu vytvoříme seznam s jistotou správných typů pro JSONB
+        // Vyčistíme položky a ujistíme se, že jsou to čisté objekty
         const finalItems = Object.entries(cart).map(([id, qty]) => {
             const p = PRODUCTS[id];
             return {
@@ -230,6 +230,10 @@ async function submitOrder(e) {
             };
         });
 
+        // Supabase-js očekává u JSONB prostě JS objekt nebo pole.
+        // Pokud to stále hází chybu "invalid input syntax for type json", 
+        // může to být tím, že se supabaseClient snaží vkládat řetězec tam, kde čeká objekt.
+        
         const finalPayload = {
             customer_name: document.getElementById('cust-name').value,
             customer_email: document.getElementById('cust-email').value,
@@ -237,14 +241,23 @@ async function submitOrder(e) {
             address: document.getElementById('cust-address').value,
             delivery_method: document.getElementById('cust-shipping').value,
             total_price: Number(totalPrice),
-            items: finalItems, // Supabase-js by měl JSONB pole vzít automaticky jako objekt
+            items: finalItems, // Zkusíme to nechat jako čisté pole objektů
             status: 'new'
         };
 
-        console.log("Odesílám objednávku (payload):", finalPayload);
+        console.log("Odesílám (DEBUG payload):", JSON.stringify(finalPayload, null, 2));
 
-        const { error } = await supabaseClient.from('orders').insert([finalPayload]);
-        if (error) throw error;
+        const { data, error } = await supabaseClient
+            .from('orders')
+            .insert([finalPayload])
+            .select();
+            
+        if (error) {
+            console.error("Supabase Error Object:", error);
+            throw error;
+        }
+        
+        console.log("Objednávka úspěšně uložena:", data);
         
         // Úspěch
         cart = {};
@@ -263,7 +276,7 @@ async function submitOrder(e) {
         const errDetail = err.message || err.details || JSON.stringify(err);
         alert('CHYBA: ' + errDetail + '\n\nOmlouváme se, objednávku se nepodařilo odeslat. Zkuste to prosím znovu nebo nás kontaktujte.');
         btnSubmit.disabled = false;
-        btnSubmit.innerText = originalText;
+        btnSubmit.innerText = 'Zkusit znovu odeslat';
     }
 }
 

@@ -247,7 +247,8 @@ async function submitOrder(e) {
         
     } catch (err) {
         console.error("Chyba při odesílání objednávky:", err);
-        alert('Omlouváme se, objednávku se nepodařilo odeslat. Zkuste to prosím znovu nebo nás kontaktujte.');
+        const errMsg = err.message || JSON.stringify(err);
+        alert('CHYBA: ' + errMsg + '\n\nOmlouváme se, objednávku se nepodařilo odeslat. Zkuste to prosím znovu nebo nás kontaktujte.');
         btnSubmit.disabled = false;
         btnSubmit.innerText = originalText;
     }

@@ -199,8 +199,12 @@
                         <input type="text" id="product-title" required>
                     </div>
                     <div class="form-col" style="grid-column: 1 / -1; margin-bottom: 0;">
-                        <label>Popis produktu</label>
-                        <textarea id="product-description" rows="3" style="resize: vertical;" required></textarea>
+                        <label>Základní popis (zobrazí se na kartě)</label>
+                        <textarea id="product-description" rows="2" style="resize: vertical;" required></textarea>
+                    </div>
+                    <div class="form-col" style="grid-column: 1 / -1; margin-bottom: 0;">
+                        <label>Podrobný popis (zobrazí se v detailu modalem, pokud je vyplněn)</label>
+                        <textarea id="product-full-description" rows="5" style="resize: vertical;" placeholder="Nechte prázdné pro použití základního popisu..."></textarea>
                     </div>
                     <div class="form-col" style="margin-bottom: 0;">
                         <label>Kategorie</label>
@@ -310,6 +314,7 @@
         document.getElementById('product-id').value = product.id;
         document.getElementById('product-title').value = product.title || '';
         document.getElementById('product-description').value = product.description || '';
+        document.getElementById('product-full-description').value = product.full_description || '';
         document.getElementById('product-category').value = product.category || '';
         document.getElementById('product-price').value = product.price || 0;
         document.getElementById('product-stock').value = product.stock || 0;
@@ -379,6 +384,7 @@
         const payload = {
             title: document.getElementById('product-title').value,
             description: document.getElementById('product-description').value,
+            full_description: document.getElementById('product-full-description').value,
             category: document.getElementById('product-category').value,
             price: Number(document.getElementById('product-price').value),
             stock: Number(document.getElementById('product-stock').value),

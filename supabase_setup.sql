@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS public.products (
     price integer not null,
     stock integer not null default 0,
     status text not null default 'active',
+    full_description text,
     created_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
 

@@ -13,6 +13,15 @@ const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
 // ---------- Cart State ----------
 let cart = JSON.parse(localStorage.getItem('wildero_cart') || '{}');
 
+// Helper to remove accents for filtering
+function slugify(text) {
+    if (!text) return "";
+    return text.toString().toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .trim();
+}
+
 // ---------- DOM References ----------
 const cartDrawer = document.getElementById('cart-drawer');
 const cartOverlay = document.getElementById('cart-overlay');
@@ -166,7 +175,7 @@ function initFilters() {
             filterBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
 
-            const filter = btn.dataset.filter;
+            const filter = slugify(btn.dataset.filter);
             let visibleCount = 0;
 
             shopCards.forEach(card => {
@@ -220,14 +229,17 @@ async function loadShop() {
         grid.innerHTML = '';
         
         data.forEach(p => {
+            const productImages = Array.isArray(p.images) ? p.images : (p.images ? [p.images] : []);
+            
             PRODUCTS[p.id] = {
                 name: p.title,
                 price: p.price,
-                img: p.images && p.images.length > 0 ? p.images[0] : 'public/placeholder.png',
+                img: productImages.length > 0 ? productImages[0] : 'shop_bag.png',
                 desc: p.description,
-                cat: p.category ? p.category.toLowerCase() : '',
+                fullDesc: p.full_description,
+                cat: slugify(p.category),
                 stock: p.stock,
-                images: p.images || []
+                images: productImages
             };
             
             const mainImg = PRODUCTS[p.id].img;
@@ -236,22 +248,31 @@ async function loadShop() {
             article.dataset.category = PRODUCTS[p.id].cat;
             article.id = `product-${p.id}`;
             
+            // Multiple image indicator
+            const galleryBadge = productImages.length > 1 
+                ? `<div class="shop-card__gallery-badge" title="Více fotografií">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+                    <span>${productImages.length}</span>
+                   </div>` 
+                : '';
+
             article.innerHTML = `
                 <div class="shop-card__img-wrap" style="cursor: pointer;" onclick="openProductModal('${p.id}')">
+                    ${galleryBadge}
                     <img src="${mainImg}" alt="${p.title}" class="shop-card__img">
                     <div class="shop-card__overlay">
                         <button class="btn btn--primary" style="pointer-events: none;">Zobrazit detaily</button>
                     </div>
                 </div>
                 <div class="shop-card__body">
-                    <span class="shop-card__cat">${p.category}</span>
+                    <span class="shop-card__cat">${p.category || 'Produkt'}</span>
                     <h2 class="shop-card__title" style="cursor: pointer;" onclick="openProductModal('${p.id}')">${p.title}</h2>
-                    <p class="shop-card__desc">${p.description ? p.description.substring(0, 80) + '...' : ''}</p>
+                    <p class="shop-card__desc">${p.description ? p.description.substring(0, 100) + '...' : ''}</p>
                     <div class="shop-card__footer">
                         <div class="shop-card__price">
                             <span class="shop-card__price-current">${p.price} Kč</span>
                         </div>
-                        <button class="btn btn--primary shop-card__btn" onclick="addToCart('${p.id}')" id="btn-${p.id}">Přidat do košíku</button>
+                        <button class="btn btn--primary shop-card__btn" onclick="addToCart('${p.id}')" id="btn-${p.id}">Koupit</button>
                     </div>
                 </div>
             `;
@@ -271,8 +292,11 @@ function openProductModal(id) {
     if (!p) return;
     
     document.getElementById('modal-title').innerText = p.name;
-    document.getElementById('modal-category').innerText = p.cat;
-    document.getElementById('modal-desc').innerText = p.desc || 'Tento produkt zatím nemá podrobný popis.';
+    document.getElementById('modal-category').innerText = p.images.length > 1 ? `${p.cat} • Galerie` : p.cat;
+    
+    // Použijeme fullDesc pokud existuje, jinak desc
+    const finalDesc = (p.fullDesc && p.fullDesc.trim() !== '') ? p.fullDesc : p.desc;
+    document.getElementById('modal-desc').innerHTML = finalDesc ? finalDesc.replace(/\n/g, '<br>') : 'Tento produkt zatím nemá podrobný popis.';
     document.getElementById('modal-price').innerText = `${p.price} Kč`;
     document.getElementById('modal-stock').innerText = p.stock || 0;
     
@@ -299,6 +323,24 @@ function openProductModal(id) {
             };
             thumbsContainer.appendChild(thumb);
         });
+        
+        // Zobrazení šipek pokud je více než 4 obrázky (nebo dle potřeby)
+        const prevBtn = document.getElementById('modal-prev');
+        const nextBtn = document.getElementById('modal-next');
+        if (prevBtn && nextBtn) {
+            if (p.images.length > 1) {
+                prevBtn.style.display = 'flex';
+                nextBtn.style.display = 'flex';
+            } else {
+                prevBtn.style.display = 'none';
+                nextBtn.style.display = 'none';
+            }
+        }
+    } else {
+        const prevBtn = document.getElementById('modal-prev');
+        const nextBtn = document.getElementById('modal-next');
+        if (prevBtn) prevBtn.style.display = 'none';
+        if (nextBtn) nextBtn.style.display = 'none';
     }
     
     document.getElementById('product-detail-modal').style.display = 'flex';
@@ -315,6 +357,17 @@ document.getElementById('product-detail-modal')?.addEventListener('click', funct
     if (e.target === this) {
         closeProductModal();
     }
+});
+
+// Ovládání šipek galerie
+document.getElementById('modal-prev')?.addEventListener('click', () => {
+    const container = document.getElementById('modal-thumbnails');
+    container.scrollBy({ left: -100, behavior: 'smooth' });
+});
+
+document.getElementById('modal-next')?.addEventListener('click', () => {
+    const container = document.getElementById('modal-thumbnails');
+    container.scrollBy({ left: 100, behavior: 'smooth' });
 });
 
 // ---------- INIT ----------

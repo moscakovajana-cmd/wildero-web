@@ -298,7 +298,27 @@ function openProductModal(id) {
     const finalDesc = (p.fullDesc && p.fullDesc.trim() !== '') ? p.fullDesc : p.desc;
     document.getElementById('modal-desc').innerHTML = finalDesc ? finalDesc.replace(/\n/g, '<br>') : 'Tento produkt zatím nemá podrobný popis.';
     document.getElementById('modal-price').innerText = `${p.price} Kč`;
-    document.getElementById('modal-stock').innerText = p.stock || 0;
+    
+    // Logika zobrazení skladu podle rozsahu (obfuscace počtu kusů)
+    const stockEl = document.getElementById('modal-stock-text');
+    const stock = Number(p.stock) || 0;
+    
+    let stockLabel = "";
+    if (stock <= 0) {
+        stockLabel = "Není skladem";
+        stockEl.style.color = "#e53e3e"; // Red for out of stock
+    } else if (stock === 1) {
+        stockLabel = "1 ks skladem";
+        stockEl.style.color = "#718096";
+    } else if (stock >= 2 && stock <= 5) {
+        stockLabel = "3–5 kusů skladem"; // Grouping 2 into this bucket as requested for a general feel
+        stockEl.style.color = "#718096";
+    } else {
+        stockLabel = "Víc jak 5 kusů skladem";
+        stockEl.style.color = "#718096";
+    }
+    
+    stockEl.innerText = stockLabel;
     
     document.getElementById('modal-add-cart').onclick = () => {
         addToCart(id);

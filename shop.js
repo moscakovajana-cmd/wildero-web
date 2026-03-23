@@ -207,33 +207,46 @@ async function submitOrder(e) {
     btnSubmit.disabled = true;
     btnSubmit.innerText = 'Odesílám...';
     
-    const orderItems = Object.entries(cart).map(([id, qty]) => {
+    const currentOrderItems = Object.entries(cart).map(([id, qty]) => {
         const p = PRODUCTS[id];
         return {
             id: id,
-            name: p?.name || 'Neznámý produkt',
             qty: qty,
             price: p?.price || 0
         };
     });
     
-    const totalPrice = orderItems.reduce((sum, item) => sum + (item.price * item.qty), 0);
-    
-    const payload = {
-        customer_name: document.getElementById('cust-name').value,
-        customer_email: document.getElementById('cust-email').value,
-        customer_phone: document.getElementById('cust-phone').value,
-        address: document.getElementById('cust-address').value,
-        delivery_method: document.getElementById('cust-shipping').value,
-        total_price: totalPrice,
-        items: orderItems,
-        status: 'new'
-    };
+    const totalPrice = currentOrderItems.reduce((sum, item) => sum + (item.price * item.qty), 0);
     
     try {
-        const { error } = await supabaseClient.from('orders').insert([payload]);
+        // Znovu vytvoříme seznam s jistotou správných typů pro JSONB
+        const finalItems = Object.entries(cart).map(([id, qty]) => {
+            const p = PRODUCTS[id];
+            return {
+                id: String(id),
+                name: String(p?.name || 'Neznámý produkt'),
+                qty: Number(qty),
+                price: Number(p?.price || 0)
+            };
+        });
+
+        const finalPayload = {
+            customer_name: document.getElementById('cust-name').value,
+            customer_email: document.getElementById('cust-email').value,
+            customer_phone: document.getElementById('cust-phone').value,
+            address: document.getElementById('cust-address').value,
+            delivery_method: document.getElementById('cust-shipping').value,
+            total_price: Number(totalPrice),
+            items: finalItems, // Supabase-js by měl JSONB pole vzít automaticky jako objekt
+            status: 'new'
+        };
+
+        console.log("Odesílám objednávku (payload):", finalPayload);
+
+        const { error } = await supabaseClient.from('orders').insert([finalPayload]);
         if (error) throw error;
         
+        // Úspěch
         cart = {};
         saveCart();
         renderCart();
@@ -246,9 +259,9 @@ async function submitOrder(e) {
         if (drawerTitle) drawerTitle.innerText = 'Vše v pořádku!';
         
     } catch (err) {
-        console.error("Chyba při odesílání objednávky:", err);
-        const errMsg = err.message || JSON.stringify(err);
-        alert('CHYBA: ' + errMsg + '\n\nOmlouváme se, objednávku se nepodařilo odeslat. Zkuste to prosím znovu nebo nás kontaktujte.');
+        console.error("Podrobná chyba Supabase:", err);
+        const errDetail = err.message || err.details || JSON.stringify(err);
+        alert('CHYBA: ' + errDetail + '\n\nOmlouváme se, objednávku se nepodařilo odeslat. Zkuste to prosím znovu nebo nás kontaktujte.');
         btnSubmit.disabled = false;
         btnSubmit.innerText = originalText;
     }

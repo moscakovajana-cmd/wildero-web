@@ -213,14 +213,43 @@
             <ul class="cart-items" id="cart-items"></ul>
         </div>
         <div class="cart-drawer__footer" id="cart-footer" style="display:none;">
-            <div class="cart-total">
-                <span>Celkem</span>
-                <span id="cart-total-price">0 Kč</span>
+            <div id="cart-summary-step">
+                <div class="cart-total">
+                    <span>Celkem</span>
+                    <span id="cart-total-price">0 Kč</span>
+                </div>
+                <p class="cart-shipping-note" id="cart-shipping-note"></p>
+                <button class="btn btn--primary cart-checkout-btn" onclick="showCheckoutForm()">Dokončit objednávku</button>
             </div>
-            <p class="cart-shipping-note" id="cart-shipping-note"></p>
-            <a href="kontakt.html" class="btn btn--primary cart-checkout-btn">Dokončit objednávku</a>
-            <p class="cart-note">Objednávky nyní vyřizujeme přes <strong>e-mail</strong> nebo kontaktní formulář.<br>Brzy
-                spustíme plnohodnotný platební systém.</p>
+
+            <!-- Checkout Form Step -->
+            <div id="cart-checkout-step" style="display:none;">
+                <h3 style="margin-bottom:1rem; color:var(--color-primary); font-size:1.1rem;">Dodací údaje</h3>
+                <form id="checkout-form" onsubmit="submitOrder(event)" style="display:flex; flex-direction:column; gap:0.8rem;">
+                    <input type="text" id="cust-name" placeholder="Jméno a příjmení" required style="padding:0.75rem; border-radius:8px; border:1px solid #ddd;">
+                    <input type="email" id="cust-email" placeholder="E-mail" required style="padding:0.75rem; border-radius:8px; border:1px solid #ddd;">
+                    <input type="tel" id="cust-phone" placeholder="Telefon" required style="padding:0.75rem; border-radius:8px; border:1px solid #ddd;">
+                    <textarea id="cust-address" placeholder="Adresa k doručení" rows="2" required style="padding:0.75rem; border-radius:8px; border:1px solid #ddd; font-family:inherit;"></textarea>
+                    
+                    <select id="cust-shipping" required style="padding:0.75rem; border-radius:8px; border:1px solid #ddd;">
+                        <option value="zasilkovna">Zásilkovna (79 Kč)</option>
+                        <option value="posta">Česká pošta (119 Kč)</option>
+                        <option value="osobni">Osobní předání (0 Kč)</option>
+                    </select>
+
+                    <button type="submit" class="btn btn--primary" id="btn-order-submit">Confirm and Order</button>
+                    <button type="button" class="btn btn--secondary" onclick="hideCheckoutForm()" style="font-size:0.85rem; padding:0.5rem;">Zpět k položkám</button>
+                </form>
+            </div>
+
+            <div id="cart-success-step" style="display:none; text-align:center; padding:2rem 0;">
+                <div style="font-size:3rem; margin-bottom:1rem;">🎉</div>
+                <h3 style="color:var(--color-primary);">Hotovo!</h3>
+                <p style="font-size:0.9rem; margin-bottom:1.5rem;">Objednávka byla přijata. Potvrzení vám brzy přijde na e-mail.</p>
+                <button class="btn btn--secondary" onclick="closeCart(); resetCartUI();">Zavřít</button>
+            </div>
+            
+            <p class="cart-note" style="margin-top:1rem;">Objednávky nyní zpracováváme ručně. Platba na dobírku nebo převodem.</p>
         </div>
     </aside>
 

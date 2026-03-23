@@ -163,6 +163,96 @@ function renderCart() {
     }
 }
 
+// ---------- Checkout Navigation ----------
+function showCheckoutForm() {
+    document.getElementById('cart-summary-step').style.display = 'none';
+    const checkoutStep = document.getElementById('cart-checkout-step');
+    if (checkoutStep) checkoutStep.style.display = 'block';
+    const cartBody = document.getElementById('cart-body');
+    if (cartBody) cartBody.style.display = 'none';
+    const drawerTitle = document.querySelector('.cart-drawer__title');
+    if (drawerTitle) drawerTitle.innerText = 'Doprava a platba';
+}
+
+function hideCheckoutForm() {
+    document.getElementById('cart-summary-step').style.display = 'block';
+    const checkoutStep = document.getElementById('cart-checkout-step');
+    if (checkoutStep) checkoutStep.style.display = 'none';
+    const cartBody = document.getElementById('cart-body');
+    if (cartBody) cartBody.style.display = 'block';
+    const drawerTitle = document.querySelector('.cart-drawer__title');
+    if (drawerTitle) drawerTitle.innerText = '🛒 Váš košík';
+}
+
+function resetCartUI() {
+    const summaryStep = document.getElementById('cart-summary-step');
+    if (summaryStep) summaryStep.style.display = 'block';
+    const checkoutStep = document.getElementById('cart-checkout-step');
+    if (checkoutStep) checkoutStep.style.display = 'none';
+    const successStep = document.getElementById('cart-success-step');
+    if (successStep) successStep.style.display = 'none';
+    const cartBody = document.getElementById('cart-body');
+    if (cartBody) cartBody.style.display = 'block';
+    const drawerTitle = document.querySelector('.cart-drawer__title');
+    if (drawerTitle) drawerTitle.innerText = '🛒 Váš košík';
+    const form = document.getElementById('checkout-form');
+    if (form) form.reset();
+}
+
+async function submitOrder(e) {
+    e.preventDefault();
+    
+    const btnSubmit = document.getElementById('btn-order-submit');
+    const originalText = btnSubmit.innerText;
+    btnSubmit.disabled = true;
+    btnSubmit.innerText = 'Odesílám...';
+    
+    const orderItems = Object.entries(cart).map(([id, qty]) => {
+        const p = PRODUCTS[id];
+        return {
+            id: id,
+            name: p?.name || 'Neznámý produkt',
+            qty: qty,
+            price: p?.price || 0
+        };
+    });
+    
+    const totalPrice = orderItems.reduce((sum, item) => sum + (item.price * item.qty), 0);
+    
+    const payload = {
+        customer_name: document.getElementById('cust-name').value,
+        customer_email: document.getElementById('cust-email').value,
+        customer_phone: document.getElementById('cust-phone').value,
+        address: document.getElementById('cust-address').value,
+        delivery_method: document.getElementById('cust-shipping').value,
+        total_price: totalPrice,
+        items: orderItems,
+        status: 'new'
+    };
+    
+    try {
+        const { error } = await supabaseClient.from('orders').insert([payload]);
+        if (error) throw error;
+        
+        cart = {};
+        saveCart();
+        renderCart();
+        
+        const checkoutStep = document.getElementById('cart-checkout-step');
+        if (checkoutStep) checkoutStep.style.display = 'none';
+        const successStep = document.getElementById('cart-success-step');
+        if (successStep) successStep.style.display = 'block';
+        const drawerTitle = document.querySelector('.cart-drawer__title');
+        if (drawerTitle) drawerTitle.innerText = 'Vše v pořádku!';
+        
+    } catch (err) {
+        console.error("Chyba při odesílání objednávky:", err);
+        alert('Omlouváme se, objednávku se nepodařilo odeslat. Zkuste to prosím znovu nebo nás kontaktujte.');
+        btnSubmit.disabled = false;
+        btnSubmit.innerText = originalText;
+    }
+}
+
 // ---------- Filter Products ----------
 function initFilters() {
     const filterBtns = document.querySelectorAll('.shop-filter-btn');

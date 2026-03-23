@@ -1039,10 +1039,38 @@
 
 .product-modal__content {
     flex: 1;
-    padding: 3rem 2.5rem;
+    padding: 2.5rem 2.5rem 2rem;
     display: flex;
     flex-direction: column;
+    overflow: hidden; /* Důležité: zabrání scrollu celého okna */
+    text-align: center;
+    align-items: center;
+}
+
+.product-modal__scroll-area {
+    flex: 1;
     overflow-y: auto;
+    width: 100%;
+    margin-bottom: 2rem;
+    padding-right: 0.5rem; /* Místo pro scrollbar */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Zelený scrollbar pro popis produktu */
+.product-modal__scroll-area::-webkit-scrollbar {
+    width: 6px;
+}
+.product-modal__scroll-area::-webkit-scrollbar-track {
+    background: transparent;
+}
+.product-modal__scroll-area::-webkit-scrollbar-thumb {
+    background: rgba(56, 94, 60, 0.4);
+    border-radius: 10px;
+}
+.product-modal__scroll-area::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary);
 }
 
 .product-modal__category {
@@ -1067,8 +1095,7 @@
     font-size: 1.05rem;
     color: #4a5568;
     line-height: 1.7;
-    flex: 1;
-    margin-bottom: 3rem; /* Větší mezera před akcemi */
+    margin-bottom: 1.5rem;
 }
 
 .product-modal__footer {

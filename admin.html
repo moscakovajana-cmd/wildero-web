@@ -199,12 +199,12 @@
                         <input type="text" id="product-title" required>
                     </div>
                     <div class="form-col" style="grid-column: 1 / -1; margin-bottom: 0;">
-                        <label>Základní popis (zobrazí se na kartě)</label>
-                        <textarea id="product-description" rows="2" style="resize: vertical;" required></textarea>
+                        <label>Základní popis (zobrazí se na kartě) <small id="char-count-desc" style="float:right; color:#94a3b8; font-weight:400;">max. 500 znaků</small></label>
+                        <textarea id="product-description" rows="2" style="resize: vertical;" required maxlength="500"></textarea>
                     </div>
                     <div class="form-col" style="grid-column: 1 / -1; margin-bottom: 0;">
-                        <label>Podrobný popis (zobrazí se v detailu modalem, pokud je vyplněn)</label>
-                        <textarea id="product-full-description" rows="5" style="resize: vertical;" placeholder="Nechte prázdné pro použití základního popisu..."></textarea>
+                        <label>Podrobný popis (zobrazí se v detailu) <small id="char-count-full" style="float:right; color:#94a3b8; font-weight:400;">max. 2000 znaků</small></label>
+                        <textarea id="product-full-description" rows="5" style="resize: vertical;" placeholder="Nechte prázdné pro použití základního popisu..." maxlength="2000"></textarea>
                     </div>
                     <div class="form-col" style="margin-bottom: 0;">
                         <label>Kategorie</label>

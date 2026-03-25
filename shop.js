@@ -7,14 +7,18 @@ let PRODUCTS = {};
 
 // Supabase Init
 const supabaseUrl = 'https://ttwyryduxqfssyetqhxw.supabase.co'.trim();
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR0d3lyeWR1eHFmc3N5ZXRxaHh3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ1MzU1ODcsImV4cCI6MjA4MDExMTU4N30.FvW-ejXi8XC4juPYKZkW2lS0CL6ui8bmP9mJblxGvp8'.trim();
+// Čistíme klíč od případných skrytých uvozovek z proměnných nebo kopírování
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR0d3lyeWR1eHFmc3N5ZXRxaHh3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ1MzU1ODcsImV4cCI6MjA4MDExMTU4N30.FvW-ejXi8XC4juPYKZkW2lS0CL6ui8bmP9mJblxGvp8'.replace(/^["']|["']$/g, '').trim();
 const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
 
 // Force scroll to top on refresh
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
+window.scrollTo(0, 0);
 if (window.location.hash) {
     window.history.replaceState(null, null, window.location.pathname);
 }
-window.scrollTo(0, 0);
 
 // ---------- Cart State ----------
 let cart = JSON.parse(localStorage.getItem('wildero_cart') || '{}');

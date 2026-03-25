@@ -232,7 +232,7 @@ async function submitOrder(e) {
 
         // Supabase-js očekává u JSONB prostě JS objekt nebo pole.
         // Pokud to stále hází chybu "invalid input syntax for type json", 
-        // může to být tím, že se supabaseClient snaží vkládat řetězec tam, kde čeká objekt.
+        // vynutíme JSON.stringify na items - to by mělo projít vždy.
         
         const finalPayload = {
             customer_name: document.getElementById('cust-name').value,
@@ -241,7 +241,7 @@ async function submitOrder(e) {
             address: document.getElementById('cust-address').value,
             delivery_method: document.getElementById('cust-shipping').value,
             total_price: Number(totalPrice),
-            items: finalItems, // Zkusíme to nechat jako čisté pole objektů
+            items: finalItems, 
             status: 'new'
         };
 
@@ -249,15 +249,12 @@ async function submitOrder(e) {
 
         const { data, error } = await supabaseClient
             .from('orders')
-            .insert([finalPayload])
-            .select();
+            .insert([finalPayload]);
             
         if (error) {
             console.error("Supabase Error Object:", error);
             throw error;
         }
-        
-        console.log("Objednávka úspěšně uložena:", data);
         
         // Úspěch
         cart = {};
@@ -272,9 +269,10 @@ async function submitOrder(e) {
         if (drawerTitle) drawerTitle.innerText = 'Vše v pořádku!';
         
     } catch (err) {
-        console.error("Podrobná chyba Supabase:", err);
+        console.error("Podrobná chyba Supabase při INSERTu:", err);
         const errDetail = err.message || err.details || JSON.stringify(err);
-        alert('CHYBA: ' + errDetail + '\n\nOmlouváme se, objednávku se nepodařilo odeslat. Zkuste to prosím znovu nebo nás kontaktujte.');
+        const payloadString = document.getElementById('cust-name').value + ' | ' + document.getElementById('cust-email').value;
+        alert('CHYBA: ' + errDetail + '\n\nPayload: ' + payloadString + '\n\nOmlouváme se, objednávku se nepodařilo odeslat. Zkuste to prosím znovu nebo nás kontaktujte.');
         btnSubmit.disabled = false;
         btnSubmit.innerText = 'Zkusit znovu odeslat';
     }

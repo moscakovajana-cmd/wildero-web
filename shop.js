@@ -230,10 +230,6 @@ async function submitOrder(e) {
             };
         });
 
-        // Supabase-js očekává u JSONB prostě JS objekt nebo pole.
-        // Pokud to stále hází chybu "invalid input syntax for type json", 
-        // vynutíme JSON.stringify na items - to by mělo projít vždy.
-        
         const finalPayload = {
             customer_name: document.getElementById('cust-name').value,
             customer_email: document.getElementById('cust-email').value,
@@ -271,7 +267,20 @@ async function submitOrder(e) {
     } catch (err) {
         console.error("Podrobná chyba Supabase při INSERTu:", err);
         const errDetail = err.message || err.details || JSON.stringify(err);
-        const payloadString = document.getElementById('cust-name').value + ' | ' + document.getElementById('cust-email').value;
+        
+        // Zde si připravíme detailní výpis dat, abychom viděli, co je v JSONu špatně
+        const finalItemsDebug = Object.entries(cart).map(([id, qty]) => {
+            const p = PRODUCTS[id];
+            return { id, name: p?.name, qty, price: p?.price };
+        });
+        const debugPayload = {
+            name: document.getElementById('cust-name').value,
+            email: document.getElementById('cust-email').value,
+            total: totalPrice,
+            items: finalItemsDebug
+        };
+        const payloadString = JSON.stringify(debugPayload);
+
         alert('CHYBA: ' + errDetail + '\n\nPayload: ' + payloadString + '\n\nOmlouváme se, objednávku se nepodařilo odeslat. Zkuste to prosím znovu nebo nás kontaktujte.');
         btnSubmit.disabled = false;
         btnSubmit.innerText = 'Zkusit znovu odeslat';

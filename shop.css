@@ -497,9 +497,10 @@
 }
 
 .shop-shipping__items {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 3rem;
 }
 
 .shop-shipping__item {

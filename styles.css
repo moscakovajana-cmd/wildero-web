@@ -404,6 +404,29 @@ p {
     font-weight: 600;
 }
 
+.app-features-mini span {
+    display: flex;
+    align-items: center;
+}
+
+.mountain-bullet {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.8rem;
+    height: 1.8rem;
+    border-radius: 50%;
+    background: rgba(56, 94, 60, 0.08);
+    color: var(--color-primary);
+    flex-shrink: 0;
+    margin-right: 0.8rem;
+}
+
+.mountain-bullet svg {
+    width: 14px;
+    height: 14px;
+}
+
 @media (max-width: 900px) {
     .hero--app {
         padding-top: calc(var(--header-height) + 4rem);
@@ -750,7 +773,9 @@ p {
 .list-check {
     margin-top: 1.5rem;
     text-align: left;
-    margin-left: 2rem;
+    margin-left: 0;
+    list-style: none;
+    padding: 0;
 }
 
 .list-check li {
@@ -766,6 +791,12 @@ p {
     left: 0;
     color: var(--color-primary);
     font-weight: bold;
+}
+
+.list-check li.has-icon {
+    padding-left: 0;
+    display: flex;
+    align-items: flex-start;
 }
 
 .pricing-options {

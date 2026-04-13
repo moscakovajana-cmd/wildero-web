@@ -182,6 +182,7 @@ function showCheckoutForm() {
     if (cartBody) cartBody.style.display = 'none';
     const drawerTitle = document.querySelector('.cart-drawer__title');
     if (drawerTitle) drawerTitle.innerText = 'Doprava a platba';
+    updateOrderSummary(); // Aktualizujeme přehled cen
 }
 
 function hideCheckoutForm() {
@@ -209,6 +210,23 @@ function resetCartUI() {
     if (form) form.reset();
 }
 
+// Aktualizace souhrnu objednavky (zobrazi zbozi + doprava + total)
+function updateOrderSummary() {
+    const itemsTotal = Object.entries(cart).reduce((sum, [id, qty]) => {
+        return sum + (PRODUCTS[id]?.price || 0) * qty;
+    }, 0);
+
+    const shippingSelect = document.getElementById('cust-shipping');
+    const selectedOption = shippingSelect?.options[shippingSelect.selectedIndex];
+    const shippingCost = parseInt(selectedOption?.dataset.price || '79', 10);
+    const grandTotal = itemsTotal + shippingCost;
+
+    const el = (id) => document.getElementById(id);
+    if (el('summary-items-price')) el('summary-items-price').textContent = `${itemsTotal}\u00a0K\u010d`;
+    if (el('summary-shipping-price')) el('summary-shipping-price').textContent = shippingCost === 0 ? 'Zdarma' : `${shippingCost}\u00a0K\u010d`;
+    if (el('summary-total-price')) el('summary-total-price').textContent = `${grandTotal}\u00a0K\u010d`;
+}
+
 async function submitOrder(e) {
     e.preventDefault();
     
@@ -217,6 +235,11 @@ async function submitOrder(e) {
     btnSubmit.disabled = true;
     btnSubmit.innerText = 'Odesílám...';
     
+    const shippingSelect = document.getElementById('cust-shipping');
+    const selectedShipping = shippingSelect?.options[shippingSelect.selectedIndex];
+    const shippingCost = parseInt(selectedShipping?.dataset.price || '79', 10);
+    const paymentMethod = document.getElementById('cust-payment')?.value || 'dobirka';
+
     const currentOrderItems = Object.entries(cart).map(([id, qty]) => {
         const p = PRODUCTS[id];
         return {
@@ -226,7 +249,8 @@ async function submitOrder(e) {
         };
     });
     
-    const totalPrice = currentOrderItems.reduce((sum, item) => sum + (item.price * item.qty), 0);
+    const itemsTotal = currentOrderItems.reduce((sum, item) => sum + (item.price * item.qty), 0);
+    const totalPrice = itemsTotal + shippingCost;
     
     try {
         // Vyčistíme položky a ujistíme se, že jsou to čisté objekty
@@ -246,6 +270,8 @@ async function submitOrder(e) {
             customer_phone: document.getElementById('cust-phone').value,
             address: document.getElementById('cust-address').value,
             delivery_method: document.getElementById('cust-shipping').value,
+            payment_method: paymentMethod,
+            shipping_cost: shippingCost,
             total_price: Number(totalPrice),
             items: finalItems, 
             status: 'new'

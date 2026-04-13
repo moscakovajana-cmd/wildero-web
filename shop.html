@@ -231,16 +231,50 @@
                     <input type="tel" id="cust-phone" placeholder="Telefon" required style="padding:0.75rem; border-radius:8px; border:1px solid #ddd;">
                     <textarea id="cust-address" placeholder="Adresa k doručení" rows="2" required style="padding:0.75rem; border-radius:8px; border:1px solid #ddd; font-family:inherit;"></textarea>
                     
-                    <select id="cust-shipping" required style="padding:0.75rem; border-radius:8px; border:1px solid #ddd;">
-                        <option value="zasilkovna">Zásilkovna (79 Kč)</option>
-                        <option value="posta">Česká pošta (119 Kč)</option>
-                        <option value="osobni">Osobní předání (0 Kč)</option>
+                    <select id="cust-shipping" required style="padding:0.75rem; border-radius:8px; border:1px solid #ddd;" onchange="updateOrderSummary()">
+                        <option value="zasilkovna" data-price="79">Zásilkovna (79 Kč)</option>
+                        <option value="posta" data-price="119">Česká pošta (119 Kč)</option>
+                        <option value="osobni" data-price="0">Osobní předání (0 Kč)</option>
                     </select>
 
-                    <button type="submit" class="btn btn--primary" id="btn-order-submit">Odeslat objednávku</button>
+                    <select id="cust-payment" required style="padding:0.75rem; border-radius:8px; border:1px solid #ddd;">
+                        <option value="dobirka">Dobírka (platba při převzetí)</option>
+                        <option value="prevod">Bankovní převod (platba předem)</option>
+                    </select>
+
+                    <!-- Přehled objednávky před potvrzením -->
+                    <div id="order-summary-box" style="background:#f8fdf8; border:1px solid #d1e8d3; border-radius:10px; padding:14px 16px; font-size:0.85rem; line-height:1.7;">
+                        <div style="display:flex; justify-content:space-between;"><span>Zboží</span><span id="summary-items-price">0 Kč</span></div>
+                        <div style="display:flex; justify-content:space-between;"><span>Doprava</span><span id="summary-shipping-price">79 Kč</span></div>
+                        <div style="display:flex; justify-content:space-between; font-weight:800; color:var(--color-primary); border-top:1px solid #d1e8d3; margin-top:6px; padding-top:6px;">
+                            <span>Celkem k úhradě</span><span id="summary-total-price">0 Kč</span>
+                        </div>
+                        <p style="margin:6px 0 0; font-size:0.78rem; color:#718096;">Cena je konečná. Prodávající není plátcem DPH.</p>
+                    </div>
+
+                    <!-- Identifikace prodávajícího -->
+                    <div style="font-size:0.78rem; color:#718096; padding:8px 0; line-height:1.6;">
+                        Prodávající: <strong>Ing. Jana Moščaková</strong>, IČ: 04471563, Žabí 1061/4, Žebětín, 641 00 Brno
+                    </div>
+
+                    <!-- Souhlas s obchodními podmínkami — legislativně povinný -->
+                    <label style="display:flex; align-items:flex-start; gap:10px; cursor:pointer; font-size:0.82rem; color:#4a5568; line-height:1.5; background:#fffbeb; border:1px solid #f6d860; border-radius:8px; padding:10px 12px;">
+                        <input type="checkbox" id="cust-terms" required style="margin-top:2px; flex-shrink:0; width:16px; height:16px; accent-color:var(--color-primary);">
+                        <span>
+                            Souhlasím s <a href="podminky.html" target="_blank" style="color:var(--color-primary); text-decoration:underline;">obchodními podmínkami</a>
+                            a <a href="soukromi.html" target="_blank" style="color:var(--color-primary); text-decoration:underline;">zásadami ochrany osobních údajů</a>.
+                            Beru na vědomí, že odesláním objednávky vzniká povinnost zaplatit.
+                        </span>
+                    </label>
+
+                    <!-- EU CRD čl. 8(2): tlačítko musí obsahovat text implikující povinnost platby -->
+                    <button type="submit" class="btn btn--primary" id="btn-order-submit">
+                        Objednat s povinností platby
+                    </button>
                     <button type="button" class="btn btn--secondary" onclick="hideCheckoutForm()" style="font-size:0.85rem; padding:0.5rem;">Zpět k položkám</button>
                 </form>
             </div>
+
 
             <div id="cart-success-step" style="display:none; text-align:center; padding:2rem 0;">
                 <div style="font-size:3rem; margin-bottom:1rem;">🎉</div>

@@ -176,34 +176,36 @@ function renderCart() {
 // ---------- Checkout Navigation ----------
 function showCheckoutForm() {
     document.getElementById('cart-summary-step').style.display = 'none';
+    document.getElementById('cart-footer').style.display = 'none'; // skryjeme footer úplně
+    document.getElementById('cart-items-step').style.display = 'none';
     const checkoutStep = document.getElementById('cart-checkout-step');
     if (checkoutStep) checkoutStep.style.display = 'block';
-    const cartBody = document.getElementById('cart-body');
-    if (cartBody) cartBody.style.display = 'none';
     const drawerTitle = document.querySelector('.cart-drawer__title');
     if (drawerTitle) drawerTitle.innerText = 'Doprava a platba';
-    updateOrderSummary(); // Aktualizujeme přehled cen
+    updateOrderSummary();
+    // Scrollneme na vrch košíku
+    const body = document.getElementById('cart-body');
+    if (body) body.scrollTop = 0;
 }
 
 function hideCheckoutForm() {
-    document.getElementById('cart-summary-step').style.display = 'block';
+    document.getElementById('cart-items-step').style.display = 'block';
     const checkoutStep = document.getElementById('cart-checkout-step');
     if (checkoutStep) checkoutStep.style.display = 'none';
-    const cartBody = document.getElementById('cart-body');
-    if (cartBody) cartBody.style.display = 'block';
+    document.getElementById('cart-footer').style.display = 'block';
+    document.getElementById('cart-summary-step').style.display = 'block';
     const drawerTitle = document.querySelector('.cart-drawer__title');
     if (drawerTitle) drawerTitle.innerText = '🛒 Váš košík';
 }
 
 function resetCartUI() {
-    const summaryStep = document.getElementById('cart-summary-step');
-    if (summaryStep) summaryStep.style.display = 'block';
+    document.getElementById('cart-items-step').style.display = 'block';
     const checkoutStep = document.getElementById('cart-checkout-step');
     if (checkoutStep) checkoutStep.style.display = 'none';
     const successStep = document.getElementById('cart-success-step');
     if (successStep) successStep.style.display = 'none';
-    const cartBody = document.getElementById('cart-body');
-    if (cartBody) cartBody.style.display = 'block';
+    document.getElementById('cart-footer').style.display = 'block';
+    document.getElementById('cart-summary-step').style.display = 'block';
     const drawerTitle = document.querySelector('.cart-drawer__title');
     if (drawerTitle) drawerTitle.innerText = '🛒 Váš košík';
     const form = document.getElementById('checkout-form');

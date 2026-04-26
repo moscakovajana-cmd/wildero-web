@@ -330,7 +330,7 @@ p {
     display: flex;
     align-items: center;
     position: relative;
-    padding-top: calc(var(--header-height) + 8vh);
+    padding-top: calc(var(--header-height) + 2vh);
     /* Adjusted to move content higher */
     padding-bottom: 5rem;
     overflow: hidden;
@@ -539,6 +539,8 @@ p {
 .hero__composition-art {
     width: 100%;
     max-width: 550px;
+    -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 95%);
+    mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 95%);
 }
 
 .hero__content {
@@ -548,7 +550,7 @@ p {
 }
 
 .hero__title {
-    font-size: 3.5rem;
+    font-size: 3rem;
     text-align: left;
     margin-bottom: 1rem;
     color: var(--color-primary-dark);

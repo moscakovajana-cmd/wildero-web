@@ -522,10 +522,16 @@ p {
 
 .hero__grid {
     display: grid;
-    grid-template-columns: minmax(420px, 1.3fr) auto 1fr;
+    grid-template-columns: 1fr 1fr;
     align-items: center;
     gap: 4rem;
     width: 100%;
+}
+
+.hero__illustration {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 .hero__content {

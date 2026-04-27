@@ -429,12 +429,11 @@ p {
     overflow: visible;
 }
 
-/* The illustration — fills viewport height, multi-directional fade */
+/* The illustration — fills right column width, height follows 2.25:1 aspect */
 .hero__signpost-img {
     display: block;
-    height: calc(100vh - var(--header-height));
-    width: auto;
-    max-width: 100%;
+    width: 100%;
+    height: auto;
     mix-blend-mode: multiply;
     /*
      * LEFT:   fade transparent→visible, transition zone near the text (50-68%)

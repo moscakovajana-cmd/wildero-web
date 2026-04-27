@@ -365,10 +365,11 @@ p {
     gap: 0;
 }
 
-/* Hero title: Playfair Display italic — evokes nature, handcraft, stories */
+/* Hero title: Lora bold — warm serif, nature-editorial feel, not italic */
 .hero__signpost-content .hero__title {
-    font-family: 'Playfair Display', 'Lora', Georgia, serif;
-    font-style: italic;
+    font-family: 'Lora', Georgia, serif;
+    font-style: normal;
+    font-weight: 700;
     font-size: 3.4rem;
     line-height: 1.08;
     margin-bottom: 1.1rem;
@@ -443,8 +444,8 @@ p {
     -webkit-mask-image:
         linear-gradient(to right,
             transparent 0%,
-            rgba(0,0,0,0.15) 38%,
-            black 62%,
+            rgba(0,0,0,0.6) 12%,
+            black 26%,
             black 90%,
             rgba(0,0,0,0.5) 100%
         ),
@@ -458,8 +459,8 @@ p {
     mask-image:
         linear-gradient(to right,
             transparent 0%,
-            rgba(0,0,0,0.15) 38%,
-            black 62%,
+            rgba(0,0,0,0.6) 12%,
+            black 26%,
             black 90%,
             rgba(0,0,0,0.5) 100%
         ),

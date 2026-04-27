@@ -120,61 +120,79 @@
         </section>
 
 
-        <!-- Co je Wildero + Pro koho — dvousloupcový layout -->
-        <section id="about" class="section section--split">
-            <div class="container split-grid">
-
-                <!-- Levý sloupec: Co je Wildero -->
-                <div class="split-left aos">
-                    <h2 class="section__title section__title--left">Co je Wildero</h2>
-                    <p class="split-text">
+        <!-- Co je Wildero -->
+        <section id="about" class="section">
+            <div class="container" style="text-align: center;">
+                <h2 class="section__title aos">Co je Wildero</h2>
+                <div class="aos aos-delay-1"
+                    style="max-width: 700px; margin: 0 auto; color: var(--color-text-main); font-size: 1.15rem; line-height: 1.8;">
+                    <p style="margin-bottom: 2rem;">
                         Wildero je jemný průvodce výpravami do přírody.<br>
                         Pomáhá dát procházce směr, aniž by bral dětem nebo dospělým svobodu objevovat svět po svém.
                     </p>
-                    <p class="split-text">
-                        Není to hra, kterou je potřeba „dohrát".<br>
+                    <p style="margin-bottom: 2rem;">
+                        Není to hra, kterou je potřeba „dohrát“.<br>
                         A není to ani seznam úkolů, které je nutné splnit.
                     </p>
-                    <p class="split-text split-text--accent">
+                    <p style="font-weight: 600; color: var(--color-primary); margin-top: 2rem;">
                         Wildero je pozvání ven.<br>
                         Do lesa, na louku, k pohybu, zvídavosti i klidu.
                     </p>
                 </div>
+            </div>
+        </section>
 
-                <!-- Pravý sloupec: Pro koho -->
-                <div id="audience" class="split-right aos aos-delay-1">
-                    <h2 class="section__title section__title--left">Pro koho je Wildero</h2>
-                    <p class="split-subtitle">Pro každého, kdo chce jít ven — a najít v tom radost i smysl.</p>
+        <!-- Audience -->
+        <section id="audience" class="section section--light">
+            <div class="container">
+                <div class="aos" style="text-align: center; margin-bottom: 4rem;">
+                    <h2 class="section__title" style="margin-bottom: 0.5rem;">Pro koho je Wildero</h2>
+                    <p class="text-lead" style="margin: 0 auto; font-size: 1.1rem; color: var(--color-text-light);">
+                        Pro každého, kdo chce jít ven — a najít v tom radost i smysl.
+                    </p>
+                </div>
 
-                    <div class="audience-list">
-                        <div class="audience-item-row">
-                            <img src="audience_family.png" alt="Rodiny" class="audience-image-sm">
-                            <div>
-                                <h3 class="audience-title-sm">Pro rodiny s dětmi</h3>
-                                <p class="audience-text-sm">Wildero dá procházce směr — a dětem nechá prostor běhat, lézt i objevovat po svém.</p>
-                            </div>
+                <div class="grid grid--3 audience-grid">
+                    <!-- Block 1: Rodiny -->
+                    <div class="audience-item aos aos-delay-1">
+                        <div class="audience-icon">
+                            <img src="audience_family.png" alt="Ilustrace rodiny venku" class="audience-image">
                         </div>
-                        <div class="audience-item-row">
-                            <img src="audience_kids.png" alt="Děti" class="audience-image-sm">
-                            <div>
-                                <h3 class="audience-title-sm">Pro zvídavé i divoké děti</h3>
-                                <p class="audience-text-sm">Každé dítě si ve výpravě najde vlastní cestu.</p>
-                            </div>
+                        <h3 class="audience-title">Pro rodiny s dětmi</h3>
+                        <p class="audience-text">
+                            Pro ty, kteří chtějí trávit čas spolu venku, ale ne vždy mají chuť vymýšlet program.<br>
+                            Wildero dá procházce směr — a dětem nechá prostor běhat, lézt i objevovat po svém.
+                        </p>
+                    </div>
+
+                    <!-- Block 2: Děti -->
+                    <div class="audience-item aos aos-delay-2">
+                        <div class="audience-icon">
+                            <img src="audience_kids.png" alt="Ilustrace dětí objevujících přírodu"
+                                class="audience-image">
                         </div>
-                        <div class="audience-item-row">
-                            <img src="audience_adults.png" alt="Dospělí" class="audience-image-sm">
-                            <div>
-                                <h3 class="audience-title-sm">Pro dospělé, kteří si chtějí provětrat hlavu</h3>
-                                <p class="audience-text-sm">Výprava může být tichá, klidná — jen pro vás.</p>
-                            </div>
+                        <h3 class="audience-title">Pro zvídavé i divoké děti</h3>
+                        <p class="audience-text">
+                            Pro děti, které si všimnou brouka v trávě i pro ty, které potřebují běžet k prvnímu
+                            stromu.<br>
+                            Každé dítě si ve výpravě najde vlastní cestu.
+                        </p>
+                    </div>
+
+                    <!-- Block 3: Dospělí -->
+                    <div class="audience-item aos aos-delay-3">
+                        <div class="audience-icon">
+                            <img src="audience_adults.png" alt="Ilustrace dospělého v přírodě" class="audience-image">
                         </div>
+                        <h3 class="audience-title">Pro dospělé, kteří si chtějí provětrat hlavu</h3>
+                        <p class="audience-text">
+                            Pro chvíle, kdy chcete jít ven, mít cíl, ale žádný tlak.<br>
+                            Výprava může být tichá, klidná — jen pro vás.
+                        </p>
                     </div>
                 </div>
 
             </div>
-        </section>
-
-
         </section>
 
         <section id="how" class="section section--light">

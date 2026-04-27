@@ -336,51 +336,89 @@ p {
     background-color: var(--color-bg);
 }
 
-/* Hero with signpost illustration as full background */
+/* Hero with signpost illustration */
 .hero--signpost {
     background-color: #F5F0E8;
+    min-height: auto;
+    padding-top: 0;
+    padding-bottom: 0;
+    align-items: stretch;
+    flex-direction: column;
 }
 
-/* Full-cover watercolor background */
-.hero__signpost-bg {
-    position: absolute;
-    inset: 0;
-    background-image: url('hero_signpost.jpg');
-    background-size: contain;
-    background-position: right center;
-    background-repeat: no-repeat;
-    /* Fade left edge so text stays readable */
-    -webkit-mask-image: linear-gradient(
-        to right,
-        transparent 0%,
-        rgba(0,0,0,0.05) 20%,
-        black 38%,
-        black 100%
-    );
-    mask-image: linear-gradient(
-        to right,
-        transparent 0%,
-        rgba(0,0,0,0.05) 20%,
-        black 38%,
-        black 100%
-    );
-    z-index: 0;
+/* Wrapper that holds the image and overlaid text */
+.hero__signpost-wrap {
+    position: relative;
+    width: 100%;
+    /* Push content below fixed header */
+    margin-top: var(--header-height);
 }
 
-/* Gradient overlay: warm cream on left for text legibility */
-.hero__gradient-overlay {
+/* The illustration — always shows fully */
+.hero__signpost-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    /* mix-blend so the cream background merges with image white */
+    mix-blend-mode: multiply;
+}
+
+/* Text block overlaid on the left side of the illustration */
+.hero__signpost-content {
     position: absolute;
-    inset: 0;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 44%;
+    padding: 2rem 3rem;
+    z-index: 2;
+    /* Fade-right so text is readable over the illustration */
     background: linear-gradient(
         to right,
-        rgba(245, 240, 232, 1) 0%,
-        rgba(245, 240, 232, 0.92) 28%,
-        rgba(245, 240, 232, 0.5) 48%,
-        rgba(245, 240, 232, 0) 65%
+        rgba(245, 240, 232, 0.97) 0%,
+        rgba(245, 240, 232, 0.9) 60%,
+        rgba(245, 240, 232, 0) 100%
     );
-    z-index: 1;
 }
 
+.hero__signpost-content .hero__title {
+    font-size: 2.6rem;
+    margin-bottom: 0.75rem;
+}
+
+.hero__signpost-content .hero__subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.hero__signpost-content .hero__actions {
+    gap: 1.5rem;
+}
+
+.hero__signpost-content .hero__features {
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+@media (max-width: 900px) {
+    .hero--signpost {
+        flex-direction: column;
+    }
+    .hero__signpost-wrap {
+        margin-top: var(--header-height-scrolled);
+    }
+    .hero__signpost-content {
+        position: relative;
+        top: auto;
+        transform: none;
+        width: 100%;
+        padding: 2rem 1.5rem;
+        background: rgba(245, 240, 232, 0.97);
+    }
+    .hero__signpost-content .hero__title {
+        font-size: 2rem;
+    }
+}
 
 .hero--small {
     min-height: 60vh;

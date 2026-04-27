@@ -336,89 +336,114 @@ p {
     background-color: var(--color-bg);
 }
 
-/* Hero with signpost illustration */
+/* Hero with signpost illustration — two-column layout */
 .hero--signpost {
     background-color: #F5F0E8;
-    min-height: auto;
-    padding-top: 0;
+    min-height: 100vh;
+    padding-top: var(--header-height);
     padding-bottom: 0;
-    align-items: stretch;
-    flex-direction: column;
+    align-items: center;
+    flex-direction: row;
 }
 
-/* Wrapper that holds the image and overlaid text */
-.hero__signpost-wrap {
-    position: relative;
+/* Two-column grid: text | illustration */
+.hero__signpost-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 0;
     width: 100%;
-    /* Push content below fixed header */
-    margin-top: var(--header-height);
+    min-height: calc(100vh - var(--header-height));
 }
 
-/* The illustration — always shows fully */
-.hero__signpost-img {
-    display: block;
-    width: 100%;
-    height: auto;
-    /* mix-blend so the cream background merges with image white */
-    mix-blend-mode: multiply;
-}
-
-/* Text block overlaid on the left side of the illustration */
+/* Left text column */
 .hero__signpost-content {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
-    width: 44%;
-    padding: 2rem 3rem;
+    padding: 4rem 3rem 4rem 0;
     z-index: 2;
-    /* Fade-right so text is readable over the illustration */
-    background: linear-gradient(
-        to right,
-        rgba(245, 240, 232, 0.97) 0%,
-        rgba(245, 240, 232, 0.9) 60%,
-        rgba(245, 240, 232, 0) 100%
-    );
 }
 
 .hero__signpost-content .hero__title {
-    font-size: 2.6rem;
-    margin-bottom: 0.75rem;
+    font-size: 3.2rem;
+    margin-bottom: 1rem;
 }
 
 .hero__signpost-content .hero__subtitle {
-    font-size: 1.2rem;
-    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    color: var(--color-text-main);
+    line-height: 1.5;
+    font-weight: 500;
 }
 
 .hero__signpost-content .hero__actions {
-    gap: 1.5rem;
+    gap: 1.75rem;
+    align-items: flex-start;
 }
 
 .hero__signpost-content .hero__features {
-    gap: 1.5rem;
-    margin-top: 0.5rem;
+    gap: 1.75rem;
+}
+
+/* Right illustration column */
+.hero__signpost-visual {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    overflow: visible;
+}
+
+/* The illustration — smaller scale, fades left toward text */
+.hero__signpost-img {
+    display: block;
+    width: 90%;
+    max-width: 560px;
+    height: auto;
+    mix-blend-mode: multiply;
+    /* Fade from transparent on left → fully visible on right */
+    -webkit-mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        rgba(0,0,0,0.3) 18%,
+        black 42%,
+        black 100%
+    );
+    mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        rgba(0,0,0,0.3) 18%,
+        black 42%,
+        black 100%
+    );
 }
 
 @media (max-width: 900px) {
     .hero--signpost {
-        flex-direction: column;
+        padding-top: var(--header-height-scrolled);
+        align-items: flex-start;
     }
-    .hero__signpost-wrap {
-        margin-top: var(--header-height-scrolled);
+    .hero__signpost-grid {
+        grid-template-columns: 1fr;
+        min-height: auto;
     }
     .hero__signpost-content {
-        position: relative;
-        top: auto;
-        transform: none;
+        padding: 3rem 0 2rem 0;
+        order: 1;
+    }
+    .hero__signpost-visual {
+        order: 2;
+        justify-content: center;
+    }
+    .hero__signpost-img {
         width: 100%;
-        padding: 2rem 1.5rem;
-        background: rgba(245, 240, 232, 0.97);
+        max-width: 100%;
+        -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+        mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
     }
     .hero__signpost-content .hero__title {
-        font-size: 2rem;
+        font-size: 2.2rem;
     }
 }
+
 
 .hero--small {
     min-height: 60vh;

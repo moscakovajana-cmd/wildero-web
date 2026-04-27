@@ -76,11 +76,9 @@
     <main>
         <!-- Hero Section -->
         <section id="home" class="hero hero--signpost">
-            <div class="hero__signpost-wrap">
-                <!-- Full illustration — always visible in full -->
-                <img src="hero_signpost.jpg" alt="Wildero – dobrodružství začíná venku" class="hero__signpost-img">
+            <div class="container hero__signpost-grid">
 
-                <!-- Text overlay on the left -->
+                <!-- Left: text content -->
                 <div class="hero__signpost-content">
                     <h1 class="hero__title aos">Proměň<br>procházku<br>v&nbsp;dobrodružství</h1>
                     <p class="hero__subtitle aos aos-delay-1">
@@ -88,7 +86,6 @@
                     </p>
                     <div class="hero__actions aos aos-delay-2">
                         <a href="zacit.html" class="btn btn--primary" id="hero-cta">Vyzkoušej Wildero</a>
-
                         <div class="hero__features">
                             <div class="hero__feature">
                                 <div class="hero__feature-icon">
@@ -111,8 +108,15 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Right: fading illustration -->
+                <div class="hero__signpost-visual">
+                    <img src="hero_signpost.jpg" alt="Wildero – les a rozcestník" class="hero__signpost-img">
+                </div>
+
             </div>
         </section>
+
 
         <!-- Co je Wildero -->
         <section id="about" class="section">

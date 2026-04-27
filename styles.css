@@ -346,22 +346,22 @@ p {
     position: absolute;
     inset: 0;
     background-image: url('hero_signpost.jpg');
-    background-size: cover;
-    background-position: center right;
+    background-size: contain;
+    background-position: right center;
     background-repeat: no-repeat;
     /* Fade left edge so text stays readable */
     -webkit-mask-image: linear-gradient(
         to right,
         transparent 0%,
-        rgba(0,0,0,0.15) 18%,
-        black 45%,
+        rgba(0,0,0,0.05) 20%,
+        black 38%,
         black 100%
     );
     mask-image: linear-gradient(
         to right,
         transparent 0%,
-        rgba(0,0,0,0.15) 18%,
-        black 45%,
+        rgba(0,0,0,0.05) 20%,
+        black 38%,
         black 100%
     );
     z-index: 0;

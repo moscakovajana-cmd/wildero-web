@@ -392,26 +392,27 @@ p {
     overflow: visible;
 }
 
-/* The illustration — smaller scale, fades left toward text */
+/* The illustration — sized to fill viewport height below menu */
 .hero__signpost-img {
     display: block;
-    width: 90%;
-    max-width: 560px;
-    height: auto;
+    /* Height fills the viewport below the header, width follows aspect ratio */
+    height: calc(100vh - var(--header-height));
+    width: auto;
+    max-width: 100%;
     mix-blend-mode: multiply;
     /* Fade from transparent on left → fully visible on right */
     -webkit-mask-image: linear-gradient(
         to right,
         transparent 0%,
-        rgba(0,0,0,0.3) 18%,
-        black 42%,
+        rgba(0,0,0,0.3) 20%,
+        black 45%,
         black 100%
     );
     mask-image: linear-gradient(
         to right,
         transparent 0%,
-        rgba(0,0,0,0.3) 18%,
-        black 42%,
+        rgba(0,0,0,0.3) 20%,
+        black 45%,
         black 100%
     );
 }

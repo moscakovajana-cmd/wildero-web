@@ -485,7 +485,7 @@ p {
 
 /* Hero Section */
 .hero {
-    min-height: 100vh;
+    min-height: 80vh;
     display: flex;
     align-items: center;
     position: relative;
@@ -498,7 +498,7 @@ p {
 /* Hero with signpost illustration — two-column layout */
 .hero--signpost {
     background-color: #F5F0E8;
-    min-height: 100vh;
+    min-height: 80vh;
     padding-top: var(--header-height);
     padding-bottom: 0;
     align-items: flex-start;

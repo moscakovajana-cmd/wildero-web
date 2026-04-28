@@ -580,17 +580,16 @@ p {
     color: var(--color-primary);
 }
 
-/* Right illustration column — stretches to full hero height, now spans full width */
+/* Right illustration column — absolutely positioned to bleed to the edge */
 .hero__signpost-visual {
-    grid-column: 1 / -1;
-    grid-row: 1;
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-start;
-    align-self: stretch;
-    overflow: hidden;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60%; /* Occupy slightly more than half to overlap nicely */
+    height: 100%;
     z-index: 1;
     pointer-events: none;
+    overflow: hidden;
 }
 
 /* Illustration fills the full column height, cropped via object-fit */

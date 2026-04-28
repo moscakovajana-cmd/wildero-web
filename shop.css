@@ -1221,3 +1221,40 @@
         max-height: 250px;
     }
 }
+
+/* --- Mobile Fixes --- */
+@media (max-width: 900px) {
+    .shop-hero {
+        padding-top: calc(var(--header-height) + 2rem);
+        min-height: auto;
+    }
+    .shop-hero__container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 3rem;
+    }
+    .shop-hero__subtitle {
+        margin: 0 auto 2.5rem;
+    }
+    .shop-hero__actions {
+        justify-content: center;
+    }
+    .shop-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem;
+    }
+    .shop-packages {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 600px) {
+    .shop-grid {
+        grid-template-columns: 1fr;
+    }
+    .shop-card__img-wrap {
+        aspect-ratio: 16/9;
+    }
+}
+

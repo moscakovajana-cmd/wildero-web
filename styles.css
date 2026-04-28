@@ -338,46 +338,47 @@ p {
 
 /* About Path Storytelling Section */
 .section--about-path {
-    padding: 8rem 0;
+    padding: 5rem 0;
     overflow: hidden;
     background-color: var(--color-bg);
 }
 
 .about-path-header {
     text-align: center;
-    margin-bottom: 6rem;
+    margin-bottom: 3rem;
 }
 
 .section-divider {
-    width: 80px;
-    height: 4px;
+    width: 60px;
+    height: 3px;
     background: linear-gradient(to right, transparent, var(--color-primary), transparent);
-    margin: 1.5rem auto;
+    margin: 1rem auto;
     border-radius: 2px;
 }
 
 .about-path-content {
     position: relative;
-    max-width: 900px;
+    max-width: 850px;
     margin: 0 auto;
-    padding: 2rem 0;
+    padding: 1rem 0;
 }
 
 .path-line-svg {
     position: absolute;
-    top: 0;
+    top: 50px;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: calc(100% - 100px);
     z-index: 1;
     pointer-events: none;
+    opacity: 0.15;
 }
 
 .path-step {
     display: flex;
     align-items: center;
-    gap: 4rem;
-    margin-bottom: 8rem;
+    gap: 2rem;
+    margin-bottom: 3.5rem;
     position: relative;
     z-index: 2;
 }
@@ -387,33 +388,31 @@ p {
 }
 
 .path-visual {
-    flex: 0 0 45%;
+    flex: 0 0 38%;
 }
 
 .path-image {
     width: 100%;
     height: auto;
-    border-radius: 40px;
-    /* Already has vignetted edges in the asset */
-    transition: transform 0.5s ease;
+    border-radius: 25px;
+    transition: transform 0.4s ease;
 }
 
 .path-step:hover .path-image {
-    transform: scale(1.05);
+    transform: scale(1.03);
 }
 
 .path-info {
     flex: 1;
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
-    gap: 1.5rem;
+    align-items: center;
+    gap: 1rem;
 }
 
 .path-number {
-    flex: 0 0 70px;
-    height: 70px;
-    background-image: url("wood_slice.png");
+    flex: 0 0 55px;
+    height: 55px;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -422,34 +421,34 @@ p {
     justify-content: center;
     font-family: 'Lora', serif;
     font-weight: 700;
-    font-size: 1.6rem;
+    font-size: 1.3rem;
     color: #385E3C;
     padding-top: 0;
 }
 
 .path-text h3 {
-    font-size: 1.6rem;
-    margin-bottom: 0.75rem;
+    font-size: 1.35rem;
+    margin-bottom: 0.5rem;
     color: var(--color-primary-dark);
 }
 
 .path-text p {
-    font-size: 1.05rem;
-    line-height: 1.6;
+    font-size: 1rem;
+    line-height: 1.5;
     color: var(--color-text-light);
 }
 
 .about-path-footer {
     text-align: center;
-    margin-top: 4rem;
+    margin-top: 2rem;
 }
 
 .footer-quote {
     font-family: 'Lora', serif;
-    font-size: 1.6rem;
-    line-height: 1.4;
+    font-size: 1.4rem;
+    line-height: 1.3;
     color: var(--color-text-main);
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .footer-quote strong {

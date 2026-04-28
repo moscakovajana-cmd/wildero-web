@@ -494,11 +494,16 @@ p {
 .hero__image-wrapper {
     position: relative;
     width: 100%;
-    max-width: 1024px; /* Původní velikost obrázku pro 100% ostrost */
+    max-width: 1024px;
     margin: 0 auto;
     overflow: hidden;
-    border-radius: 12px;
-    box-shadow: 0 20px 50px rgba(56, 94, 60, 0.08);
+    /* Fading edges effect */
+    -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent),
+                        linear-gradient(to bottom, transparent, black 5%, black 95%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent),
+                linear-gradient(to bottom, transparent, black 5%, black 95%, transparent);
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
 }
 
 .hero__bg-img {

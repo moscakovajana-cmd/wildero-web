@@ -597,7 +597,7 @@ p {
     display: block;
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     object-position: right center;
     /* Removed mix-blend-mode to make it more visible */
     /* LEFT: very subtle fade under text; RIGHT: clear */

@@ -519,10 +519,33 @@ p {
     right: 0;
     bottom: 0;
     display: flex;
-    align-items: flex-end;
-    padding-bottom: 5.5%;
-    padding-left: 6%; /* Posunutí tlačítka doprava */
+    align-items: flex-start; /* Zarovnání nahoru */
+    padding-top: 10%;
+    padding-left: 8%;
     pointer-events: none;
+}
+
+.hero__text-overlay {
+    pointer-events: auto;
+    max-width: 520px;
+    text-align: left;
+}
+
+.hero__main-title {
+    font-size: 3.5rem;
+    color: #385E3C; /* Shoda s brandem */
+    margin-bottom: 1rem;
+    line-height: 1.1;
+    font-family: 'Lora', serif;
+    font-weight: 700;
+}
+
+.hero__main-subtitle {
+    font-size: 1.25rem;
+    color: var(--color-text-main);
+    margin-bottom: 2rem;
+    font-weight: 500;
+    line-height: 1.5;
 }
 
 .hero__btn-new {
@@ -535,7 +558,15 @@ p {
 
 @media (max-width: 768px) {
     .hero__overlay-content {
-        padding-bottom: 8%;
+        padding-top: 15%;
+        padding-left: 5%;
+        align-items: flex-start;
+    }
+    .hero__main-title {
+        font-size: 2.2rem;
+    }
+    .hero__main-subtitle {
+        font-size: 1.1rem;
     }
     .hero__btn-new {
         padding: 0.8rem 1.8rem;

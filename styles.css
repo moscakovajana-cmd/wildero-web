@@ -436,7 +436,7 @@ p {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center center;
+    object-position: right center;
     mix-blend-mode: multiply;
     /* LEFT: fade toward text; TOP/BOTTOM/RIGHT: mild fade */
     -webkit-mask-image:

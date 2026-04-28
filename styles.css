@@ -226,8 +226,6 @@ p {
     width: auto;
     object-fit: contain;
     transition: height 0.3s ease;
-    transform: translateY(4px);
-    /* Posun loga mírně dolů */
 }
 
 .header.scrolled .header__logo img {
@@ -240,7 +238,6 @@ p {
     flex: 1;
     justify-content: flex-end;
     padding-right: 2.5rem;
-    margin-top: -30px;
 }
 
 .header__menu {
@@ -255,7 +252,6 @@ p {
     align-items: center;
     gap: 1rem;
     flex: 0 0 auto;
-    margin-top: -30px;
 }
 
 .header__link {

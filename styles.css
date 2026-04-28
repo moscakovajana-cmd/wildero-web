@@ -330,13 +330,14 @@ p {
 .section__title::after {
     content: "";
     display: inline-block;
-    width: 32px;
-    height: 32px;
-    background-image: url("watercolor_leaf.png");
+    width: 38px;
+    height: 38px;
+    background-image: url("title_ornament.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    opacity: 0.9;
+    opacity: 0.95;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.05));
 }
 
 .section__title::before {
@@ -346,6 +347,90 @@ p {
 .section__title--left {
     text-align: left;
     justify-content: flex-start;
+}
+
+/* About Section Specifics */
+.section--about {
+    background-image: url("about_bg.png");
+    background-size: cover;
+    background-position: center;
+    padding: 6rem 0;
+    position: relative;
+}
+
+.section--about::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(253, 251, 246, 0.6); /* Subtle cream overlay to keep text readable */
+    z-index: 1;
+}
+
+.about-grid {
+    position: relative;
+    z-index: 2;
+}
+
+.about-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 1.5rem;
+    position: relative;
+}
+
+/* Vertical separators */
+.about-item:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 10%;
+    height: 80%;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.1), transparent);
+}
+
+.about-visual {
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.about-image {
+    max-height: 100%;
+    width: auto;
+    object-fit: contain;
+    transition: transform 0.4s ease;
+}
+
+.about-item:hover .about-image {
+    transform: scale(1.08) rotate(2deg);
+}
+
+.about-title {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: var(--color-primary-dark);
+}
+
+.about-text {
+    font-size: 1rem;
+    color: var(--color-text-light);
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .about-item:not(:last-child)::after {
+        display: none;
+    }
+    .about-item {
+        margin-bottom: 3rem;
+    }
 }
 
 /* Hero Section */

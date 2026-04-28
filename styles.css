@@ -521,6 +521,7 @@ p {
     display: flex;
     align-items: flex-end;
     padding-bottom: 5.5%;
+    padding-left: 6%; /* Posunutí tlačítka doprava */
     pointer-events: none;
 }
 

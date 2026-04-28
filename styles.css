@@ -360,6 +360,8 @@ p {
 
 /* Left text column — anchored to top */
 .hero__signpost-content {
+    grid-column: 1 / 2;
+    grid-row: 1;
     padding: 3rem 2rem 3rem 0;
     z-index: 2;
     display: flex;
@@ -421,13 +423,17 @@ p {
     color: var(--color-primary);
 }
 
-/* Right illustration column — stretches to full hero height */
+/* Right illustration column — stretches to full hero height, now spans full width */
 .hero__signpost-visual {
+    grid-column: 1 / -1;
+    grid-row: 1;
     display: flex;
     justify-content: flex-end;
     align-items: flex-start;
     align-self: stretch;
     overflow: hidden;
+    z-index: 1;
+    pointer-events: none;
 }
 
 /* Illustration fills the full column height, cropped via object-fit */
@@ -438,12 +444,13 @@ p {
     object-fit: cover;
     object-position: right center;
     mix-blend-mode: multiply;
-    /* LEFT: fade toward text; TOP/BOTTOM/RIGHT: mild fade */
+    /* LEFT: fade faint under text; RIGHT: mild fade */
     -webkit-mask-image:
         linear-gradient(to right,
             transparent 0%,
-            rgba(0,0,0,0.6) 12%,
-            black 26%,
+            rgba(0,0,0,0.1) 15%,
+            rgba(0,0,0,0.3) 40%,
+            black 60%,
             black 90%,
             rgba(0,0,0,0.5) 100%
         ),
@@ -457,8 +464,9 @@ p {
     mask-image:
         linear-gradient(to right,
             transparent 0%,
-            rgba(0,0,0,0.6) 12%,
-            black 26%,
+            rgba(0,0,0,0.1) 15%,
+            rgba(0,0,0,0.3) 40%,
+            black 60%,
             black 90%,
             rgba(0,0,0,0.5) 100%
         ),

@@ -336,78 +336,143 @@ p {
     justify-content: flex-start;
 }
 
-/* About Section Specifics */
-.section--about {
-    padding: 6rem 0;
-    position: relative;
+/* About Path Storytelling Section */
+.section--about-path {
+    padding: 8rem 0;
+    overflow: hidden;
     background-color: var(--color-bg);
 }
 
-.section--about::before {
-    display: none;
+.about-path-header {
+    text-align: center;
+    margin-bottom: 6rem;
 }
 
-.about-grid {
+.section-divider {
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(to right, transparent, var(--color-primary), transparent);
+    margin: 1.5rem auto;
+    border-radius: 2px;
+}
+
+.about-path-content {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+.path-line-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.path-step {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    margin-bottom: 8rem;
     position: relative;
     z-index: 2;
 }
 
-.about-item {
+.path-step--right {
+    flex-direction: row-reverse;
+}
+
+.path-visual {
+    flex: 0 0 45%;
+}
+
+.path-image {
+    width: 100%;
+    height: auto;
+    border-radius: 40px;
+    /* Already has vignetted edges in the asset */
+    transition: transform 0.5s ease;
+}
+
+.path-step:hover .path-image {
+    transform: scale(1.05);
+}
+
+.path-info {
+    flex: 1;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0 1.5rem;
-    position: relative;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 1.5rem;
 }
 
-/* Vertical separators */
-.about-item:not(:last-child)::after {
-    content: "";
-    position: absolute;
-    right: 0;
-    top: 10%;
-    height: 80%;
-    width: 1px;
-    background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.1), transparent);
-}
-
-.about-visual {
-    height: 160px;
+.path-number {
+    flex: 0 0 50px;
+    height: 50px;
+    background-image: url("wood_slice.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 2rem;
-}
-
-.about-image {
-    max-height: 100%;
-    width: auto;
-    object-fit: contain;
-    transition: transform 0.4s ease;
-}
-
-.about-item:hover .about-image {
-    transform: scale(1.08) rotate(2deg);
-}
-
-.about-title {
+    font-family: 'Lora', serif;
+    font-weight: 700;
     font-size: 1.4rem;
-    margin-bottom: 1rem;
+    color: var(--color-text-main);
+    padding-top: 2px;
+}
+
+.path-text h3 {
+    font-size: 1.6rem;
+    margin-bottom: 0.75rem;
     color: var(--color-primary-dark);
 }
 
-.about-text {
-    font-size: 1rem;
-    color: var(--color-text-light);
+.path-text p {
+    font-size: 1.05rem;
     line-height: 1.6;
+    color: var(--color-text-light);
 }
 
-@media (max-width: 768px) {
-    .about-item:not(:last-child)::after {
-        display: none;
+.about-path-footer {
+    text-align: center;
+    margin-top: 4rem;
+}
+
+.footer-quote {
+    font-family: 'Lora', serif;
+    font-size: 1.6rem;
+    line-height: 1.4;
+    color: var(--color-text-main);
+    margin-bottom: 2rem;
+}
+
+.footer-quote strong {
+    color: var(--color-primary);
+}
+
+@media (max-width: 900px) {
+    .path-step {
+        flex-direction: column !important;
+        gap: 2rem;
+        margin-bottom: 6rem;
+        text-align: center;
     }
-    .about-item {
-        margin-bottom: 3rem;
+    .path-visual {
+        flex: 0 0 auto;
+        width: 80%;
+    }
+    .path-info {
+        flex-direction: column;
+        align-items: center;
+    }
+    .path-line-svg {
+        display: none;
     }
 }
 

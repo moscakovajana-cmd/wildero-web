@@ -120,42 +120,73 @@
         </section>
 
 
-        <!-- Co je Wildero -->
-        <section id="about" class="section section--about">
-            <div class="container" style="text-align: center; position: relative; z-index: 2;">
-                <h2 class="section__title aos">Co je Wildero</h2>
-                <p class="text-lead aos aos-delay-1" style="margin: 0 auto 4rem; font-size: 1.25rem;">
-                    Jemný průvodce výpravami do přírody pro děti,<br>
-                    rodiny i každého, kdo chce objevovat svět kolem sebe.
-                </p>
+        <!-- Co je Wildero - Path Storytelling -->
+        <section id="about" class="section section--about-path">
+            <div class="container">
+                <div class="about-path-header aos">
+                    <h2 class="section__title">Co je Wildero</h2>
+                    <div class="section-divider"></div>
+                    <p class="text-lead" style="margin: 2rem auto 0; font-size: 1.25rem; max-width: 800px;">
+                        Wildero je jemný průvodce výpravami do přírody.<br>
+                        Pomáhá dát procházce směr, aniž by bralo svobodu objevovat po svém.
+                    </p>
+                </div>
 
-                <div class="grid grid--3 about-grid">
-                    <!-- Column 1: Map -->
-                    <div class="about-item aos aos-delay-1">
-                        <div class="about-visual">
-                            <img src="about_map.png" alt="Ilustrace mapy" class="about-image">
+                <div class="about-path-content">
+                    <!-- SVG Path Line for background -->
+                    <svg class="path-line-svg" viewBox="0 0 1000 1200" preserveAspectRatio="none">
+                        <path d="M500,50 Q600,200 400,350 T600,650 T400,950 T500,1150" fill="none" stroke="#385E3C" stroke-width="2" stroke-dasharray="8 12" opacity="0.25"/>
+                    </svg>
+
+                    <!-- Step 1 -->
+                    <div class="path-step path-step--left aos">
+                        <div class="path-visual">
+                            <img src="about_step1.png" alt="Výpravy do přírody" class="path-image">
                         </div>
-                        <h3 class="about-title">Výpravy, které vedou ven</h3>
-                        <p class="about-text">Krátké výpravy tě zavedou do přírody za dobrodružstvím.</p>
+                        <div class="path-info">
+                            <div class="path-number">1</div>
+                            <div class="path-text">
+                                <h3>Výpravy, které vedou ven</h3>
+                                <p>Krátké výpravy tě zavedou do přírody za dobrodružstvím.</p>
+                            </div>
+                        </div>
                     </div>
 
-                    <!-- Column 2: Leaf -->
-                    <div class="about-item aos aos-delay-2">
-                        <div class="about-visual">
-                            <img src="about_leaf.png" alt="Ilustrace lístku" class="about-image">
+                    <!-- Step 2 -->
+                    <div class="path-step path-step--right aos">
+                        <div class="path-info">
+                            <div class="path-number">2</div>
+                            <div class="path-text">
+                                <h3>Prostor pro vlastní objevování</h3>
+                                <p>Není to hra, kterou je potřeba dohrát. Výprava nechává prostor všimnout si věcí, které by jinak zůstaly skryté.</p>
+                            </div>
                         </div>
-                        <h3 class="about-title">Jemný směr, žádný tlak</h3>
-                        <p class="about-text">Žádné soutěže, žádné porovnávání. Jen radost z objevování.</p>
+                        <div class="path-visual">
+                            <img src="about_step2.png" alt="Prostor pro objevování" class="path-image">
+                        </div>
                     </div>
 
-                    <!-- Column 3: Fox -->
-                    <div class="about-item aos aos-delay-3">
-                        <div class="about-visual">
-                            <img src="about_fox.png" alt="Lišák Wilda" class="about-image">
+                    <!-- Step 3 -->
+                    <div class="path-step path-step--left aos">
+                        <div class="path-visual">
+                            <img src="about_step3.png" alt="Dobrodružství v přírodě" class="path-image">
                         </div>
-                        <h3 class="about-title">Wilda – průvodce na cestě</h3>
-                        <p class="about-text">Wilda ti ukáže úkoly, poradí a povzbudí tě na každém kroku.</p>
+                        <div class="path-info">
+                            <div class="path-number">3</div>
+                            <div class="path-text">
+                                <h3>Dobrodružství nekončí v mobilu</h3>
+                                <p>Někdy si z výpravy odnesete víc než zážitek – malou stopu dobrodružství, která pokračuje i doma.</p>
+                            </div>
+                        </div>
                     </div>
+                </div>
+
+                <div class="about-path-footer aos">
+                    <p class="footer-quote">
+                        Není to aplikace, kterou dokončíte.<br>
+                        <strong>Je to cesta, po které se vydáte.</strong>
+                    </p>
+                    <div class="section-divider"></div>
                 </div>
             </div>
         </section>

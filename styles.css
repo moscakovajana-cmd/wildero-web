@@ -494,20 +494,20 @@ p {
 .hero__image-wrapper {
     position: relative;
     width: 100%;
-    max-width: 1400px;
-    margin: 0 0 0 auto;
+    margin: 0;
     overflow: hidden;
-    /* Fading to the left, keeping family visible */
-    -webkit-mask-image: linear-gradient(to left, black 65%, transparent 100%);
-    mask-image: linear-gradient(to left, black 65%, transparent 100%);
-    -webkit-mask-composite: source-in;
-    mask-composite: intersect;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .hero__bg-img {
-    width: 100%;
+    width: auto;
+    max-width: 100%;
     height: auto;
     display: block;
+    /* Fading to the left, keeping family visible */
+    -webkit-mask-image: linear-gradient(to left, black 65%, transparent 100%);
+    mask-image: linear-gradient(to left, black 65%, transparent 100%);
 }
 
 .hero__overlay-content {

@@ -1364,10 +1364,15 @@ p {
     pointer-events: none;
     opacity: 0.9;
 }
-
+@media (max-width: 900px) {
     .how-path-line {
         display: none;
     }
+}
+
+.how-desktop-only {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
 }
 
 .how-mobile-only {
@@ -2806,11 +2811,11 @@ input:disabled+.slider {
 
     /* How Section Mobile */
     .how-desktop-only {
-        display: none;
+        display: none !important;
     }
 
     .how-mobile-only {
-        display: block;
+        display: block !important;
         padding: 0 0.5rem;
     }
 
@@ -2825,8 +2830,8 @@ input:disabled+.slider {
         left: 1.5rem;
         top: 0;
         bottom: 0;
-        width: 2px;
-        border-left: 2px dashed var(--color-primary);
+        width: 4px;
+        border-left: 4px dotted var(--color-primary);
         opacity: 0.3;
     }
 

@@ -342,7 +342,11 @@ p {
 .section--about-path {
     padding: 3rem 0;
     overflow: hidden;
-    background-color: var(--color-bg);
+    background-color: #FDFBF6; /* Match the watercolor background */
+}
+
+.about-mobile-only {
+    display: none;
 }
 
 .about-path-header {
@@ -2660,6 +2664,70 @@ input:disabled+.slider {
     .section__title {
         font-size: 2.2rem;
         margin-bottom: 1.5rem;
+    }
+
+    /* About Section Mobile */
+    .about-desktop-only {
+        display: none;
+    }
+
+    .about-mobile-only {
+        display: block;
+        text-align: center;
+        padding-top: 1rem;
+    }
+
+    .about-mobile-text {
+        font-size: 1.15rem;
+        color: var(--color-text-main);
+        line-height: 1.6;
+        margin-bottom: 2.5rem;
+        padding: 0 1rem;
+    }
+
+    .about-mobile-list {
+        list-style: none;
+        padding: 0;
+        margin: 0 auto 3rem;
+        display: inline-block;
+        text-align: left;
+    }
+
+    .about-mobile-list li {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.2rem;
+        font-size: 1.1rem;
+        color: var(--color-text-main);
+        font-weight: 500;
+    }
+
+    .about-mobile-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #F4EBD9;
+        font-size: 1.4rem;
+        border: 1px solid rgba(56, 94, 60, 0.1);
+    }
+
+    .about-mobile-img {
+        width: 100%;
+        max-width: 500px;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+        /* Watercolor blend effect */
+        -webkit-mask-image: linear-gradient(to top, black 80%, transparent 100%);
+        mask-image: linear-gradient(to top, black 80%, transparent 100%);
+    }
+
+    .about-path-header .text-lead {
+        display: none; /* Use the mobile-specific text instead */
     }
 }
 

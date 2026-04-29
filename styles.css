@@ -491,6 +491,14 @@ p {
     overflow: visible;
 }
 
+.hero__mobile-header {
+    display: none;
+}
+
+.hero__benefits {
+    display: none;
+}
+
 .hero__image-wrapper {
     position: relative;
     width: 100%;
@@ -607,20 +615,108 @@ p {
 }
 
 @media (max-width: 768px) {
+    .header__logo {
+        display: none;
+    }
+
+    .hero--full-image {
+        display: flex;
+        flex-direction: column;
+        padding-top: 2rem;
+        text-align: center;
+    }
+
+    .hero__mobile-header {
+        display: block;
+        margin-bottom: 2rem;
+        padding: 0 1rem;
+    }
+
+    .hero__mobile-logo {
+        max-width: 220px;
+        height: auto;
+    }
+
+    .hero__image-wrapper {
+        order: 10;
+        margin-top: 2rem;
+        width: 100%;
+        justify-content: center;
+        display: block;
+    }
+
+    .hero__bg-img {
+        width: 100%;
+        max-width: 100%;
+        -webkit-mask-image: none;
+        mask-image: none;
+    }
+
     .hero__overlay-content {
-        padding-top: 15%;
-        padding-left: 5%;
-        align-items: flex-start;
+        position: static;
+        padding: 0 1.5rem;
+        display: block;
     }
+
+    .hero__text-overlay {
+        max-width: 100%;
+        padding: 0;
+        text-align: center;
+    }
+
+    .hero__text-overlay::before {
+        display: none;
+    }
+
     .hero__main-title {
-        font-size: 2.2rem;
+        font-size: 2.4rem;
+        margin-bottom: 1.5rem;
     }
+
     .hero__main-subtitle {
-        font-size: 1.1rem;
+        font-size: 1.15rem;
+        margin-bottom: 2rem;
     }
+
+    .hero__cta-wrapper {
+        margin-bottom: 3rem;
+    }
+
     .hero__btn-new {
-        padding: 0.8rem 1.8rem;
-        font-size: 1rem;
+        width: 100%;
+        padding: 1.2rem 1rem;
+        font-size: 1.1rem;
+        background-color: #2D462F; /* Dark green as in the image */
+    }
+
+    .hero__benefits {
+        display: flex;
+        justify-content: space-around;
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .hero__benefit {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.85rem;
+        color: #2D462F;
+        font-weight: 500;
+        line-height: 1.3;
+    }
+
+    .hero__benefit-icon {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.05));
+    }
+
+    .hero__benefit span {
+        display: block;
+        max-width: 100px;
     }
 }
 

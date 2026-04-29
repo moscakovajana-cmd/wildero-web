@@ -2588,16 +2588,16 @@ input:disabled+.slider {
 /* --- FINAL GLOBAL MOBILE POLISH --- */
 @media (max-width: 900px) {
     :root {
-        --header-height: 85px;
-        --header-height-scrolled: 65px;
+        --header-height: 100px;
+        --header-height-scrolled: 70px;
     }
 
     .header__logo img {
-        height: 85px !important;
+        height: 100px !important;
     }
 
     .header.scrolled .header__logo img {
-        height: 65px !important;
+        height: 60px !important;
     }
 
     .container {
@@ -2615,16 +2615,16 @@ input:disabled+.slider {
 
 @media (max-width: 768px) {
     :root {
-        --header-height: 75px;
+        --header-height: 90px;
         --header-height-scrolled: 60px;
     }
 
     .header__logo img {
-        height: 75px !important;
+        height: 90px !important;
     }
 
     .header.scrolled .header__logo img {
-        height: 60px !important;
+        height: 55px !important;
     }
 
     /* Hero Full Image Responsive Fix */

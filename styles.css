@@ -520,7 +520,7 @@ p {
     bottom: 0;
     display: flex;
     align-items: flex-start; /* Zarovnání nahoru */
-    padding-top: 4%;
+    padding-top: 10%;
     padding-left: 2rem;
     pointer-events: none;
 }
@@ -529,13 +529,13 @@ p {
     pointer-events: auto;
     max-width: 450px;
     text-align: left;
-    background: none;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    padding: 0;
-    border-radius: 0;
-    box-shadow: none;
-    border: none;
+    background: rgba(253, 251, 246, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 2rem;
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(56, 94, 60, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .hero__leaf {

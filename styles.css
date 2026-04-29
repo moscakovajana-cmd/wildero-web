@@ -538,9 +538,41 @@ p {
     border: none;
 }
 
+.hero__leaf {
+    font-size: 0.7em;
+    vertical-align: middle;
+    margin-right: 0.2em;
+    opacity: 0.8;
+}
+
+.hero__leaf-small {
+    font-size: 1.2rem;
+    opacity: 0.7;
+}
+
+.hero__leaf-bullet {
+    font-size: 0.9em;
+    margin-right: 0.5rem;
+    opacity: 0.7;
+}
+
+.hero__divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    opacity: 0.6;
+}
+
+.hero__divider span:not(.hero__leaf-small) {
+    height: 1px;
+    width: 60px;
+    background: #2D462F;
+}
+
 .hero__main-title {
     font-size: 3.5rem;
-    color: #385E3C; /* Shoda s brandem */
+    color: #2D462F; /* Darker green for better contrast */
     margin-bottom: 1rem;
     line-height: 1.1;
     font-family: 'Lora', serif;

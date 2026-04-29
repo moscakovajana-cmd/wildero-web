@@ -45,15 +45,14 @@
             <nav class="header__nav">
                 <ul class="header__menu">
                     <li><a href="index.html#about" class="header__link">Co je Wildero</a></li>
-                    <li><a href="index.html#audience" class="header__link">Pro koho</a></li>
-                    <li><a href="index.html#how" class="header__link">Jak to funguje</a></li>
+                    <li><a href="index.html#how" class="header__link">Výpravy</a></li>
                     <li><a href="index.html#rewards" class="header__link">Odměny</a></li>
-                    <li><a href="wilduv-svet.html" class="header__link">Wildův svět</a></li>
+                    <li><a href="wilduv-svet.html" class="header__link">O nás</a></li>
                 </ul>
             </nav>
 
             <div class="header__cta-wrapper">
-                <a href="zacit.html" class="btn btn--primary header__cta">Vyzkoušej zdarma</a>
+                <a href="zacit.html" class="btn btn--primary header__cta">Začít</a>
                 <button class="header__toggle" aria-label="Otevřít menu">
                     <span></span>
                 </button>
@@ -64,84 +63,128 @@
         <div class="header__mobile-menu" id="mobile-menu">
             <ul>
                 <li><a href="index.html#about" class="header__link">Co je Wildero</a></li>
-                <li><a href="index.html#audience" class="header__link">Pro koho</a></li>
-                <li><a href="index.html#how" class="header__link">Jak to funguje</a></li>
+                <li><a href="index.html#how" class="header__link">Výpravy</a></li>
                 <li><a href="index.html#rewards" class="header__link">Odměny</a></li>
-                <li><a href="wilduv-svet.html" class="header__link">Wildův svět</a></li>
-                <li><a href="zacit.html" class="header__link">Vyzkoušej zdarma</a></li>
+                <li><a href="wilduv-svet.html" class="header__link">O nás</a></li>
+                <li><a href="zacit.html" class="header__link">Začít</a></li>
             </ul>
         </div>
     </header>
 
     <main>
-        <!-- Hero Subpage with PWA Priority -->
-        <section class="hero hero--app watercolor-cloud">
-            <div class="container hero__container">
-                <div class="hero__content">
-                    <h1 class="hero__title">Wildero ve vašem <br>mobilu</h1>
-                    <p class="hero__subtitle">
-                        Wildero není klasická aplikace z obchodu. Funguje jako moderní webová aplikace (PWA),
-                        která je rychlejší, úspornější a vždy aktuální.
+        <!-- Hero Section -->
+        <section class="section" style="padding-top: 6rem; padding-bottom: 6rem;">
+            <div class="container" style="display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 4rem;">
+                <div class="hero__content" style="text-align: left;">
+                    <h1 style="font-size: 4rem; color: #2D462F; margin-bottom: 1.5rem; line-height: 1.1; font-family: 'Lora', serif;">Vydejte se<br>na první výpravu</h1>
+                    <p style="font-size: 1.2rem; color: var(--color-text-light); margin-bottom: 2.5rem; max-width: 480px; line-height: 1.6;">
+                        Wildero promění obyčejnou procházku v dobrodružství plné objevů. Stačí vyrazit ven.
                     </p>
-                    <div class="hero__actions">
-                        <a href="https://app.wildero.cz" class="btn btn--primary">Spustit aplikaci</a>
-                        <div class="app-features-mini" style="justify-content: center; flex-wrap: wrap; gap: 0.5rem 1.25rem; margin-top: 0.85rem;">
-                            <span><span class="mountain-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3z"></path></svg></span> Nezabírá místo</span>
-                            <span><span class="mountain-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3z"></path></svg></span> Vždy aktuální</span>
-                            <span><span class="mountain-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3z"></path></svg></span> Funguje offline</span>
+                    <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 1.5rem;">
+                        <a href="https://app.wildero.cz" class="btn btn--primary" style="padding: 1.25rem 2.5rem; font-size: 1.15rem; border-radius: 100px;">Vybrat první výpravu</a>
+                        <div style="display: flex; align-items: center; gap: 0.6rem; color: #6D7C6F; font-weight: 600; font-size: 1rem;">
+                            <span style="font-size: 1.2rem;">🎁</span> 3 výpravy zdarma bez registrace
                         </div>
                     </div>
                 </div>
-                <div class="hero__app-visual">
-                    <div class="phone-mockup phone-mockup--right">
-                        <div class="phone-mockup__screen"></div>
+                <div class="hero__visual" style="position: relative;">
+                    <!-- Placeholder for the watercolor kid illustration -->
+                    <div style="background: #f0f0f0; border-radius: 40px; aspect-ratio: 1/1; display: flex; items-center; justify-content: center; color: #999;">
+                        [Ilustrace dítěte s mapou]
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Subtle Instructions -->
-        <section class="section" style="padding-top: 4rem; padding-bottom: 6rem; background-color: var(--color-bg);">
+        <!-- Quote Section -->
+        <section class="section" style="background: #FDFBF6; padding: 5rem 0; border-top: 1px solid #f0eee8; border-bottom: 1px solid #f0eee8;">
+            <div class="container" style="text-align: center; max-width: 700px;">
+                <div style="margin-bottom: 1.5rem; color: #A4B2A5; font-size: 1.5rem;">🌿</div>
+                <p style="font-size: 1.6rem; font-family: 'Lora', serif; font-style: italic; color: #2D462F; line-height: 1.5; font-weight: 500;">
+                    „Někdy stačí malý impuls. Wildero dává procházce směr – zbytek je na vás.“
+                </p>
+            </div>
+        </section>
+
+        <!-- Expedition Selection -->
+        <section class="section" style="padding-top: 7rem; padding-bottom: 7rem;">
             <div class="container">
-                <div style="text-align: center; margin-bottom: 3.5rem;">
-                    <h2 style="font-size: 1.5rem; color: var(--color-text-light); margin-bottom: 0.5rem;">Jak si přidat
-                        Wildero na plochu?</h2>
-                    <p style="font-size: 0.95rem; color: var(--color-text-light); opacity: 0.8;">Pro nejlepší zážitek
-                        doporučujeme tento krátký postup:</p>
-                </div>
-
-                <div class="grid grid--2" style="gap: 4rem; max-width: 1000px; margin: 0 auto;">
-                    <!-- iOS -->
-                    <div class="instruction-block"
-                        style="background: rgba(255,255,255,0.5); padding: 2.5rem; border-radius: 20px;">
-                        <h3
-                            style="font-size: 1.25rem; margin-bottom: 1.5rem; color: var(--color-text-main); text-align: center;">
-                            iPhone (iOS)</h3>
-                        <ol class="list-check" style="margin-left: 0; font-size: 0.95rem;">
-                            <li class="has-icon"><span class="mountain-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3z"></path></svg></span> Klepněte na <strong>Spustit aplikaci</strong> výše.</li>
-                            <li class="has-icon"><span class="mountain-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3z"></path></svg></span> V Safari klepněte na <strong>Sdílet</strong> (čtvereček se šipkou).
-                            </li>
-                            <li class="has-icon"><span class="mountain-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3z"></path></svg></span> Vyberte <strong>Přidat na plochu</strong>.</li>
-                            <li class="has-icon"><span class="mountain-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3z"></path></svg></span> Potvrďte tlačítkem <strong>Přidat</strong> v rohu.</li>
-                        </ol>
+                <h2 style="text-align: center; font-size: 2.5rem; color: #2D462F; margin-bottom: 4rem; font-family: 'Lora', serif;">Vyberte si, kam se dnes vydáte</h2>
+                
+                <div class="grid grid--3" style="gap: 2.5rem;">
+                    <!-- Card 1 -->
+                    <div class="card" style="background: white; padding: 2.5rem 2rem; border-radius: 24px; border: 1px solid #EAE8E0; text-align: center; display: flex; flex-direction: column; align-items: center; box-shadow: 0 10px 30px rgba(0,0,0,0.02); transition: transform 0.3s ease;">
+                        <div style="width: 160px; height: 160px; background: #f9f9f9; border-radius: 50%; margin-bottom: 2rem; display: flex; align-items: center; justify-content: center; color: #ccc;">[Truhla]</div>
+                        <h3 style="font-size: 1.6rem; margin-bottom: 1rem; color: #2D462F;">Hledači pokladů</h3>
+                        <p style="font-size: 1rem; color: #6D7C6F; margin-bottom: 2rem; line-height: 1.5;">Najděte ukryté poklady v přírodě kolem vás.</p>
+                        <div style="display: flex; gap: 1.2rem; font-size: 0.9rem; font-weight: 700; color: #8C968D; margin-top: auto;">
+                            <span style="display: flex; align-items: center; gap: 0.4rem;">⏱ 20–30 min</span>
+                            <span style="display: flex; align-items: center; gap: 0.4rem;">👥 pro děti</span>
+                        </div>
+                        <div style="margin-top: 2rem; width: 40px; height: 40px; border-radius: 50%; border: 1px solid #EAE8E0; display: flex; align-items: center; justify-content: center; color: #2D462F; font-size: 1.2rem;">→</div>
                     </div>
-
-                    <!-- Android -->
-                    <div class="instruction-block"
-                        style="background: rgba(255,255,255,0.5); padding: 2.5rem; border-radius: 20px;">
-                        <h3
-                            style="font-size: 1.25rem; margin-bottom: 1.5rem; color: var(--color-text-main); text-align: center;">
-                            Android (Chrome)</h3>
-                        <ol class="list-check" style="margin-left: 0; font-size: 0.95rem;">
-                            <li class="has-icon"><span class="mountain-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3z"></path></svg></span> Klepněte na <strong>Spustit aplikaci</strong> výše.</li>
-                            <li class="has-icon"><span class="mountain-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3z"></path></svg></span> V Chrome klepněte na <strong>tři tečky</strong> v rohu.</li>
-                            <li class="has-icon"><span class="mountain-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3z"></path></svg></span> Vyberte <strong>Přidat na plochu</strong> či
-                                <strong>Instalovat</strong>.
-                            </li>
-                            <li class="has-icon"><span class="mountain-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3z"></path></svg></span> V okně potvrďte instalaci na plochu.</li>
-                        </ol>
+                    <!-- Card 2 -->
+                    <div class="card" style="background: white; padding: 2.5rem 2rem; border-radius: 24px; border: 1px solid #EAE8E0; text-align: center; display: flex; flex-direction: column; align-items: center; box-shadow: 0 10px 30px rgba(0,0,0,0.02); transition: transform 0.3s ease;">
+                        <div style="width: 160px; height: 160px; background: #f9f9f9; border-radius: 50%; margin-bottom: 2rem; display: flex; align-items: center; justify-content: center; color: #ccc;">[Beruška]</div>
+                        <h3 style="font-size: 1.6rem; margin-bottom: 1rem; color: #2D462F;">Malý svět</h3>
+                        <p style="font-size: 1rem; color: #6D7C6F; margin-bottom: 2rem; line-height: 1.5;">Objevte drobné tvory a rostliny, které žijí kolem nás.</p>
+                        <div style="display: flex; gap: 1.2rem; font-size: 0.9rem; font-weight: 700; color: #8C968D; margin-top: auto;">
+                            <span style="display: flex; align-items: center; gap: 0.4rem;">⏱ 20–30 min</span>
+                            <span style="display: flex; align-items: center; gap: 0.4rem;">👥 pro děti</span>
+                        </div>
+                        <div style="margin-top: 2rem; width: 40px; height: 40px; border-radius: 50%; border: 1px solid #EAE8E0; display: flex; align-items: center; justify-content: center; color: #2D462F; font-size: 1.2rem;">→</div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="card" style="background: white; padding: 2.5rem 2rem; border-radius: 24px; border: 1px solid #EAE8E0; text-align: center; display: flex; flex-direction: column; align-items: center; box-shadow: 0 10px 30px rgba(0,0,0,0.02); transition: transform 0.3s ease;">
+                        <div style="width: 160px; height: 160px; background: #f9f9f9; border-radius: 50%; margin-bottom: 2rem; display: flex; align-items: center; justify-content: center; color: #ccc;">[Les]</div>
+                        <h3 style="font-size: 1.6rem; margin-bottom: 1rem; color: #2D462F;">Les jinýma očima</h3>
+                        <p style="font-size: 1rem; color: #6D7C6F; margin-bottom: 2rem; line-height: 1.5;">Prohlédněte si známé místo z nové perspektivy a všimněte si detailů.</p>
+                        <div style="display: flex; gap: 1.2rem; font-size: 0.9rem; font-weight: 700; color: #8C968D; margin-top: auto;">
+                            <span style="display: flex; align-items: center; gap: 0.4rem;">⏱ 30–45 min</span>
+                            <span style="display: flex; align-items: center; gap: 0.4rem;">👥 pro kohokoliv</span>
+                        </div>
+                        <div style="margin-top: 2rem; width: 40px; height: 40px; border-radius: 50%; border: 1px solid #EAE8E0; display: flex; align-items: center; justify-content: center; color: #2D462F; font-size: 1.2rem;">→</div>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <!-- Process Section -->
+        <section class="section" style="background: #FDFBF6; padding: 5rem 0;">
+            <div class="container">
+                <h2 style="text-align: center; font-size: 1.8rem; color: #2D462F; margin-bottom: 4rem;">Dobrodružství nekončí v mobilu</h2>
+                <div style="display: flex; justify-content: space-around; align-items: center; max-width: 900px; margin: 0 auto; flex-wrap: wrap; gap: 3rem;">
+                    <div style="text-align: center; display: flex; flex-direction: column; items-center; gap: 1rem;">
+                        <div style="font-size: 3rem; background: white; width: 80px; height: 80px; border-radius: 50%; display: flex; items-center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.03);">📱</div>
+                        <p style="font-weight: 700; color: #2D462F;">Výprava v aplikaci</p>
+                    </div>
+                    <div style="font-size: 1.5rem; color: #A4B2A5; letter-spacing: 0.3em;">········▶</div>
+                    <div style="text-align: center; display: flex; flex-direction: column; items-center; gap: 1rem;">
+                        <div style="font-size: 3rem; background: white; width: 80px; height: 80px; border-radius: 50%; display: flex; items-center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.03);">🥾</div>
+                        <p style="font-weight: 700; color: #2D462F;">Pohyb venku</p>
+                    </div>
+                    <div style="font-size: 1.5rem; color: #A4B2A5; letter-spacing: 0.3em;">········▶</div>
+                    <div style="text-align: center; display: flex; flex-direction: column; items-center; gap: 1rem;">
+                        <div style="font-size: 3rem; background: white; width: 80px; height: 80px; border-radius: 50%; display: flex; items-center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.03);">✨</div>
+                        <p style="font-weight: 700; color: #2D462F;">Odměna do kapsy</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="section" style="padding-top: 8rem; padding-bottom: 10rem;">
+            <div class="container" style="background: #F8F6F1; padding: 6rem 4rem; border-radius: 48px; text-align: center; position: relative; overflow: hidden; border: 1px solid #f0eee8;">
+                <div style="position: absolute; top: -10%; right: -5%; font-size: 10rem; opacity: 0.03; pointer-events: none;">🌿</div>
+                <h2 style="font-size: 3.2rem; color: #2D462F; margin-bottom: 3rem; position: relative; z-index: 2; font-family: 'Lora', serif; line-height: 1.2;">Dobrodružství začíná<br>prvním krokem.</h2>
+                <a href="https://app.wildero.cz" class="btn btn--primary" style="padding: 1.4rem 3.5rem; font-size: 1.2rem; border-radius: 100px; position: relative; z-index: 2; box-shadow: 0 10px 30px rgba(56, 94, 60, 0.2);">Vyrazit na první výpravu</a>
+                <div style="margin-top: 3rem; display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; font-size: 1rem; font-weight: 600; color: #6D7C6F;">
+                    <span style="display: flex; align-items: center; gap: 0.5rem;">🍃 Bez registrace</span>
+                    <span style="display: flex; align-items: center; gap: 0.5rem;">🦌 3 výpravy zdarma</span>
+                    <span style="display: flex; align-items: center; gap: 0.5rem;">👪 Pro děti i dospělé</span>
+                </div>
+                <!-- Placeholder for backpack illustration -->
+                <div style="position: absolute; bottom: 20px; right: 40px; width: 120px; height: 120px; background: rgba(0,0,0,0.05); border-radius: 20px; display: flex; items-center; justify-content: center; color: #999; font-size: 0.7rem; transform: rotate(5deg);">[Batoh]</div>
             </div>
         </section>
     </main>

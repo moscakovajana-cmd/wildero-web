@@ -342,7 +342,7 @@ p {
 .section--about-path {
     padding: 3rem 0;
     overflow: hidden;
-    background-color: #FDFBF6; /* Match the watercolor background */
+    background-color: var(--color-bg);
 }
 
 .audience-mobile-only {
@@ -2792,12 +2792,16 @@ input:disabled+.slider {
 
     .audience-card-info p {
         font-size: 0.95rem;
-        color: var(--color-text-main);
+        color: var(--color-text-light);
         line-height: 1.4;
         margin: 0;
     }
 
-    #audience .section-divider,
+    #audience .section-divider {
+        display: block !important;
+        margin-bottom: 2rem;
+    }
+
     #audience .text-lead {
         display: none;
     }

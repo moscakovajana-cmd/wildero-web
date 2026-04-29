@@ -494,8 +494,8 @@ p {
 .hero__image-wrapper {
     position: relative;
     width: 100%;
-    max-width: 1024px;
-    margin: 0 0 0 auto;
+    max-width: 1400px;
+    margin: 0 auto;
     overflow: hidden;
     /* Very subtle fading edges effect to blend naturally without 'fog' */
     -webkit-mask-image: linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%),
@@ -520,8 +520,8 @@ p {
     bottom: 0;
     display: flex;
     align-items: flex-start; /* Zarovnání nahoru */
-    padding-top: 5%;
-    padding-left: 5%;
+    padding-top: 4%;
+    padding-left: 2rem;
     pointer-events: none;
 }
 
@@ -573,7 +573,7 @@ p {
 .hero__main-title {
     font-size: 3.5rem;
     color: #2D462F; /* Darker green for better contrast */
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     line-height: 1.1;
     font-family: 'Lora', serif;
     font-weight: 700;

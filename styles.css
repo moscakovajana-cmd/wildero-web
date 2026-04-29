@@ -487,15 +487,13 @@ p {
     }
 }
 
-    background-color: var(--color-bg);
-}
 
 /* Hero with full uceleny snímek */
 .hero--full-image {
     min-height: auto;
     padding-top: calc(var(--header-height) + 1.5rem);
     padding-bottom: 2rem;
-    background-color: #FDFBF6;
+    background-color: var(--color-bg);
     overflow: visible;
 }
 
@@ -2737,9 +2735,6 @@ input:disabled+.slider {
         height: auto;
         display: block;
         margin: 0 auto;
-        /* Watercolor blend effect */
-        -webkit-mask-image: linear-gradient(to top, black 80%, transparent 100%);
-        mask-image: linear-gradient(to top, black 80%, transparent 100%);
     }
 
     /* Audience Section Mobile */
@@ -2804,6 +2799,29 @@ input:disabled+.slider {
 
     #audience .text-lead {
         display: none;
+    }
+
+    /* Force unify all section backgrounds on mobile */
+    .section, 
+    .section--light, 
+    .section--about-path,
+    #about,
+    #audience,
+    #how,
+    #rewards {
+        background-color: var(--color-bg) !important;
+    }
+
+    /* Unify paragraph text */
+    p, .audience-card-info p, .about-mobile-text {
+        font-family: var(--font-family) !important;
+        color: var(--color-text-light) !important;
+    }
+
+    /* Unify titles */
+    h1, h2, h3, .audience-card-info h3 {
+        font-family: 'Lora', serif !important;
+        color: var(--color-primary-dark) !important;
     }
 
     /* Reduce gap under the title */

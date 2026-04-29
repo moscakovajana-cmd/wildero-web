@@ -1365,10 +1365,13 @@ p {
     opacity: 0.9;
 }
 
-@media (max-width: 900px) {
     .how-path-line {
         display: none;
     }
+}
+
+.how-mobile-only {
+    display: none;
 }
 
 .how-item {
@@ -2799,6 +2802,72 @@ input:disabled+.slider {
 
     #audience .text-lead {
         display: none;
+    }
+
+    /* How Section Mobile */
+    .how-desktop-only {
+        display: none;
+    }
+
+    .how-mobile-only {
+        display: block;
+        padding: 0 0.5rem;
+    }
+
+    .how-timeline {
+        position: relative;
+        padding-left: 3.5rem;
+    }
+
+    .how-timeline::before {
+        content: '';
+        position: absolute;
+        left: 1.5rem;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        border-left: 2px dashed var(--color-primary);
+        opacity: 0.3;
+    }
+
+    .how-mobile-step {
+        position: relative;
+        margin-bottom: 2rem;
+        display: flex;
+        align-items: flex-start;
+        gap: 1.2rem;
+    }
+
+    .how-mobile-icon {
+        flex: 0 0 65px;
+        position: relative;
+        z-index: 2;
+        background: var(--color-bg);
+        padding: 0.4rem 0;
+    }
+
+    .how-mobile-icon img {
+        width: 100%;
+        height: auto;
+    }
+
+    .how-mobile-content {
+        flex: 1;
+        padding-top: 0.6rem;
+    }
+
+    .how-mobile-content h3 {
+        font-size: 1.2rem;
+        color: var(--color-primary);
+        margin-bottom: 0.25rem;
+        font-family: 'Lora', serif;
+    }
+
+    .how-mobile-content p {
+        font-size: 0.95rem;
+        color: var(--color-text-light);
+        line-height: 1.5;
+        margin: 0;
     }
 
     /* Force unify all section backgrounds on mobile */

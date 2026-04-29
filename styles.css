@@ -2801,6 +2801,11 @@ input:disabled+.slider {
     #audience .text-lead {
         display: none;
     }
+
+    /* Reduce gap under the title */
+    #audience .aos[style*="margin-bottom: 4rem"] {
+        margin-bottom: 1.5rem !important;
+    }
 }
 
 @media (max-width: 480px) {

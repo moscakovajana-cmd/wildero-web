@@ -521,13 +521,13 @@ p {
     display: flex;
     align-items: flex-start; /* Zarovnání nahoru */
     padding-top: 5%;
-    padding-left: 8%;
+    padding-left: 5%;
     pointer-events: none;
 }
 
 .hero__text-overlay {
     pointer-events: auto;
-    max-width: 520px;
+    max-width: 450px;
     text-align: left;
     background: none;
     backdrop-filter: none;

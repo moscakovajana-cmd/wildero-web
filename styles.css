@@ -2012,7 +2012,7 @@ p {
     visibility: hidden;
     transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.4s;
     z-index: 999;
-    padding-top: calc(var(--header-height) + 2rem);
+    padding-top: calc(var(--header-height) + 1rem);
     flex-direction: column;
 }
 
@@ -2033,14 +2033,20 @@ p {
     margin: 0;
     text-align: center;
     width: 100%;
-    margin-top: 2rem;
+    margin-top: 0;
 }
 
 .header__mobile-menu li {
-    margin-bottom: 2.5rem;
+    margin-bottom: 0;
     transform: translateY(20px);
     opacity: 0;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-bottom: 1px solid rgba(56, 94, 60, 0.08);
+    width: 100%;
+}
+
+.header__mobile-menu li:last-child {
+    border-bottom: none;
 }
 
 .header__mobile-menu.open li {
@@ -2056,9 +2062,9 @@ p {
 .header__mobile-menu.open li:nth-child(5) { transition-delay: 0.3s; }
 
 .header__mobile-menu a {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    font-size: 2.2rem;
+    display: block;
+    padding: 1.2rem 1rem;
+    font-size: 1.8rem;
     font-weight: 700;
     color: var(--color-text-main);
     border-bottom: none;
@@ -2942,4 +2948,122 @@ input:disabled+.slider {
         object-position: 20% center;
     }
 }
+
+/* Hero Zacit Section */
+.hero-zacit {
+    padding-top: 8rem;
+    padding-bottom: 4rem;
+}
+
+.hero-zacit__container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 2rem;
+    max-width: 1000px !important;
+}
+
+.hero-zacit__content {
+    text-align: left;
+}
+
+.hero-zacit__content h1 {
+    font-size: 3.2rem;
+    color: #2D462F;
+    margin-bottom: 1.2rem;
+    line-height: 1.15;
+    font-family: 'Lora', serif;
+}
+
+.hero-zacit__content p {
+    font-size: 1.1rem;
+    color: var(--color-text-light);
+    margin-bottom: 2rem;
+    max-width: 420px;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+.hero-zacit__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.2rem;
+}
+
+.hero-zacit__info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #6D7C6F;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.hero-zacit__sparkle {
+    color: #385E3C;
+    display: flex;
+}
+
+.hero-zacit__visual {
+    position: relative;
+}
+
+.hero-zacit__visual img {
+    width: 110%;
+    border-radius: 40px;
+    margin-left: -5%;
+}
+
+/* Mobile Layout for Hero Zacit */
+@media (max-width: 768px) {
+    .hero-zacit {
+        padding-top: 6rem;
+        padding-bottom: 3rem;
+    }
+
+    .hero-zacit__container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        text-align: center;
+    }
+
+    .hero-zacit__content {
+        order: 2;
+        text-align: center;
+    }
+
+    .hero-zacit__content h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero-zacit__content p {
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 1rem;
+    }
+
+    .hero-zacit__actions {
+        align-items: center;
+    }
+
+    .hero-zacit__actions .btn {
+        width: 100%;
+        max-width: 320px;
+        padding: 1.1rem 1.5rem;
+        font-size: 1rem;
+        border-radius: 100px;
+    }
+
+    .hero-zacit__visual {
+        order: 1;
+    }
+
+    .hero-zacit__visual img {
+        width: 100%;
+        margin-left: 0;
+        border-radius: 30px;
+    }
+}
+
 

@@ -3171,15 +3171,13 @@ input:disabled+.slider {
 }
 
 .wilda-merch-card {
-    position: absolute;
-    bottom: -2rem;
-    right: 0;
-    width: 340px;
+    position: static;
+    margin-top: 2rem;
+    width: 100%;
     background: var(--color-white);
     padding: 2rem;
     border-radius: 24px;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
-    z-index: 10;
 }
 
 .wilda-merch-header {
@@ -3248,12 +3246,7 @@ input:disabled+.slider {
 @media (max-width: 992px) {
     .wilda-layout {
         flex-direction: column;
-        gap: 4rem;
-    }
-    .wilda-merch-card {
-        position: static;
-        width: 100%;
-        margin-top: 2rem;
+        gap: 2rem;
     }
 }
 

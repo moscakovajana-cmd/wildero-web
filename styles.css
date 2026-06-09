@@ -3086,13 +3086,23 @@ input:disabled+.slider {
     pointer-events: none;
 }
 
-.wilda-layout {
+.wilda-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.wilda-desktop-columns {
     display: flex;
     align-items: center;
     gap: 4rem;
+    margin-bottom: 3rem;
 }
 
-.wilda-content {
+.wilda-visual-mobile {
+    display: none;
+}
+
+.wilda-features {
     flex: 1;
 }
 
@@ -3115,7 +3125,6 @@ input:disabled+.slider {
 }
 
 .wilda-features {
-    margin-top: 3rem;
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -3171,13 +3180,19 @@ input:disabled+.slider {
 }
 
 .wilda-merch-card {
-    position: static;
-    margin-top: 2rem;
-    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
     background: var(--color-white);
-    padding: 2rem;
+    padding: 3rem 4rem;
     border-radius: 24px;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+    width: 100%;
+}
+
+.wilda-merch-content {
+    flex: 1;
 }
 
 .wilda-merch-header {
@@ -3233,7 +3248,8 @@ input:disabled+.slider {
 }
 
 .wilda-merch-img-wrapper {
-    margin-top: 1.5rem;
+    flex: 0 0 350px;
+    margin-top: 0;
     border-radius: 16px;
     overflow: hidden;
 }
@@ -3241,12 +3257,38 @@ input:disabled+.slider {
 .wilda-merch-img-wrapper img {
     width: 100%;
     height: auto;
+    display: block;
 }
 
 @media (max-width: 992px) {
-    .wilda-layout {
+    .wilda-header {
+        margin-bottom: 2rem;
+    }
+
+    .wilda-desktop-columns {
         flex-direction: column;
         gap: 2rem;
+    }
+    
+    .wilda-desktop-columns .wilda-visual {
+        display: none;
+    }
+    
+    .wilda-visual-mobile {
+        display: flex;
+        justify-content: center;
+    }
+
+    .wilda-merch-card {
+        flex-direction: column;
+        padding: 2rem;
+        gap: 2rem;
+    }
+
+    .wilda-merch-img-wrapper {
+        flex: auto;
+        width: 100%;
+        margin-top: 1rem;
     }
 }
 

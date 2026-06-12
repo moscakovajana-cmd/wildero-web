@@ -3084,7 +3084,7 @@ input:disabled+.slider {
 /* Wilda Mascot Section */
 .section--wilda {
     background-color: var(--color-bg);
-    padding: 6rem 0;
+    padding: 3.5rem 0;
     overflow: hidden;
     position: relative;
 }
@@ -3103,14 +3103,14 @@ input:disabled+.slider {
 
 .wilda-header {
     text-align: center;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
 }
 
 .wilda-desktop-columns {
     display: flex;
     align-items: center;
     gap: 4rem;
-    margin-bottom: 3rem;
+    margin-bottom: 0;
 }
 
 .wilda-visual-mobile {

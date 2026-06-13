@@ -25,8 +25,8 @@
 
     /* Spacing & Layout */
     --container-width: 1140px;
-    --header-height: 110px;
-    --header-height-scrolled: 70px;
+    --header-height: 130px;
+    --header-height-scrolled: 80px;
     --radius-card: 20px;
     --radius-btn: 12px;
 
@@ -222,14 +222,14 @@ p {
 }
 
 .header__logo img {
-    height: 110px;
+    height: 130px;
     width: auto;
     object-fit: contain;
     transition: height 0.3s ease;
 }
 
 .header.scrolled .header__logo img {
-    height: 70px;
+    height: 80px;
 }
 
 .header__nav {
@@ -1496,12 +1496,11 @@ p {
     }
 
     .header__logo img {
-        height: 50px;
-        /* Reduced from default (~85px) for better fit */
+        height: 120px;
     }
 
     .header.scrolled .header__logo img {
-        height: 40px;
+        height: 75px;
     }
 
     .hero__content {
@@ -2612,16 +2611,16 @@ input:disabled+.slider {
 /* --- FINAL GLOBAL MOBILE POLISH --- */
 @media (max-width: 900px) {
     :root {
-        --header-height: 100px;
-        --header-height-scrolled: 70px;
+        --header-height: 120px;
+        --header-height-scrolled: 80px;
     }
 
     .header__logo img {
-        height: 100px !important;
+        height: 120px !important;
     }
 
     .header.scrolled .header__logo img {
-        height: 60px !important;
+        height: 75px !important;
     }
 
     .container {
@@ -2639,16 +2638,16 @@ input:disabled+.slider {
 
 @media (max-width: 768px) {
     :root {
-        --header-height: 90px;
-        --header-height-scrolled: 60px;
+        --header-height: 110px;
+        --header-height-scrolled: 70px;
     }
 
     .header__logo img {
-        height: 90px !important;
+        height: 110px !important;
     }
 
     .header.scrolled .header__logo img {
-        height: 55px !important;
+        height: 65px !important;
     }
 
     /* Hero Full Image Responsive Fix */

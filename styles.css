@@ -55,6 +55,7 @@ html {
     font-size: 16px;
     /* Kompenzace fixního headeru při anchor navigaci */
     scroll-padding-top: calc(var(--header-height-scrolled) + 24px);
+    overflow-x: hidden;
 }
 
 body {
@@ -184,7 +185,7 @@ p {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    right: 0;
     height: var(--header-height);
     background: rgba(253, 251, 246, 0.95);
     backdrop-filter: blur(12px);
@@ -633,7 +634,7 @@ p {
 
     .header__cta-wrapper {
         position: absolute;
-        right: 1.5rem;
+        right: 1.25rem;
         top: 50%;
         transform: translateY(-50%);
         z-index: 1001;
@@ -1663,8 +1664,7 @@ p {
 
     /* Mobile Menu (simplified logic needed in JS or CSS target) */
     .header__nav {
-        display: flex;
-        align-items: center;
+        display: none !important;
     }
 
     .header__nav.open .header__menu {

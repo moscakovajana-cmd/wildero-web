@@ -18,6 +18,7 @@ if (toggleBtn && mobileMenu) {
     toggleBtn.addEventListener('click', () => {
         mobileMenu.classList.toggle('open');
         nav.classList.toggle('open');
+        toggleBtn.classList.toggle('open');
     });
 }
 
@@ -53,6 +54,7 @@ navLinks.forEach(link => {
         if (window.innerWidth <= 900) {
             nav.classList.remove('open');
             if (mobileMenu) mobileMenu.classList.remove('open');
+            if (toggleBtn) toggleBtn.classList.remove('open');
         }
     });
 });

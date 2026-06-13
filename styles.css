@@ -2689,6 +2689,18 @@ input:disabled+.slider {
         align-items: center;
     }
 
+    .footer__links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem 1.5rem;
+    }
+
+    .footer__links a:last-child {
+        flex-basis: 100%;
+        text-align: center;
+        margin-top: 0.5rem;
+    }
+
     /* Section Spacing */
     .section {
         padding: 2rem 0;

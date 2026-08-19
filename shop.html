@@ -18,6 +18,9 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="shop.css">
 
+    <!-- Zásilkovna Widget -->
+    <script src="https://widget.packeta.com/v6/www/js/library.js"></script>
+
     <!-- SEO & Social -->
     <link rel="canonical" href="https://wildero.cz/shop.html">
     <meta property="og:type" content="website">
@@ -45,7 +48,7 @@
                     <li><a href="index.html#about" class="header__link">Co je Wildero</a></li>
                     <li><a href="index.html#audience" class="header__link">Pro koho je</a></li>
                     <li><a href="index.html#how" class="header__link">Jak funguje</a></li>
-                    <li><a href="wilduv-svet.html" class="header__link">Odměny</a></li>
+                    <li><a href="shop.html" class="header__link">Odměny</a></li>
                 </ul>
             </nav>
 
@@ -63,7 +66,7 @@
                 <li><a href="index.html#about" class="header__link">Co je Wildero</a></li>
                 <li><a href="index.html#audience" class="header__link">Pro koho je</a></li>
                 <li><a href="index.html#how" class="header__link">Jak funguje</a></li>
-                <li><a href="wilduv-svet.html" class="header__link">Odměny</a></li>
+                <li><a href="shop.html" class="header__link">Odměny</a></li>
                 <li><a href="zacit.html" class="header__link">Vyzkoušej zdarma</a></li>
             </ul>
         </div>
@@ -215,15 +218,25 @@
                     <input type="tel" id="cust-phone" placeholder="Telefon" required style="padding:0.75rem; border-radius:8px; border:1px solid #ddd;">
                     <textarea id="cust-address" placeholder="Adresa k doručení" rows="2" required style="padding:0.75rem; border-radius:8px; border:1px solid #ddd; font-family:inherit;"></textarea>
 
-                    <select id="cust-shipping" required style="padding:0.75rem; border-radius:8px; border:1px solid #ddd;" onchange="updateOrderSummary()">
+                    <select id="cust-shipping" required style="padding:0.75rem; border-radius:8px; border:1px solid #ddd;" onchange="updateOrderSummary(); togglePacketaWidget();">
                         <option value="zasilkovna" data-price="79">Zásilkovna (79 Kč)</option>
                         <option value="posta" data-price="119">Česká pošta (119 Kč)</option>
                         <option value="osobni" data-price="0">Osobní předání (0 Kč)</option>
                     </select>
 
+                    <!-- Packeta Widget Container -->
+                    <div id="packeta-widget-container" style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <button type="button" class="btn btn--secondary" onclick="openPacketaWidget()" style="width: 100%; font-size: 0.9rem; padding: 0.6rem;">Vybrat výdejní místo Zásilkovny</button>
+                        <div id="packeta-point-info" style="font-size: 0.85rem; padding: 0.5rem; background: #eef8f0; border-radius: 8px; border: 1px solid #d1e8d3; display: none;"></div>
+                        <input type="hidden" id="packeta-point-id">
+                        <input type="hidden" id="packeta-point-name">
+                    </div>
+
+
                     <select id="cust-payment" required style="padding:0.75rem; border-radius:8px; border:1px solid #ddd;">
-                        <option value="dobirka">Dobírka (platba při převzetí)</option>
+                        <option value="gopay">Online platba kartou (GoPay)</option>
                         <option value="prevod">Bankovní převod (platba předem)</option>
+                        <option value="dobirka">Dobírka (platba při převzetí)</option>
                     </select>
 
                     <!-- Přehled objednávky před potvrzením -->

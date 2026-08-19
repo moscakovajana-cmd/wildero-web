@@ -229,6 +229,39 @@ function updateOrderSummary() {
     if (el('summary-total-price')) el('summary-total-price').textContent = `${grandTotal}\u00a0K\u010d`;
 }
 
+// --- Packeta (Zásilkovna) Integration ---
+function togglePacketaWidget() {
+    const shippingSelect = document.getElementById('cust-shipping');
+    const packetaContainer = document.getElementById('packeta-widget-container');
+    if (shippingSelect && packetaContainer) {
+        if (shippingSelect.value === 'zasilkovna') {
+            packetaContainer.style.display = 'flex';
+        } else {
+            packetaContainer.style.display = 'none';
+        }
+    }
+}
+
+    function openPacketaWidget() {
+        const packetaApiKey = "f425b0af33dc5aa1"; // Zákazník si doplní svůj Zásilkovna API klíč
+        Packeta.Widget.pick(packetaApiKey, function(point) {
+        if (point) {
+            // Uložení dat pobočky
+            document.getElementById('packeta-point-id').value = point.id;
+            document.getElementById('packeta-point-name').value = point.name;
+            
+            // Zobrazení v UI
+            const infoDiv = document.getElementById('packeta-point-info');
+            infoDiv.innerHTML = `<strong>Vybráno:</strong> ${point.name} (${point.id})`;
+            infoDiv.style.display = 'block';
+        }
+    }, { country: "cz", language: "cs" });
+}
+
+// Inicializace stavu při načtení
+setTimeout(togglePacketaWidget, 100);
+
+// Odeslání objednávky (pokladna)
 async function submitOrder(e) {
     e.preventDefault();
     
@@ -266,12 +299,28 @@ async function submitOrder(e) {
             };
         });
 
+        let shippingMethod = document.getElementById('cust-shipping').value;
+        let finalAddress = document.getElementById('cust-address').value;
+        
+        if (shippingMethod === 'zasilkovna') {
+            const packetaId = document.getElementById('packeta-point-id').value;
+            const packetaName = document.getElementById('packeta-point-name').value;
+            if (!packetaId) {
+                alert('Prosím vyberte výdejní místo Zásilkovny.');
+                btnSubmit.disabled = false;
+                btnSubmit.innerText = 'Objednat s povinností platby';
+                return;
+            }
+            // Přidáme informaci o pobočce k dodací adrese
+            finalAddress += `\n\nZásilkovna: ${packetaName} (ID: ${packetaId})`;
+        }
+
         const finalPayload = {
             customer_name: document.getElementById('cust-name').value,
             customer_email: document.getElementById('cust-email').value,
             customer_phone: document.getElementById('cust-phone').value,
-            address: document.getElementById('cust-address').value,
-            delivery_method: document.getElementById('cust-shipping').value,
+            address: finalAddress,
+            delivery_method: shippingMethod,
             payment_method: paymentMethod,
             shipping_cost: shippingCost,
             total_price: Number(totalPrice),
@@ -283,14 +332,36 @@ async function submitOrder(e) {
 
         const { data, error } = await supabaseClient
             .from('orders')
-            .insert([finalPayload]);
+            .insert([finalPayload])
+            .select();
             
         if (error) {
             console.error("Supabase Error Object:", error);
             throw error;
         }
+
+        const insertedOrder = data[0];
         
-        // Úspěch
+        // Pokud je zvolen GoPay, vyvolej Edge Function
+        if (paymentMethod === 'gopay') {
+            const { data: gopayData, error: gopayError } = await supabaseClient.functions.invoke('create-gopay-order', {
+                body: {
+                    orderId: insertedOrder.id,
+                    totalPrice: totalPrice,
+                    customerEmail: finalPayload.customer_email
+                }
+            });
+
+            if (gopayError || !gopayData?.gw_url) {
+                throw new Error(gopayError?.message || 'Nepodařilo se vytvořit GoPay platbu.');
+            }
+
+            // Přesměruj na platební bránu
+            window.location.href = gopayData.gw_url;
+            return;
+        }
+        
+        // Úspěch (dobírka nebo převod)
         cart = {};
         saveCart();
         renderCart();
@@ -303,7 +374,7 @@ async function submitOrder(e) {
         if (drawerTitle) drawerTitle.innerText = 'Vše v pořádku!';
         
     } catch (err) {
-        console.error("Podrobná chyba Supabase při INSERTu:", err);
+        console.error("Podrobná chyba:", err);
         const errDetail = err.message || err.details || JSON.stringify(err);
         
         // Formátujeme payload pro debug v alertu
@@ -312,7 +383,7 @@ async function submitOrder(e) {
             items: Object.entries(cart).map(([id, qty]) => ({ id, qty }))
         };
 
-        alert('CHYBA: ' + errDetail + '\n\nPayload: ' + JSON.stringify(finalPayloadDebug) + '\n\nOmlouváme se, objednávku se nepodařilo odeslat. Zkuste to prosím znovu nebo nás kontaktujte.');
+        alert('CHYBA: ' + errDetail + '\n\nOmlouváme se, objednávku se nepodařilo odeslat. Zkuste to prosím znovu nebo nás kontaktujte.');
         btnSubmit.disabled = false;
         btnSubmit.innerText = 'Zkusit znovu odeslat';
     }
@@ -379,7 +450,28 @@ async function loadShop() {
         const { data, error } = await supabaseClient.from('products').select('*').eq('status', 'active').order('created_at', { ascending: true });
         if (error) throw error;
         
-        PRODUCTS = {};
+        PRODUCTS = {
+            'balicek-start': {
+                name: 'Startovní balíček',
+                price: 299,
+                img: 'reward_new_1.png',
+                desc: 'Pro první výpravu. Sešit + nálepky + 3 odznaky.',
+                fullDesc: 'Pro první výpravu. Sešit + nálepky + 3 odznaky.',
+                cat: 'balicky',
+                stock: 100,
+                images: ['reward_new_1.png']
+            },
+            'balicek-rodina': {
+                name: 'Rodinný balíček',
+                price: 549,
+                img: 'reward_new_2.png',
+                desc: 'Pro celou rodinu na celé léto. 2× sešit + 2× nálepky + omalovánky + 6 odznaků.',
+                fullDesc: 'Pro celou rodinu na celé léto. 2× sešit + 2× nálepky + omalovánky + 6 odznaků.',
+                cat: 'balicky',
+                stock: 100,
+                images: ['reward_new_2.png']
+            }
+        };
         const grid = document.getElementById('shop-grid');
         grid.innerHTML = '';
         
@@ -572,3 +664,28 @@ document.getElementById('modal-next')?.addEventListener('click', () => {
 
 // ---------- INIT ----------
 loadShop();
+
+// Check for GoPay redirect return
+window.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('payment') === 'success') {
+        cart = {};
+        saveCart();
+        openCart();
+        document.getElementById('cart-items-step').style.display = 'none';
+        document.getElementById('cart-footer').style.display = 'none';
+        
+        const successStep = document.getElementById('cart-success-step');
+        if (successStep) {
+            successStep.style.display = 'block';
+            successStep.innerHTML = `
+                <div style="font-size:3rem; margin-bottom:1rem;">🎉</div>
+                <h3 style="color:var(--color-primary);">Platba byla úspěšná!</h3>
+                <p style="font-size:0.9rem; margin-bottom:1.5rem;">Děkujeme za objednávku. Potvrzení vám brzy přijde na e-mail.</p>
+                <button class="btn btn--secondary" onclick="closeCart(); resetCartUI(); window.history.replaceState({}, '', 'shop.html');">Zavřít</button>
+            `;
+        }
+        const drawerTitle = document.querySelector('.cart-drawer__title');
+        if (drawerTitle) drawerTitle.innerText = 'Vše v pořádku!';
+    }
+});

@@ -175,6 +175,10 @@ function renderCart() {
 
 // ---------- Checkout Navigation ----------
 function showCheckoutForm() {
+    if (Object.keys(cart).length === 0) {
+        alert("Váš košík je prázdný. Přidejte prosím nejprve nějaké produkty.");
+        return;
+    }
     document.getElementById('cart-summary-step').style.display = 'none';
     document.getElementById('cart-footer').style.display = 'none'; // skryjeme footer úplně
     document.getElementById('cart-items-step').style.display = 'none';
@@ -264,6 +268,11 @@ setTimeout(togglePacketaWidget, 100);
 // Odeslání objednávky (pokladna)
 async function submitOrder(e) {
     e.preventDefault();
+    
+    if (Object.keys(cart).length === 0) {
+        alert("Váš košík je prázdný. Přidejte prosím nejprve nějaké produkty.");
+        return;
+    }
     
     const btnSubmit = document.getElementById('btn-order-submit');
     const originalText = btnSubmit.innerText;
@@ -374,16 +383,9 @@ async function submitOrder(e) {
         if (drawerTitle) drawerTitle.innerText = 'Vše v pořádku!';
         
     } catch (err) {
-        console.error("Podrobná chyba:", err);
-        const errDetail = err.message || err.details || JSON.stringify(err);
+        console.error("Chyba při odesílání objednávky:", err);
         
-        // Formátujeme payload pro debug v alertu
-        const finalPayloadDebug = {
-            customer: document.getElementById('cust-name').value,
-            items: Object.entries(cart).map(([id, qty]) => ({ id, qty }))
-        };
-
-        alert('CHYBA: ' + errDetail + '\n\nOmlouváme se, objednávku se nepodařilo odeslat. Zkuste to prosím znovu nebo nás kontaktujte.');
+        alert('Omlouváme se, objednávku se nepodařilo odeslat. Zkuste to prosím znovu nebo nás kontaktujte na e-mailu.');
         btnSubmit.disabled = false;
         btnSubmit.innerText = 'Zkusit znovu odeslat';
     }

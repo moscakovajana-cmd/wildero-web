@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="cs">
 <head>
     <meta charset="UTF-8">
@@ -7,11 +7,11 @@
     <link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
     <link rel="apple-touch-icon" href="logo_new.png">
     <title>Wildero Administrace</title>
-    <!-- Používáme stejný font jako web -->
+    <!-- PouĹľĂ­vĂˇme stejnĂ˝ font jako web -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* CSS specifické pro administraci */
+        /* CSS specifickĂ© pro administraci */
         * { box-sizing: border-box; }
         body { background: #f8fafc; margin: 0; font-family: 'Inter', sans-serif; }
         .admin-layout { display: flex; min-height: 100vh; }
@@ -80,12 +80,13 @@
 <div class="admin-layout">
     <!-- Sidebar -->
     <aside class="sidebar">
-        <div class="logo">🌿 Wildero Admin</div>
-        <a class="nav-item active" onclick="switchTab('dashboard', this)">📊 Přehled</a>
-        <a class="nav-item" onclick="switchTab('products', this)">📦 Správa produktů</a>
-        <a class="nav-item" onclick="switchTab('orders', this)">🛒 Objednávky</a>
-        <a class="nav-item" onclick="switchTab('shipping', this)">🚚 Doprava a Integrace</a>
-        <a class="nav-item" style="margin-top: auto; color: #ef4444;">🚪 Odhlásit se</a>
+        <div class="logo">đźŚż Wildero Admin</div>
+        <a class="nav-item active" onclick="switchTab('dashboard', this)">đź“Š PĹ™ehled</a>
+        <a class="nav-item" onclick="switchTab('products', this)">đź“¦ SprĂˇva produktĹŻ</a>
+        <a class="nav-item" onclick="switchTab('orders', this)">đź›’ ObjednĂˇvky</a>
+        <a class="nav-item" onclick="switchTab('shipping', this)">đźšš Doprava a Integrace</a>
+        <a class="nav-item" onclick="switchTab('emails', this)">📧 E-maily a šablony</a>
+        <a class="nav-item" style="margin-top: auto; color: #ef4444;">đźšŞ OdhlĂˇsit se</a>
     </aside>
 
     <!-- Main Content -->
@@ -93,19 +94,19 @@
         <!-- Tab: Dashboard -->
         <div id="dashboard" class="admin-section active">
             <div class="header">
-                <h1 class="title">Přehled e-shopu</h1>
+                <h1 class="title">PĹ™ehled e-shopu</h1>
             </div>
             <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 2rem;">
                 <div class="card">
-                    <div style="color: #64748b; font-size: 0.95rem; margin-bottom: 0.5rem; font-weight: 600;">Tržby za 30 dní</div>
-                    <div style="font-size: 2.2rem; font-weight: 800; color: #0f172a;">14 590 Kč</div>
+                    <div style="color: #64748b; font-size: 0.95rem; margin-bottom: 0.5rem; font-weight: 600;">TrĹľby za 30 dnĂ­</div>
+                    <div style="font-size: 2.2rem; font-weight: 800; color: #0f172a;">14 590 KÄŤ</div>
                 </div>
                 <div class="card">
-                    <div style="color: #64748b; font-size: 0.95rem; margin-bottom: 0.5rem; font-weight: 600;">Čekající objednávky</div>
+                    <div style="color: #64748b; font-size: 0.95rem; margin-bottom: 0.5rem; font-weight: 600;">ÄŚekajĂ­cĂ­ objednĂˇvky</div>
                     <div style="font-size: 2.2rem; font-weight: 800; color: #f59e0b;">5</div>
                 </div>
                 <div class="card">
-                    <div style="color: #64748b; font-size: 0.95rem; margin-bottom: 0.5rem; font-weight: 600;">Aktivní produkty</div>
+                    <div style="color: #64748b; font-size: 0.95rem; margin-bottom: 0.5rem; font-weight: 600;">AktivnĂ­ produkty</div>
                     <div style="font-size: 2.2rem; font-weight: 800; color: #0f172a;">6</div>
                 </div>
             </div>
@@ -114,14 +115,14 @@
         <!-- Tab: Products -->
         <div id="products" class="admin-section">
             <div class="header">
-                <h1 class="title">Správa produktů</h1>
-                <button class="btn btn-primary" onclick="openAddModal()">+ Přidat nový produkt</button>
+                <h1 class="title">SprĂˇva produktĹŻ</h1>
+                <button class="btn btn-primary" onclick="openAddModal()">+ PĹ™idat novĂ˝ produkt</button>
             </div>
             <div class="card" style="padding: 0; overflow: hidden;">
                 <table class="table">
                     <thead style="background: #f8fafc;">
                         <tr>
-                            <th>Název produktu</th>
+                            <th>NĂˇzev produktu</th>
                             <th>Kategorie</th>
                             <th>Cena</th>
                             <th>Sklad</th>
@@ -130,27 +131,27 @@
                         </tr>
                     </thead>
                     <tbody id="products-tbody">
-                        <tr><td colspan="6" style="text-align: center; color: #64748b; padding: 3rem;">Načítám produkty...</td></tr>
+                        <tr><td colspan="6" style="text-align: center; color: #64748b; padding: 3rem;">NaÄŤĂ­tĂˇm produkty...</td></tr>
                     </tbody>
                 </table>
             </div>
             <p style="color: #64748b; font-size: 0.9rem;">
-                <em>Poznámka: Tabulka nyní čerpá živá data z <strong>Supabase</strong>! Přidáním/úpravou produktu ihned změníte data v cloudové databázi.</em>
+                <em>PoznĂˇmka: Tabulka nynĂ­ ÄŤerpĂˇ ĹľivĂˇ data z <strong>Supabase</strong>! PĹ™idĂˇnĂ­m/Ăşpravou produktu ihned zmÄ›nĂ­te data v cloudovĂ© databĂˇzi.</em>
             </p>
         </div>
         
         <!-- Tab: Orders -->
         <div id="orders" class="admin-section">
             <div class="header">
-                <h1 class="title">Správa objednávek</h1>
-                <button class="btn btn-primary" onclick="loadOrders()">🔄 Obnovit seznam</button>
+                <h1 class="title">SprĂˇva objednĂˇvek</h1>
+                <button class="btn btn-primary" onclick="loadOrders()">đź”„ Obnovit seznam</button>
             </div>
             <div class="card" style="padding: 0; overflow: hidden;">
                 <table class="table">
                     <thead style="background: #f8fafc;">
                         <tr>
                             <th>Datum a ID</th>
-                            <th>Zákazník</th>
+                            <th>ZĂˇkaznĂ­k</th>
                             <th>Items</th>
                             <th>Celkem</th>
                             <th>Status</th>
@@ -158,7 +159,30 @@
                         </tr>
                     </thead>
                     <tbody id="orders-tbody">
-                        <tr><td colspan="6" style="text-align: center; color: #64748b; padding: 3rem;">Načítám objednávky...</td></tr>
+                        <tr><td colspan="6" style="text-align: center; color: #64748b; padding: 3rem;">NaÄŤĂ­tĂˇm objednĂˇvky...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+                <!-- Tab: E-mails -->
+        <div id="emails" class="admin-section">
+            <div class="header">
+                <h1 class="title">E-maily a šablony</h1>
+                <button class="btn btn-primary" onclick="loadEmails()">🔄 Obnovit</button>
+            </div>
+            <div class="card" style="padding: 0; overflow: hidden;">
+                <table class="table">
+                    <thead style="background: #f8fafc;">
+                        <tr>
+                            <th>ID Šablony</th>
+                            <th>Předmět</th>
+                            <th>Přílohy</th>
+                            <th>Akce</th>
+                        </tr>
+                    </thead>
+                    <tbody id="emails-tbody">
+                        <tr><td colspan="4" style="text-align: center; color: #64748b; padding: 3rem;">Načítám šablony...</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -168,42 +192,42 @@
         <div id="shipping" class="admin-section">
             <div class="header">
                 <h1 class="title">Doprava a Integrace</h1>
-                <button class="btn btn-primary">Uložit změny v ceníku</button>
+                <button class="btn btn-primary">UloĹľit zmÄ›ny v cenĂ­ku</button>
             </div>
             
             <div class="card">
-                <h2 class="card-title">Ceník dopravy pro zákazníky</h2>
+                <h2 class="card-title">CenĂ­k dopravy pro zĂˇkaznĂ­ky</h2>
                 <div class="form-row">
                     <label class="form-label">Doprava ZDARMA od:</label>
-                    <input type="number" class="form-input" value="599"> <span style="font-weight:600;">Kč</span>
+                    <input type="number" class="form-input" value="599"> <span style="font-weight:600;">KÄŤ</span>
                 </div>
                 <div class="form-row">
-                    <label class="form-label">Cena - Zásilkovna:</label>
-                    <input type="number" class="form-input" value="79"> <span style="font-weight:600;">Kč</span>
+                    <label class="form-label">Cena - ZĂˇsilkovna:</label>
+                    <input type="number" class="form-input" value="79"> <span style="font-weight:600;">KÄŤ</span>
                 </div>
             </div>
 
-            <h2 class="card-title" style="margin-top: 3rem; margin-bottom: 2rem;">Napojení na dopravce (API)</h2>
+            <h2 class="card-title" style="margin-top: 3rem; margin-bottom: 2rem;">NapojenĂ­ na dopravce (API)</h2>
             <div class="integrations">
                 <div class="integration-card" style="border-color: #e3001b;">
-                    <div class="integration-name" style="color: #e3001b;">Zásilkovna</div>
-                    <span class="status active">API Připojeno</span>
-                    <button class="btn" style="background: #f1f5f9; color: #334155; width: 100%; margin-top: auto;">Spravovat klíče</button>
+                    <div class="integration-name" style="color: #e3001b;">ZĂˇsilkovna</div>
+                    <span class="status active">API PĹ™ipojeno</span>
+                    <button class="btn" style="background: #f1f5f9; color: #334155; width: 100%; margin-top: auto;">Spravovat klĂ­ÄŤe</button>
                 </div>
                 <div class="integration-card">
-                    <div class="integration-name" style="color: #f59e0b;">Balíkovna</div>
+                    <div class="integration-name" style="color: #f59e0b;">BalĂ­kovna</div>
                     <span class="status inactive">Odpojeno</span>
-                    <button class="btn" style="background: #f1f5f9; color: #334155; width: 100%; margin-top: auto;">Zadat API klíč</button>
+                    <button class="btn" style="background: #f1f5f9; color: #334155; width: 100%; margin-top: auto;">Zadat API klĂ­ÄŤ</button>
                 </div>
                 <div class="integration-card">
                     <div class="integration-name" style="color: #0ea5e9;">PPL</div>
                     <span class="status inactive">Odpojeno</span>
-                    <button class="btn" style="background: #f1f5f9; color: #334155; width: 100%; margin-top: auto;">Zadat API klíč</button>
+                    <button class="btn" style="background: #f1f5f9; color: #334155; width: 100%; margin-top: auto;">Zadat API klĂ­ÄŤ</button>
                 </div>
                 <div class="integration-card">
                     <div class="integration-name" style="color: #ef4444;">DPD</div>
                     <span class="status inactive">Odpojeno</span>
-                    <button class="btn" style="background: #f1f5f9; color: #334155; width: 100%; margin-top: auto;">Zadat API klíč</button>
+                    <button class="btn" style="background: #f1f5f9; color: #334155; width: 100%; margin-top: auto;">Zadat API klĂ­ÄŤ</button>
                 </div>
             </div>
         </div>
@@ -215,24 +239,24 @@
 <div class="modal-overlay" id="product-modal">
     <div class="modal">
         <div class="modal-header">
-            <h2 class="modal-title" id="modal-title">Přidat produkt</h2>
-            <button class="modal-close" onclick="closeModal()">×</button>
+            <h2 class="modal-title" id="modal-title">PĹ™idat produkt</h2>
+            <button class="modal-close" onclick="closeModal()">Ă—</button>
         </div>
         <form id="product-form" onsubmit="saveProduct(event)" style="display: flex; flex-direction: column; flex: 1; overflow: hidden; margin: 0;">
             <div class="modal-body">
                 <input type="hidden" id="product-id">
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
                     <div class="form-col" style="grid-column: 1 / -1; margin-bottom: 0;">
-                        <label>Název produktu</label>
+                        <label>NĂˇzev produktu</label>
                         <input type="text" id="product-title" required>
                     </div>
                     <div class="form-col" style="grid-column: 1 / -1; margin-bottom: 0;">
-                        <label>Základní popis (zobrazí se na kartě) <small id="char-count-desc" style="float:right; color:#94a3b8; font-weight:400;">max. 500 znaků</small></label>
+                        <label>ZĂˇkladnĂ­ popis (zobrazĂ­ se na kartÄ›) <small id="char-count-desc" style="float:right; color:#94a3b8; font-weight:400;">max. 500 znakĹŻ</small></label>
                         <textarea id="product-description" rows="2" style="resize: vertical;" required maxlength="500"></textarea>
                     </div>
                     <div class="form-col" style="grid-column: 1 / -1; margin-bottom: 0;">
-                        <label>Podrobný popis (zobrazí se v detailu) <small id="char-count-full" style="float:right; color:#94a3b8; font-weight:400;">max. 2000 znaků</small></label>
-                        <textarea id="product-full-description" rows="5" style="resize: vertical;" placeholder="Nechte prázdné pro použití základního popisu..." maxlength="2000"></textarea>
+                        <label>PodrobnĂ˝ popis (zobrazĂ­ se v detailu) <small id="char-count-full" style="float:right; color:#94a3b8; font-weight:400;">max. 2000 znakĹŻ</small></label>
+                        <textarea id="product-full-description" rows="5" style="resize: vertical;" placeholder="Nechte prĂˇzdnĂ© pro pouĹľitĂ­ zĂˇkladnĂ­ho popisu..." maxlength="2000"></textarea>
                     </div>
                     <div class="form-col" style="margin-bottom: 0;">
                         <label>Kategorie</label>
@@ -241,12 +265,12 @@
                     <div class="form-col" style="margin-bottom: 0;">
                         <label>Status</label>
                         <select id="product-status">
-                            <option value="active">Aktivní na webu</option>
-                            <option value="inactive">Skryté</option>
+                            <option value="active">AktivnĂ­ na webu</option>
+                            <option value="inactive">SkrytĂ©</option>
                         </select>
                     </div>
                     <div class="form-col" style="margin-bottom: 0;">
-                        <label>Cena (Kč)</label>
+                        <label>Cena (KÄŤ)</label>
                         <input type="number" id="product-price" required>
                     </div>
                     <div class="form-col" style="margin-bottom: 0;">
@@ -254,29 +278,188 @@
                         <input type="number" id="product-stock" required>
                     </div>
                     <div class="form-col" style="grid-column: 1 / -1; margin-bottom: 0;">
-                        <label>Odkazy na obrázky <small style="font-weight:400; color:#64748b;">(URL adresy – jeden na každý řádek)</small></label>
-                        <textarea id="product-images" rows="3" placeholder="např. https://ttwyryduxqfssyetqhxw.supabase.co/storage/v1/object/public/products/image.jpg" style="resize: vertical;"></textarea>
+                        <label>Odkazy na obrĂˇzky <small style="font-weight:400; color:#64748b;">(URL adresy â€“ jeden na kaĹľdĂ˝ Ĺ™Ăˇdek)</small></label>
+                        <textarea id="product-images" rows="3" placeholder="napĹ™. https://ttwyryduxqfssyetqhxw.supabase.co/storage/v1/object/public/products/image.jpg" style="resize: vertical;"></textarea>
                         
                         <div style="margin-top: 0.8rem; padding: 1.5rem; border: 2px dashed #cbd5e1; border-radius: 8px; text-align: center; background: #f8fafc; transition: all 0.2s;">
                             <label style="cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; color: var(--color-primary); font-weight: 700;">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
-                                <span>Klikněte pro nahrání obrázků do Supabase</span>
+                                <span>KliknÄ›te pro nahrĂˇnĂ­ obrĂˇzkĹŻ do Supabase</span>
                                 <input type="file" id="product-image-upload" accept="image/*" multiple style="display: none;" onchange="handleImageUpload(event)">
                             </label>
-                            <div id="upload-status" style="font-size: 0.85rem; color: #64748b; margin-top: 0.5rem; font-weight: 600;">Nebo můžete vložit existující odkaz manuálně nahoře.</div>
+                            <div id="upload-status" style="font-size: 0.85rem; color: #64748b; margin-top: 0.5rem; font-weight: 600;">Nebo mĹŻĹľete vloĹľit existujĂ­cĂ­ odkaz manuĂˇlnÄ› nahoĹ™e.</div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn" style="background: #f1f5f9; color: #334155;" onclick="closeModal()">Zrušit</button>
-                <button type="submit" class="btn btn-primary">Uložit produkt</button>
+                <button type="button" class="btn" style="background: #f1f5f9; color: #334155;" onclick="closeModal()">ZruĹˇit</button>
+                <button type="submit" class="btn btn-primary">UloĹľit produkt</button>
             </div>
         </form>
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!-- Edit Email Modal -->
+<div class="modal-overlay" id="email-modal">
+    <div class="modal" style="width: 700px;">
+        <div class="modal-header">
+            <h2 class="modal-title">Upravit šablonu</h2>
+            <button class="modal-close" onclick="closeEmailModal()">×</button>
+        </div>
+        <form id="email-form" onsubmit="saveEmail(event)" style="display: flex; flex-direction: column; flex: 1; overflow: hidden; margin: 0;">
+            <div class="modal-body">
+                <input type="hidden" id="email-id">
+                
+                <div class="form-col">
+                    <label>Předmět e-mailu</label>
+                    <input type="text" id="email-subject" required>
+                </div>
+                
+                <div class="form-col">
+                    <label>Text e-mailu (podporuje HTML)</label>
+                    <textarea id="email-body" rows="12" style="font-family: monospace; font-size: 0.9rem;" required></textarea>
+                </div>
+                
+                <div class="form-col">
+                    <label>Přílohy <small style="font-weight:400; color:#64748b;">(URL adresy nebo názvy souborů – jeden na každý řádek)</small></label>
+                    <textarea id="email-attachments" rows="3" placeholder="např. obchodni_podminky.pdf"></textarea>
+                    
+                    <div style="margin-top: 0.8rem; padding: 1.5rem; border: 2px dashed #cbd5e1; border-radius: 8px; text-align: center; background: #f8fafc; transition: all 0.2s;">
+                        <label style="cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; color: var(--color-primary); font-weight: 700;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                            <span>Klikněte pro nahrání PDF souboru</span>
+                            <input type="file" id="email-file-upload" accept="application/pdf" multiple style="display: none;" onchange="handleEmailFileUpload(event)">
+                        </label>
+                        <div id="email-upload-status" style="font-size: 0.85rem; color: #64748b; margin-top: 0.5rem; font-weight: 600;">Nebo můžete napsat odkaz/název manuálně nahoře.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn" style="background: #f1f5f9; color: #334155;" onclick="closeEmailModal()">Zrušit</button>
+                <button type="submit" class="btn btn-primary">Uložit šablonu</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">    let currentEmails = [];
+
+    async function loadEmails() {
+        const tbody = document.getElementById('emails-tbody');
+        tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: #64748b; padding: 2rem;">Načítám šablony...</td></tr>';
+        
+        try {
+            const { data, error } = await window.supabase.from('email_templates').select('*').order('id', { ascending: true });
+            if (error) throw error;
+            
+            currentEmails = data || [];
+            if (currentEmails.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: #64748b; padding: 2rem;">Zatím žádné šablony e-mailů. Vytvořte je pomocí SQL skriptu.</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = currentEmails.map(e => {
+                const attachCount = Array.isArray(e.default_attachments) ? e.default_attachments.length : 0;
+                return 
+                <tr>
+                    <td><strong> + e.id + </strong></td>
+                    <td> + e.subject + </td>
+                    <td><span class="status \"> + attachCount +  souborů</span></td>
+                    <td>
+                        <button class="btn" style="background: #f1f5f9; padding: 0.4rem 0.8rem; font-size: 0.75rem;" onclick="openEmailModal(' + e.id + ')">Upravit</button>
+                    </td>
+                </tr>
+                ;
+            }).join('');
+        } catch (e) {
+            console.error(e);
+            tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: #ef4444; padding: 2rem;">Chyba: ' + e.message + '</td></tr>';
+        }
+    }
+
+    function openEmailModal(id) {
+        const email = currentEmails.find(e => e.id === id);
+        if (!email) return;
+
+        document.getElementById('email-id').value = email.id;
+        document.getElementById('email-subject').value = email.subject || '';
+        document.getElementById('email-body').value = email.body_html || '';
+        document.getElementById('email-attachments').value = (email.default_attachments || []).join('\n');
+        
+        document.getElementById('email-modal').classList.add('active');
+    }
+
+    function closeEmailModal() {
+        document.getElementById('email-modal').classList.remove('active');
+        document.getElementById('email-upload-status').innerText = 'Nebo můžete napsat odkaz/název manuálně nahoře.';
+        document.getElementById('email-upload-status').style.color = '#64748b';
+    }
+
+    async function handleEmailFileUpload(e) {
+        const files = e.target.files;
+        if (!files || files.length === 0) return;
+        
+        const statusEl = document.getElementById('email-upload-status');
+        const attachmentsTextarea = document.getElementById('email-attachments');
+        
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            const safeName = file.name.replace(/[^a-zA-Z0-9.\-_]/g, '_');
+            const fileName = \_\;
+            
+            statusEl.innerText = Nahrávám (\/\): \...;
+            statusEl.style.color = '#f59e0b';
+            
+            try {
+                const { error: uploadError } = await window.supabase.storage
+                    .from('email_attachments')
+                    .upload(fileName, file);
+
+                if (uploadError) throw uploadError;
+                
+                const { data } = window.supabase.storage
+                    .from('email_attachments')
+                    .getPublicUrl(fileName);
+                
+                const currentUrls = attachmentsTextarea.value ? attachmentsTextarea.value.trim().split('\n') : [];
+                currentUrls.push(data.publicUrl);
+                attachmentsTextarea.value = currentUrls.join('\n');
+                
+            } catch (error) {
+                console.error("Chyba při nahrávání:", error);
+                alert(Nelze nahrát soubor \: \n\n\);
+            }
+        }
+        
+        statusEl.innerText = Paráda! PDF nahrána.;
+        statusEl.style.color = '#10b981';
+        e.target.value = '';
+    }
+
+    async function saveEmail(e) {
+        e.preventDefault();
+        
+        const id = document.getElementById('email-id').value;
+        const rawAttachments = document.getElementById('email-attachments').value.split('\n');
+        const attachmentsArray = rawAttachments.map(url => url.trim()).filter(url => url !== '');
+
+        const payload = {
+            subject: document.getElementById('email-subject').value,
+            body_html: document.getElementById('email-body').value,
+            default_attachments: attachmentsArray
+        };
+
+        try {
+            const { error } = await window.supabase.from('email_templates').update(payload).eq('id', id);
+            if (error) throw error;
+            closeEmailModal();
+            loadEmails();
+        } catch (error) {
+            alert('Chyba při zapisu do databáze: ' + error.message);
+        }
+    }
+</script>
 <script>
     const supabaseUrl = 'https://ttwyryduxqfssyetqhxw.supabase.co';
     const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR0d3lyeWR1eHFmc3N5ZXRxaHh3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ1MzU1ODcsImV4cCI6MjA4MDExMTU4N30.FvW-ejXi8XC4juPYKZkW2lS0CL6ui8bmP9mJblxGvp8';
@@ -293,18 +476,19 @@
         
         if(tabId === 'products') loadProducts();
         if(tabId === 'orders') loadOrders();
+        if(tabId === 'emails') loadEmails();
     }
 
     async function loadOrders() {
         const tbody = document.getElementById('orders-tbody');
-        tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: #64748b; padding: 2rem;">Načítám objednávky...</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: #64748b; padding: 2rem;">NaÄŤĂ­tĂˇm objednĂˇvky...</td></tr>';
         
         try {
             const { data, error } = await window.supabase.from('orders').select('*').order('created_at', { ascending: false });
             if (error) throw error;
             
             if (!data || data.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: #64748b; padding: 2rem;">Zatím žádné objednávky.</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: #64748b; padding: 2rem;">ZatĂ­m ĹľĂˇdnĂ© objednĂˇvky.</td></tr>';
                 return;
             }
 
@@ -322,15 +506,15 @@
                         <div style="font-weight: 600;">${o.customer_name}</div>
                         <div style="font-size: 0.8rem; color: #64748b;">${o.customer_email}</div>
                     </td>
-                    <td style="font-size: 0.85rem;">${itemsCount} položek</td>
-                    <td style="font-weight: 700; color: var(--color-primary);">${o.total_price} Kč</td>
+                    <td style="font-size: 0.85rem;">${itemsCount} poloĹľek</td>
+                    <td style="font-weight: 700; color: var(--color-primary);">${o.total_price} KÄŤ</td>
                     <td>
                         <select onchange="changeOrderStatus('${o.id}', this.value)" style="width: auto; padding: 0.3rem 0.6rem; font-size: 0.8rem; height: auto;">
-                            <option value="new" ${o.status === 'new' ? 'selected' : ''}>Nová</option>
-                            <option value="processing" ${o.status === 'processing' ? 'selected' : ''}>Zpracovává se</option>
-                            <option value="shipped" ${o.status === 'shipped' ? 'selected' : ''}>Odesláno</option>
+                            <option value="new" ${o.status === 'new' ? 'selected' : ''}>NovĂˇ</option>
+                            <option value="processing" ${o.status === 'processing' ? 'selected' : ''}>ZpracovĂˇvĂˇ se</option>
+                            <option value="shipped" ${o.status === 'shipped' ? 'selected' : ''}>OdeslĂˇno</option>
                             <option value="completed" ${o.status === 'completed' ? 'selected' : ''}>Hotovo</option>
-                            <option value="cancelled" ${o.status === 'cancelled' ? 'selected' : ''}>Zrušeno</option>
+                            <option value="cancelled" ${o.status === 'cancelled' ? 'selected' : ''}>ZruĹˇeno</option>
                         </select>
                     </td>
                     <td>
@@ -351,17 +535,17 @@
             if (error) throw error;
             // success style update or reload
         } catch (error) {
-            alert('Chyba při změně stavu: ' + error.message);
+            alert('Chyba pĹ™i zmÄ›nÄ› stavu: ' + error.message);
         }
     }
 
     function viewOrderDetails(id) {
-        alert('Detail objednávky ' + id + ' bude v příští verzi. Zatím se podívejte do Supabase :)');
+        alert('Detail objednĂˇvky ' + id + ' bude v pĹ™Ă­ĹˇtĂ­ verzi. ZatĂ­m se podĂ­vejte do Supabase :)');
     }
 
     async function loadProducts() {
         const tbody = document.getElementById('products-tbody');
-        tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: #64748b; padding: 2rem;">Načítám z databáze...</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: #64748b; padding: 2rem;">NaÄŤĂ­tĂˇm z databĂˇze...</td></tr>';
         
         try {
             const { data, error } = await window.supabase.from('products').select('*').order('id', { ascending: true });
@@ -369,7 +553,7 @@
             
             currentProducts = data || [];
             if (currentProducts.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: #64748b; padding: 2rem;">Tabulka "products" je zatím prázdná, nebo ještě neexistuje v Supabase databázi. Vytvořte ji a přidejte produkty.</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: #64748b; padding: 2rem;">Tabulka "products" je zatĂ­m prĂˇzdnĂˇ, nebo jeĹˇtÄ› neexistuje v Supabase databĂˇzi. VytvoĹ™te ji a pĹ™idejte produkty.</td></tr>';
                 return;
             }
 
@@ -377,9 +561,9 @@
                 <tr>
                     <td><strong>${p.title}</strong></td>
                     <td>${p.category || '-'}</td>
-                    <td>${p.price} Kč</td>
+                    <td>${p.price} KÄŤ</td>
                     <td>${p.stock} ks</td>
-                    <td><span class="status ${p.status === 'active' ? 'active' : 'inactive'}">${p.status === 'active' ? 'Aktivní' : 'Skryto'}</span></td>
+                    <td><span class="status ${p.status === 'active' ? 'active' : 'inactive'}">${p.status === 'active' ? 'AktivnĂ­' : 'Skryto'}</span></td>
                     <td style="display: flex; gap: 0.75rem;">
                         <a href="javascript:void(0)" onclick="openEditModal('${p.id}')" style="color: var(--color-primary); font-weight:600; text-decoration: none;">Upravit</a>
                         <a href="javascript:void(0)" onclick="deleteProduct('${p.id}')" style="color: #ef4444; font-weight:600; text-decoration: none;">Smazat</a>
@@ -388,12 +572,12 @@
             `).join('');
         } catch (e) {
             console.error(e);
-            tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: #ef4444; padding: 2rem;">Chyba při stahování: ${e.message}.<br><span style="font-size:0.9rem; color:#64748b; margin-top:0.5rem; display:block;">Pravděpodobně v Supabase ještě <strong>nemáte vytvořenou tabulku "products"</strong> s povolenými RLS pravidly.</span></td></tr>`;
+            tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: #ef4444; padding: 2rem;">Chyba pĹ™i stahovĂˇnĂ­: ${e.message}.<br><span style="font-size:0.9rem; color:#64748b; margin-top:0.5rem; display:block;">PravdÄ›podobnÄ› v Supabase jeĹˇtÄ› <strong>nemĂˇte vytvoĹ™enou tabulku "products"</strong> s povolenĂ˝mi RLS pravidly.</span></td></tr>`;
         }
     }
 
     function openAddModal() {
-        document.getElementById('modal-title').innerText = 'Přidat nový produkt';
+        document.getElementById('modal-title').innerText = 'PĹ™idat novĂ˝ produkt';
         document.getElementById('product-form').reset();
         document.getElementById('product-id').value = '';
         document.getElementById('product-modal').classList.add('active');
@@ -419,7 +603,7 @@
 
     function closeModal() {
         document.getElementById('product-modal').classList.remove('active');
-        document.getElementById('upload-status').innerText = 'Nebo můžete vložit existující odkaz manuálně nahoře.';
+        document.getElementById('upload-status').innerText = 'Nebo mĹŻĹľete vloĹľit existujĂ­cĂ­ odkaz manuĂˇlnÄ› nahoĹ™e.';
         document.getElementById('upload-status').style.color = '#64748b';
     }
 
@@ -435,36 +619,36 @@
             const fileExt = file.name.split('.').pop();
             const fileName = `${Math.random().toString(36).substring(2, 15)}_${Date.now()}.${fileExt}`;
             
-            statusEl.innerText = `Nahrávám z vašeho počítače (${i+1}/${files.length}): ${file.name}...`;
+            statusEl.innerText = `NahrĂˇvĂˇm z vaĹˇeho poÄŤĂ­taÄŤe (${i+1}/${files.length}): ${file.name}...`;
             statusEl.style.color = '#f59e0b'; // orange warning logic color
             
             try {
-                // Přímý upload do Supabase Storage
+                // PĹ™Ă­mĂ˝ upload do Supabase Storage
                 const { error: uploadError } = await window.supabase.storage
                     .from('products')
                     .upload(fileName, file);
 
                 if (uploadError) throw uploadError;
                 
-                // Získání veřejné URL adresy vygenerované cloudem
+                // ZĂ­skĂˇnĂ­ veĹ™ejnĂ© URL adresy vygenerovanĂ© cloudem
                 const { data } = window.supabase.storage
                     .from('products')
                     .getPublicUrl(fileName);
                 
-                // Automatické dopsání adresy do textového pole
+                // AutomatickĂ© dopsĂˇnĂ­ adresy do textovĂ©ho pole
                 const currentUrls = imagesTextarea.value ? imagesTextarea.value.trim().split('\n') : [];
                 currentUrls.push(data.publicUrl);
                 imagesTextarea.value = currentUrls.join('\n');
                 
             } catch (error) {
-                console.error("Chyba při nahrávání:", error);
-                alert(`Nelze nahrát fotku ${file.name}: \n\n${error.message}\n\nMáte vytvořenou veřejnou (Public) složku "products" v sekci Supabase "Storage" s vhodnými policies?`);
+                console.error("Chyba pĹ™i nahrĂˇvĂˇnĂ­:", error);
+                alert(`Nelze nahrĂˇt fotku ${file.name}: \n\n${error.message}\n\nMĂˇte vytvoĹ™enou veĹ™ejnou (Public) sloĹľku "products" v sekci Supabase "Storage" s vhodnĂ˝mi policies?`);
             }
         }
         
-        statusEl.innerText = `Paráda! Obrázky vloženy do systému. (Zkontrolujte políčko nahoře)`;
+        statusEl.innerText = `ParĂˇda! ObrĂˇzky vloĹľeny do systĂ©mu. (Zkontrolujte polĂ­ÄŤko nahoĹ™e)`;
         statusEl.style.color = '#10b981'; // green success
-        e.target.value = ''; // umožní nahrát znovu ten samý soubor
+        e.target.value = ''; // umoĹľnĂ­ nahrĂˇt znovu ten samĂ˝ soubor
     }
 
     async function saveProduct(e) {
@@ -498,21 +682,137 @@
             closeModal();
             loadProducts();
         } catch (error) {
-            alert('Chyba při zapisu do databáze: ' + error.message);
+            alert('Chyba pĹ™i zapisu do databĂˇze: ' + error.message);
         }
     }
 
     async function deleteProduct(id) {
-        if (!confirm('Opravdu chcete tento produkt smazat? Změna se ihned projeví v databázi.')) return;
+        if (!confirm('Opravdu chcete tento produkt smazat? ZmÄ›na se ihned projevĂ­ v databĂˇzi.')) return;
         try {
             const { error } = await window.supabase.from('products').delete().eq('id', id);
             if (error) throw error;
             loadProducts();
         } catch (error) {
-            alert('Chyba při mazání: ' + error.message);
+            alert('Chyba pĹ™i mazĂˇnĂ­: ' + error.message);
         }
     }
 
-    // Pro initial startup (protože tab je už otevřený z HTML, JS načte dashboard)
-    // Pokud bychom chtěli rovnou produkty: switchTab('products', document.querySelectorAll('.nav-item')[1])
+    // Pro initial startup (protoĹľe tab je uĹľ otevĹ™enĂ˝ z HTML, JS naÄŤte dashboard)
+    // Pokud bychom chtÄ›li rovnou produkty: switchTab('products', document.querySelectorAll('.nav-item')[1])
+    let currentEmails = [];
+
+    async function loadEmails() {
+        const tbody = document.getElementById('emails-tbody');
+        tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: #64748b; padding: 2rem;">Načítám šablony...</td></tr>';
+        
+        try {
+            const { data, error } = await window.supabase.from('email_templates').select('*').order('id', { ascending: true });
+            if (error) throw error;
+            
+            currentEmails = data || [];
+            if (currentEmails.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: #64748b; padding: 2rem;">Zatím žádné šablony e-mailů. Vytvořte je pomocí SQL skriptu.</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = currentEmails.map(e => {
+                const attachCount = Array.isArray(e.default_attachments) ? e.default_attachments.length : 0;
+                return 
+                <tr>
+                    <td><strong> + e.id + </strong></td>
+                    <td> + e.subject + </td>
+                    <td><span class="status \"> + attachCount +  souborů</span></td>
+                    <td>
+                        <button class="btn" style="background: #f1f5f9; padding: 0.4rem 0.8rem; font-size: 0.75rem;" onclick="openEmailModal(' + e.id + ')">Upravit</button>
+                    </td>
+                </tr>
+                ;
+            }).join('');
+        } catch (e) {
+            console.error(e);
+            tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: #ef4444; padding: 2rem;">Chyba: ' + e.message + '</td></tr>';
+        }
+    }
+
+    function openEmailModal(id) {
+        const email = currentEmails.find(e => e.id === id);
+        if (!email) return;
+
+        document.getElementById('email-id').value = email.id;
+        document.getElementById('email-subject').value = email.subject || '';
+        document.getElementById('email-body').value = email.body_html || '';
+        document.getElementById('email-attachments').value = (email.default_attachments || []).join('\n');
+        
+        document.getElementById('email-modal').classList.add('active');
+    }
+
+    function closeEmailModal() {
+        document.getElementById('email-modal').classList.remove('active');
+        document.getElementById('email-upload-status').innerText = 'Nebo můžete napsat odkaz/název manuálně nahoře.';
+        document.getElementById('email-upload-status').style.color = '#64748b';
+    }
+
+    async function handleEmailFileUpload(e) {
+        const files = e.target.files;
+        if (!files || files.length === 0) return;
+        
+        const statusEl = document.getElementById('email-upload-status');
+        const attachmentsTextarea = document.getElementById('email-attachments');
+        
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            const safeName = file.name.replace(/[^a-zA-Z0-9.\-_]/g, '_');
+            const fileName = \_\;
+            
+            statusEl.innerText = Nahrávám (\/\): \...;
+            statusEl.style.color = '#f59e0b';
+            
+            try {
+                const { error: uploadError } = await window.supabase.storage
+                    .from('email_attachments')
+                    .upload(fileName, file);
+
+                if (uploadError) throw uploadError;
+                
+                const { data } = window.supabase.storage
+                    .from('email_attachments')
+                    .getPublicUrl(fileName);
+                
+                const currentUrls = attachmentsTextarea.value ? attachmentsTextarea.value.trim().split('\n') : [];
+                currentUrls.push(data.publicUrl);
+                attachmentsTextarea.value = currentUrls.join('\n');
+                
+            } catch (error) {
+                console.error("Chyba při nahrávání:", error);
+                alert(Nelze nahrát soubor \: \n\n\);
+            }
+        }
+        
+        statusEl.innerText = Paráda! PDF nahrána.;
+        statusEl.style.color = '#10b981';
+        e.target.value = '';
+    }
+
+    async function saveEmail(e) {
+        e.preventDefault();
+        
+        const id = document.getElementById('email-id').value;
+        const rawAttachments = document.getElementById('email-attachments').value.split('\n');
+        const attachmentsArray = rawAttachments.map(url => url.trim()).filter(url => url !== '');
+
+        const payload = {
+            subject: document.getElementById('email-subject').value,
+            body_html: document.getElementById('email-body').value,
+            default_attachments: attachmentsArray
+        };
+
+        try {
+            const { error } = await window.supabase.from('email_templates').update(payload).eq('id', id);
+            if (error) throw error;
+            closeEmailModal();
+            loadEmails();
+        } catch (error) {
+            alert('Chyba při zapisu do databáze: ' + error.message);
+        }
+    }
 </script>

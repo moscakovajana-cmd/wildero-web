@@ -370,6 +370,15 @@ async function submitOrder(e) {
             return;
         }
         
+        // Pro dobírku nebo převod rovnou odešleme potvrzovací e-mail
+        try {
+            await supabaseClient.functions.invoke('shop-order-email', {
+                body: { orderId: insertedOrder.id }
+            });
+        } catch (emailErr) {
+            console.error("Chyba při odesílání e-mailu:", emailErr);
+        }
+
         // Úspěch (dobírka nebo převod)
         cart = {};
         saveCart();

@@ -356,6 +356,7 @@ async function submitOrder(e) {
             const { data: gopayData, error: gopayError } = await supabaseClient.functions.invoke('create-gopay-order', {
                 body: {
                     orderId: insertedOrder.id,
+                    orderNumber: insertedOrder.order_number,
                     totalPrice: totalPrice,
                     customerEmail: finalPayload.customer_email
                 }

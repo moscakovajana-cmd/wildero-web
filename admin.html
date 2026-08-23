@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="cs">
 <head>
     <meta charset="UTF-8">
@@ -660,6 +660,7 @@
             const { data, error } = await window.supabase.from('orders').select('*').order('created_at', { ascending: false });
             if (error) throw error;
             
+            currentOrders = data || [];
             if (!data || data.length === 0) {
                 tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: #64748b; padding: 2rem;">ZatĂ­m ĹľĂˇdnĂ© objednĂˇvky.</td></tr>';
                 return;
@@ -673,7 +674,7 @@
                 <tr>
                     <td>
                         <div style="font-weight: 700; font-size: 0.85rem;">${date}</div>
-                        <div style="font-size: 0.75rem; color: #64748b;">ID: ${o.id.substring(0,8)}...</div>
+                        <div style="font-size: 0.75rem; color: #64748b;">Číslo: ${o.order_number || o.id.substring(0,8)}</div>
                     </td>
                     <td>
                         <div style="font-weight: 600;">${o.customer_name}</div>
@@ -712,8 +713,55 @@
         }
     }
 
-    function viewOrderDetails(id) {
-        alert('Detail objednĂˇvky ' + id + ' bude v pĹ™Ă­ĹˇtĂ­ verzi. ZatĂ­m se podĂ­vejte do Supabase :)');
+        let currentOrders = [];
+    async function viewOrderDetails(id) {
+        const order = currentOrders.find(o => o.id === id);
+        if (!order) return;
+        
+        document.getElementById('order-modal-title').innerText = 'Objednávka č. ' + (order.order_number || order.id.substring(0,8));
+        
+        let itemsHtml = (order.items || []).map(i => `
+            <tr>
+                <td style="padding: 0.5rem; border-bottom: 1px solid #e2e8f0;">${i.name}</td>
+                <td style="padding: 0.5rem; border-bottom: 1px solid #e2e8f0;">${i.qty} ks</td>
+                <td style="padding: 0.5rem; border-bottom: 1px solid #e2e8f0; text-align: right; font-weight: 600;">${i.price * i.qty} Kč</td>
+            </tr>
+        `).join('');
+        
+        const html = `
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 1.5rem;">
+                <div>
+                    <h3 style="margin-bottom: 0.5rem; color: var(--color-primary); font-size: 1rem;">Zákazník</h3>
+                    <div><strong>${order.customer_name}</strong></div>
+                    <div><a href="mailto:${order.customer_email}" style="color: #0ea5e9;">${order.customer_email}</a></div>
+                    <div>${order.customer_phone || ''}</div>
+                </div>
+                <div>
+                    <h3 style="margin-bottom: 0.5rem; color: var(--color-primary); font-size: 1rem;">Doprava a Adresa</h3>
+                    <div style="margin-bottom: 0.5rem;"><span style="background: #f1f5f9; padding: 0.2rem 0.5rem; border-radius: 4px; font-weight: 600; font-size: 0.8rem;">${order.delivery_method}</span></div>
+                    <div style="white-space: pre-wrap; font-family: monospace; background: #f8fafc; padding: 0.8rem; border-radius: 6px; border: 1px solid #e2e8f0;">${order.address}</div>
+                </div>
+            </div>
+            
+            <h3 style="margin-bottom: 0.5rem; color: var(--color-primary); font-size: 1rem;">Položky objednávky</h3>
+            <table style="width: 100%; border-collapse: collapse; margin-bottom: 1rem;">
+                ${itemsHtml}
+                <tr>
+                    <td colspan="2" style="padding: 0.5rem; text-align: right;">Doprava:</td>
+                    <td style="padding: 0.5rem; text-align: right;">${order.shipping_cost || 0} Kč</td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="padding: 0.5rem; text-align: right; font-weight: 700; font-size: 1.1rem;">Celkem:</td>
+                    <td style="padding: 0.5rem; text-align: right; font-weight: 700; font-size: 1.1rem; color: var(--color-primary);">${order.total_price} Kč</td>
+                </tr>
+            </table>
+        `;
+        document.getElementById('order-modal-body').innerHTML = html;
+        document.getElementById('order-modal').classList.add('active');
+    }
+    
+    function closeOrderModal() {
+        document.getElementById('order-modal').classList.remove('active');
     }
 
     async function loadProducts() {

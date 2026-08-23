@@ -165,7 +165,7 @@ function renderCart() {
 
         // Shipping note
         if (total >= 599) {
-            cartShippingNote.textContent = '🎉 Doprava zdarma!';
+            cartShippingNote.textContent = '🌲 Doprava zdarma!';
         } else {
             const remaining = 599 - total;
             cartShippingNote.textContent = `Přidejte zboží za ${remaining} Kč a máte dopravu zdarma.`;
@@ -691,7 +691,7 @@ window.addEventListener('DOMContentLoaded', () => {
         if (successStep) {
             successStep.style.display = 'block';
             successStep.innerHTML = `
-                <div style="font-size:3rem; margin-bottom:1rem;">🎉</div>
+                <div style="font-size:3.5rem; margin-bottom:1rem;">🦊🏕️</div>
                 <h3 style="color:var(--color-primary);">Platba byla úspěšná!</h3>
                 <p style="font-size:0.9rem; margin-bottom:1.5rem;">Děkujeme za objednávku. Potvrzení vám brzy přijde na e-mail.</p>
                 <button class="btn btn--secondary" onclick="closeCart(); resetCartUI(); window.history.replaceState({}, '', 'shop.html');">Zavřít</button>

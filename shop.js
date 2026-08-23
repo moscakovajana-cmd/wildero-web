@@ -691,7 +691,12 @@ window.addEventListener('DOMContentLoaded', () => {
         if (successStep) {
             successStep.style.display = 'block';
             successStep.innerHTML = `
-                <div style="font-size:3.5rem; margin-bottom:1rem;">🦊🏕️</div>
+                <div style="color:var(--color-primary); display:flex; justify-content:center; margin-bottom:1rem;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                </div>
                 <h3 style="color:var(--color-primary);">Platba byla úspěšná!</h3>
                 <p style="font-size:0.9rem; margin-bottom:1.5rem;">Děkujeme za objednávku. Potvrzení vám brzy přijde na e-mail.</p>
                 <button class="btn btn--secondary" onclick="closeCart(); resetCartUI(); window.history.replaceState({}, '', 'shop.html');">Zavřít</button>

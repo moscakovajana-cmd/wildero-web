@@ -177,7 +177,7 @@
                     <thead style="background: #f8fafc;">
                         <tr>
                             <th>Název výpravy</th>
-                            <th>Místo</th>
+                            
                             <th>Status</th>
                             <th>Přílohy k e-mailu</th>
                             <th>Akce</th>
@@ -410,7 +410,7 @@
         tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: #64748b; padding: 2rem;">Načítám výpravy...</td></tr>';
         
         try {
-            const { data, error } = await window.supabase.from('expeditions').select('id, title, city, status, email_attachments').order('id', { ascending: true });
+            const { data, error } = await window.supabase.from('expeditions').select('id, title, status, email_attachments').order('id', { ascending: true });
             if (error) throw error;
             
             currentExpeditions = data || [];
@@ -424,7 +424,6 @@
                 return `
                 <tr>
                     <td><strong>${e.title}</strong></td>
-                    <td>${e.city || '-'}</td>
                     <td><span class="status ${e.status === 'published' ? 'active' : 'inactive'}">${e.status}</span></td>
                     <td><span class="status ${attachCount > 0 ? 'active' : 'inactive'}">${attachCount} souborů</span></td>
                     <td>
@@ -929,7 +928,7 @@ ${error.message}`);
         tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: #64748b; padding: 2rem;">Načítám výpravy...</td></tr>';
         
         try {
-            const { data, error } = await window.supabase.from('expeditions').select('id, title, city, status, email_attachments').order('id', { ascending: true });
+            const { data, error } = await window.supabase.from('expeditions').select('id, title, status, email_attachments').order('id', { ascending: true });
             if (error) throw error;
             
             currentExpeditions = data || [];
@@ -943,7 +942,6 @@ ${error.message}`);
                 return `
                 <tr>
                     <td><strong>${e.title}</strong></td>
-                    <td>${e.city || '-'}</td>
                     <td><span class="status ${e.status === 'published' ? 'active' : 'inactive'}">${e.status}</span></td>
                     <td><span class="status ${attachCount > 0 ? 'active' : 'inactive'}">${attachCount} souborů</span></td>
                     <td>

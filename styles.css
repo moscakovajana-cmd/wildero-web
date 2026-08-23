@@ -3328,3 +3328,106 @@ input:disabled+.slider {
 }
 
 
+
+/* --- ZIGZAG AUDIENCE SECTION --- */
+.section--audience {
+    position: relative;
+    padding-bottom: 8rem; /* space for the wave */
+}
+
+.audience-zigzag {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    margin-top: 3rem;
+}
+
+.audience-row {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
+.audience-row--reverse {
+    flex-direction: row-reverse;
+}
+
+.audience-row__img {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.audience-row__img img {
+    max-width: 100%;
+    max-height: 280px;
+    object-fit: contain;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.audience-row:hover .audience-row__img img {
+    transform: translateY(-8px) scale(1.02);
+}
+
+.audience-row__text {
+    flex: 1;
+}
+
+.audience-row__text .audience-title {
+    font-size: 1.8rem;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+}
+
+.audience-row__text .audience-text {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: var(--color-text-light);
+}
+
+/* --- WAVE DIVIDER --- */
+.wave-divider {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: translateY(1px); /* fix subpixel rendering gap */
+}
+
+.wave-bottom {
+    bottom: 0;
+}
+
+.wave-divider svg {
+    position: relative;
+    display: block;
+    width: calc(130% + 1.3px);
+    height: 90px;
+    transform: rotateY(180deg);
+}
+
+@media (max-width: 900px) {
+    .audience-row, .audience-row--reverse {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+    }
+    
+    .audience-row__text .audience-title {
+        font-size: 1.5rem;
+    }
+    
+    .audience-row__img img {
+        max-height: 220px;
+    }
+    
+    .audience-zigzag {
+        gap: 3.5rem;
+    }
+    
+    .section--audience {
+        padding-bottom: 6rem;
+    }
+}

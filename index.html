@@ -192,9 +192,9 @@
         </section>
 
         <!-- Audience -->
-        <section id="audience" class="section section--light" style="padding: 2rem 0;">
-            <div class="container">
-                <div class="aos" style="text-align: center; margin-bottom: 4rem;">
+        <section id="audience" class="section section--light section--audience">
+            <div class="container" style="position: relative; z-index: 2;">
+                <div class="aos" style="text-align: center; margin-bottom: 3rem;">
                     <h2 class="section__title">Pro koho je Wildero?</h2>
                     <div class="section-divider"></div>
                     <p class="text-lead" style="margin: 1.5rem auto 0; color: var(--color-text-light);">
@@ -202,86 +202,58 @@
                     </p>
                 </div>
 
-                <!-- Desktop Version (Grid) -->
-                <div class="grid grid--3 audience-grid audience-desktop-only">
-                    <!-- Block 1: Rodiny -->
-                    <div class="audience-item aos aos-delay-1">
-                        <div class="audience-icon">
-                            <img src="audience_family.png" alt="Ilustrace rodiny venku" class="audience-image">
+                <div class="audience-zigzag">
+                    <!-- Rodiny -->
+                    <div class="audience-row aos">
+                        <div class="audience-row__img">
+                            <img src="audience_family.png" alt="Ilustrace rodiny venku">
                         </div>
-                        <h3 class="audience-title">Pro rodiny s&nbsp;dětmi</h3>
-                        <p class="audience-text">
-                            Pro ty, kteří chtějí trávit čas spolu venku, ale ne vždy mají chuť vymýšlet program.<br>
-                            Wildero dá procházce směr — a&nbsp;dětem nechá prostor běhat, lézt i&nbsp;objevovat po svém.
-                        </p>
-                    </div>
-
-                    <!-- Block 2: Děti -->
-                    <div class="audience-item aos aos-delay-2">
-                        <div class="audience-icon">
-                            <img src="audience_kids.png" alt="Ilustrace dětí objevujících přírodu"
-                                class="audience-image">
-                        </div>
-                        <h3 class="audience-title">Pro zvídavé i&nbsp;divoké děti</h3>
-                        <p class="audience-text">
-                            Pro děti, které si všimnou brouka v&nbsp;trávě i&nbsp;pro ty, které potřebují běžet k&nbsp;prvnímu
-                            stromu.<br>
-                            Každé dítě si ve výpravě najde vlastní cestu.
-                        </p>
-                    </div>
-
-                    <!-- Block 3: Dospělí -->
-                    <div class="audience-item aos aos-delay-3">
-                        <div class="audience-icon">
-                            <img src="audience_adults.png" alt="Ilustrace dospělého v přírodě" class="audience-image">
-                        </div>
-                        <h3 class="audience-title">Pro dospělé, kteří si chtějí provětrat hlavu</h3>
-                        <p class="audience-text">
-                            Pro chvíle, kdy chcete jít ven, mít cíl, ale žádný tlak.<br>
-                            Výprava může být tichá, klidná — jen pro vás.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Mobile Version (Cards) -->
-                <div class="audience-mobile-only aos">
-                    <div class="audience-card">
-                        <div class="audience-card-img">
-                            <img src="audience_family.png" alt="Pro rodiny">
-                        </div>
-                        <div class="audience-card-info">
-                            <h3>Pro rodiny</h3>
-                            <p>Wildero dá procházce směr a&nbsp;dětem prostor objevovat po svém.</p>
+                        <div class="audience-row__text">
+                            <h3 class="audience-title">Pro rodiny s&nbsp;dětmi</h3>
+                            <p class="audience-text">
+                                Pro ty, kteří chtějí trávit čas spolu venku, ale ne vždy mají chuť vymýšlet program. Wildero dá procházce směr — a&nbsp;dětem nechá prostor běhat, lézt i&nbsp;objevovat po svém.
+                            </p>
                         </div>
                     </div>
 
-                    <div class="audience-card">
-                        <div class="audience-card-img">
-                            <img src="audience_kids.png" alt="Pro děti">
+                    <!-- Deti -->
+                    <div class="audience-row audience-row--reverse aos">
+                        <div class="audience-row__img">
+                            <img src="audience_kids.png" alt="Ilustrace dětí objevujících přírodu">
                         </div>
-                        <div class="audience-card-info">
-                            <h3>Pro děti</h3>
-                            <p>Každé dítě si ve výpravě najde vlastní cestu za dobrodružstvím.</p>
+                        <div class="audience-row__text">
+                            <h3 class="audience-title">Pro zvídavé i&nbsp;divoké děti</h3>
+                            <p class="audience-text">
+                                Pro děti, které si všimnou brouka v&nbsp;trávě i&nbsp;pro ty, které potřebují běžet k&nbsp;prvnímu stromu. Každé dítě si ve výpravě najde vlastní cestu za dobrodružstvím.
+                            </p>
                         </div>
                     </div>
 
-                    <div class="audience-card">
-                        <div class="audience-card-img">
-                            <img src="audience_adults.png" alt="Pro každého">
+                    <!-- Dospeli -->
+                    <div class="audience-row aos">
+                        <div class="audience-row__img">
+                            <img src="audience_adults.png" alt="Ilustrace dospělého v přírodě">
                         </div>
-                        <div class="audience-card-info">
-                            <h3>Pro každého</h3>
-                            <p>Jděte ven s&nbsp;cílem, ale bez tlaku. Výprava jen pro vás.</p>
+                        <div class="audience-row__text">
+                            <h3 class="audience-title">Pro dospělé, kteří si chtějí provětrat hlavu</h3>
+                            <p class="audience-text">
+                                Pro chvíle, kdy chcete jít ven, mít cíl, ale žádný tlak. Výprava může být tichá, klidná — jen pro vás. Zastavte se, nadechněte se a najděte klid.
+                            </p>
                         </div>
                     </div>
                 </div>
-
+            </div>
+            
+            <div class="wave-divider wave-bottom">
+                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" fill="#ffffff"></path>
+                </svg>
             </div>
         </section>
 
         <section id="how" class="section section--light">
             <div class="container">
-                <div class="aos" style="text-align: center; margin-bottom: 4rem; position: relative; z-index: 5;">
+                <div class="aos" style="text-align: center; margin-bottom: 2.5rem; position: relative; z-index: 5;">
                     <h2 class="section__title">Jak funguje Wildero</h2>
                     <div class="section-divider"></div>
                     <p class="text-lead" style="margin: 1.5rem auto 0; font-size: 1.1rem; color: var(--color-text-light);">
@@ -369,7 +341,7 @@
         <!-- Wilda Mascot Section -->
         <section id="wilda" class="section section--wilda">
             <div class="container">
-                <div class="wilda-header aos" style="text-align: center; margin-bottom: 4rem;">
+                <div class="wilda-header aos" style="text-align: center; margin-bottom: 2.5rem;">
                     <div class="wilda-badge" style="margin: 0 auto 1.5rem;">
                         <svg class="wilda-badge-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><ellipse cx="5.8" cy="11.5" rx="1.4" ry="2.2" transform="rotate(-30 5.8 11.5)"/><ellipse cx="9.8" cy="7.5" rx="1.5" ry="2.6" transform="rotate(-8 9.8 7.5)"/><ellipse cx="14.2" cy="7.5" rx="1.5" ry="2.6" transform="rotate(8 14.2 7.5)"/><ellipse cx="18.2" cy="11.5" rx="1.4" ry="2.2" transform="rotate(30 18.2 11.5)"/><path d="M 4.8 9.3 L 4.0 7.5 L 5.4 8.7 Z"/><path d="M 9.5 4.9 L 9.8 2.5 L 10.1 4.9 Z"/><path d="M 13.9 4.9 L 14.2 2.5 L 14.5 4.9 Z"/><path d="M 18.6 8.7 L 20.0 7.5 L 19.2 9.3 Z"/><path d="M 8 19.5 C 8 17.5 10 16.5 12 16.5 C 14 16.5 16 17.5 16 19.5 C 16 20.5 15.2 21 14.5 21 C 13.5 20.3 12.8 19.2 12 19.2 C 11.2 19.2 10.5 20.3 9.5 21 C 8.8 21 8 20.5 8 19.5 Z"/></svg>
                         <span>PRO DĚTI NAVÍC</span>

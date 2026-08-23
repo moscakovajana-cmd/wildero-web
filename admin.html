@@ -85,8 +85,8 @@
         <a class="nav-item" onclick="switchTab('products', this)">📦 Správa produktů</a>
         <a class="nav-item" onclick="switchTab('orders', this)">🛒 Objednávky</a>
         <a class="nav-item" onclick="switchTab('shipping', this)">🚚 Doprava a Integrace</a>
-        <a class="nav-item" onclick="switchTab('expeditions', this)">🌲 Spr�va v�prav (App)</a>
-        <a class="nav-item" onclick="switchTab('emails', this)">📧 E-maily a �ablony</a>
+        <a class="nav-item" onclick="switchTab('expeditions', this)">🌲 Správa výprav (App)</a>
+        <a class="nav-item" onclick="switchTab('emails', this)">📧 E-maily a šablony</a>
         <a class="nav-item" style="margin-top: auto; color: #ef4444;">🚪 Odhlásit se</a>
     </aside>
 
@@ -169,22 +169,22 @@
                         <!-- Tab: Expeditions -->
         <div id="expeditions" class="admin-section">
             <div class="admin-header">
-                <h1 class="title">Spr�va v�prav (App)</h1>
+                <h1 class="title">Správa výprav (App)</h1>
                 <button class="btn btn-primary" onclick="loadExpeditions()">🔄 Obnovit seznam</button>
             </div>
             <div class="card" style="padding: 0; overflow: hidden;">
                 <table class="table">
                     <thead style="background: #f8fafc;">
                         <tr>
-                            <th>N�zev v�pravy</th>
-                            <th>M�sto</th>
+                            <th>Název výpravy</th>
+                            <th>Místo</th>
                             <th>Status</th>
-                            <th>P��lohy k e-mailu</th>
+                            <th>Přílohy k e-mailu</th>
                             <th>Akce</th>
                         </tr>
                     </thead>
                     <tbody id="expeditions-tbody">
-                        <tr><td colspan="5" style="text-align: center; color: #64748b; padding: 3rem;">Na��t�m v�pravy...</td></tr>
+                        <tr><td colspan="5" style="text-align: center; color: #64748b; padding: 3rem;">Načítám výpravy...</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -193,21 +193,21 @@
         <!-- Tab: E-mails -->
         <div id="emails" class="admin-section">
             <div class="admin-header">
-                <h1 class="title">E-maily a �ablony</h1>
+                <h1 class="title">E-maily a šablony</h1>
                 <button class="btn btn-primary" onclick="loadEmails()">🔄 Obnovit</button>
             </div>
             <div class="card" style="padding: 0; overflow: hidden;">
                 <table class="table">
                     <thead style="background: #f8fafc;">
                         <tr>
-                            <th>ID �ablony</th>
-                            <th>P�edm�t</th>
-                            <th>P��lohy</th>
+                            <th>ID šablony</th>
+                            <th>Předmět</th>
+                            <th>Přílohy</th>
                             <th>Akce</th>
                         </tr>
                     </thead>
                     <tbody id="emails-tbody">
-                        <tr><td colspan="4" style="text-align: center; color: #64748b; padding: 3rem;">Na��t�m �ablony...</td></tr>
+                        <tr><td colspan="4" style="text-align: center; color: #64748b; padding: 3rem;">Načítám šablony...</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -329,32 +329,32 @@
 <div class="modal-overlay" id="expedition-modal">
     <div class="modal" style="width: 600px;">
         <div class="modal-header">
-            <h2 class="modal-title">Dopl�ky k v�prav�</h2>
-            <button class="modal-close" onclick="closeExpeditionModal()">�</button>
+            <h2 class="modal-title">Doplňky k výpravě</h2>
+            <button class="modal-close" onclick="closeExpeditionModal()">×</button>
         </div>
         <form id="expedition-form" onsubmit="saveExpeditionAttachments(event)" style="display: flex; flex-direction: column; flex: 1; overflow: hidden; margin: 0;">
             <div class="modal-body">
                 <input type="hidden" id="exp-id">
-                <p style="margin-top:0; color:#475569;">V�prava: <strong id="exp-title-display"></strong></p>
-                <p style="font-size: 0.9rem; color: #64748b;">Tyto materi�ly (nap�. diplomy, audia) budou odesl�ny v p��loze e-mailu z�kazn�kovi <strong>pouze</strong> p�i zakoupen� t�to konkr�tn� v�pravy.</p>
+                <p style="margin-top:0; color:#475569;">Výprava: <strong id="exp-title-display"></strong></p>
+                <p style="font-size: 0.9rem; color: #64748b;">Tyto materiály (např. diplomy, audia) budou odeslány v příloze e-mailu zákazníkovi <strong>pouze</strong> při zakoupení této konkrétní výpravy.</p>
                 
                 <div class="form-col" style="margin-top: 1rem;">
-                    <label>P��lohy k v�prav� <small style="font-weight:400; color:#64748b;">(URL adresy nebo n�zvy soubor� � jeden na ��dek)</small></label>
-                    <textarea id="exp-attachments" rows="4" placeholder="nap�. diplom.pdf"></textarea>
+                    <label>Přílohy k výpravě <small style="font-weight:400; color:#64748b;">(URL adresy nebo názvy souborů - jeden na řádek)</small></label>
+                    <textarea id="exp-attachments" rows="4" placeholder="např. diplom.pdf"></textarea>
                     
                     <div style="margin-top: 0.8rem; padding: 1.5rem; border: 2px dashed #cbd5e1; border-radius: 8px; text-align: center; background: #f8fafc; transition: all 0.2s;">
                         <label style="cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; color: var(--color-primary); font-weight: 700;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
-                            <span>Klikn�te pro nahr�n� soubor� do v�pravy</span>
+                            <span>Klikněte pro nahrání souborů do výpravy</span>
                             <input type="file" id="exp-file-upload" accept="*/*" multiple style="display: none;" onchange="handleExpFileUpload(event)">
                         </label>
-                        <div id="exp-upload-status" style="font-size: 0.85rem; color: #64748b; margin-top: 0.5rem; font-weight: 600;">Odkaz m��ete zkop�rovat i manu�ln� naho�e.</div>
+                        <div id="exp-upload-status" style="font-size: 0.85rem; color: #64748b; margin-top: 0.5rem; font-weight: 600;">Odkaz můžete zkopírovat i manuálně nahoře.</div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn" style="background: #f1f5f9; color: #334155;" onclick="closeExpeditionModal()">Zru�it</button>
-                <button type="submit" class="btn btn-primary">Ulo�it p��lohy</button>
+                <button type="button" class="btn" style="background: #f1f5f9; color: #334155;" onclick="closeExpeditionModal()">Zrušit</button>
+                <button type="submit" class="btn btn-primary">Uložit přílohy</button>
             </div>
         </form>
     </div>
@@ -364,15 +364,15 @@
 <div class="modal-overlay" id="email-modal">
     <div class="modal" style="width: 700px;">
         <div class="modal-header">
-            <h2 class="modal-title">Upravit �ablonu</h2>
-            <button class="modal-close" onclick="closeEmailModal()">�</button>
+            <h2 class="modal-title">Upravit šablonu</h2>
+            <button class="modal-close" onclick="closeEmailModal()">×</button>
         </div>
         <form id="email-form" onsubmit="saveEmail(event)" style="display: flex; flex-direction: column; flex: 1; overflow: hidden; margin: 0;">
             <div class="modal-body">
                 <input type="hidden" id="email-id">
                 
                 <div class="form-col">
-                    <label>P�edm�t e-mailu</label>
+                    <label>Předmět e-mailu</label>
                     <input type="text" id="email-subject" required>
                 </div>
                 
@@ -382,22 +382,22 @@
                 </div>
                 
                 <div class="form-col">
-                    <label>P��lohy <small style="font-weight:400; color:#64748b;">(URL adresy nebo n�zvy soubor� � jeden na ka�d� ��dek)</small></label>
-                    <textarea id="email-attachments" rows="3" placeholder="nap�. obchodni_podminky.pdf"></textarea>
+                    <label>Přílohy <small style="font-weight:400; color:#64748b;">(URL adresy nebo názvy souborů - jeden na každý řádek)</small></label>
+                    <textarea id="email-attachments" rows="3" placeholder="např. obchodni_podminky.pdf"></textarea>
                     
                     <div style="margin-top: 0.8rem; padding: 1.5rem; border: 2px dashed #cbd5e1; border-radius: 8px; text-align: center; background: #f8fafc; transition: all 0.2s;">
                         <label style="cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; color: var(--color-primary); font-weight: 700;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
-                            <span>Klikn�te pro nahr�n� PDF souboru</span>
+                            <span>Klikněte pro nahrání PDF souboru</span>
                             <input type="file" id="email-file-upload" accept="application/pdf" multiple style="display: none;" onchange="handleEmailFileUpload(event)">
                         </label>
-                        <div id="email-upload-status" style="font-size: 0.85rem; color: #64748b; margin-top: 0.5rem; font-weight: 600;">Nebo m��ete napsat odkaz/n�zev manu�ln� naho�e.</div>
+                        <div id="email-upload-status" style="font-size: 0.85rem; color: #64748b; margin-top: 0.5rem; font-weight: 600;">Nebo můžete napsat odkaz/název manuálně nahoře.</div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn" style="background: #f1f5f9; color: #334155;" onclick="closeEmailModal()">Zru�it</button>
-                <button type="submit" class="btn btn-primary">Ulo�it �ablonu</button>
+                <button type="button" class="btn" style="background: #f1f5f9; color: #334155;" onclick="closeEmailModal()">Zrušit</button>
+                <button type="submit" class="btn btn-primary">Uložit šablonu</button>
             </div>
         </form>
     </div>
@@ -407,7 +407,7 @@
 
     async function loadExpeditions() {
         const tbody = document.getElementById('expeditions-tbody');
-        tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: #64748b; padding: 2rem;">Na��t�m v�pravy...</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: #64748b; padding: 2rem;">Načítám výpravy...</td></tr>';
         
         try {
             const { data, error } = await window.supabase.from('expeditions').select('id, title, city, status, email_attachments').order('id', { ascending: true });
@@ -415,7 +415,7 @@
             
             currentExpeditions = data || [];
             if (currentExpeditions.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: #64748b; padding: 2rem;">Zat�m ��dn� v�pravy v datab�zi.</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: #64748b; padding: 2rem;">Zatím žádné výpravy v databázi.</td></tr>';
                 return;
             }
 
@@ -452,7 +452,7 @@
 
     function closeExpeditionModal() {
         document.getElementById('expedition-modal').classList.remove('active');
-        document.getElementById('exp-upload-status').innerText = 'Odkaz m��ete zkop�rovat i manu�ln� naho�e.';
+        document.getElementById('exp-upload-status').innerText = 'Odkaz můžete zkopírovat i manuálně nahoře.';
         document.getElementById('exp-upload-status').style.color = '#64748b';
     }
 
@@ -487,7 +487,7 @@
                 attachmentsTextarea.value = currentUrls.join('\n');
                 
             } catch (error) {
-                console.error("Chyba p�i nahr�v�n�:", error);
+                console.error("Chyba při nahrávání:", error);
                 alert(`Nelze nahrát soubor ${file.name}: 
 
 ${error.message}`);
@@ -512,7 +512,7 @@ ${error.message}`);
             closeExpeditionModal();
             loadExpeditions();
         } catch (error) {
-            alert('Chyba p�i zapisu do datab�ze: ' + error.message);
+            alert('Chyba při zápisu do databáze: ' + error.message);
         }
     }
 
@@ -520,7 +520,7 @@ ${error.message}`);
 
     async function loadEmails() {
         const tbody = document.getElementById('emails-tbody');
-        tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: #64748b; padding: 2rem;">Na��t�m �ablony...</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: #64748b; padding: 2rem;">Načítám šablony...</td></tr>';
         
         try {
             const { data, error } = await window.supabase.from('email_templates').select('*').order('id', { ascending: true });
@@ -528,7 +528,7 @@ ${error.message}`);
             
             currentEmails = data || [];
             if (currentEmails.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: #64748b; padding: 2rem;">Zat�m ��dn� �ablony e-mail�. Vytvo�te je pomoc� SQL skriptu.</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: #64748b; padding: 2rem;">Zatím žádné šablony e-mailů. Vytvořte je pomocí SQL skriptu.</td></tr>';
                 return;
             }
 
@@ -565,7 +565,7 @@ ${error.message}`);
 
     function closeEmailModal() {
         document.getElementById('email-modal').classList.remove('active');
-        document.getElementById('email-upload-status').innerText = 'Nebo m��ete napsat odkaz/n�zev manu�ln� naho�e.';
+        document.getElementById('email-upload-status').innerText = 'Nebo můžete napsat odkaz/název manuálně nahoře.';
         document.getElementById('email-upload-status').style.color = '#64748b';
     }
 
@@ -599,7 +599,7 @@ ${error.message}`);
                 attachmentsTextarea.value = currentUrls.join('\n');
                 
             } catch (error) {
-                console.error("Chyba p�i nahr�v�n�:", error);
+                console.error("Chyba při nahrávání:", error);
                 alert(`Nelze nahrát soubor ${file.name}: 
 
 ${error.message}`);
@@ -630,7 +630,7 @@ ${error.message}`);
             closeEmailModal();
             loadEmails();
         } catch (error) {
-            alert('Chyba p�i zapisu do datab�ze: ' + error.message);
+            alert('Chyba při zápisu do databáze: ' + error.message);
         }
     }
 </script>
@@ -676,7 +676,7 @@ ${error.message}`);
                 <tr>
                     <td>
                         <div style="font-weight: 700; font-size: 0.85rem;">${date}</div>
-                        <div style="font-size: 0.75rem; color: #64748b;">��slo: ${o.order_number || o.id.substring(0,8)}</div>
+                        <div style="font-size: 0.75rem; color: #64748b;">Číslo: ${o.order_number || o.id.substring(0,8)}</div>
                     </td>
                     <td>
                         <div style="font-weight: 600;">${o.customer_name}</div>
@@ -720,20 +720,20 @@ ${error.message}`);
         const order = currentOrders.find(o => o.id === id);
         if (!order) return;
         
-        document.getElementById('order-modal-title').innerText = 'Objedn�vka �. ' + (order.order_number || order.id.substring(0,8));
+        document.getElementById('order-modal-title').innerText = 'Objednávka č. ' + (order.order_number || order.id.substring(0,8));
         
         let itemsHtml = (order.items || []).map(i => `
             <tr>
                 <td style="padding: 0.5rem; border-bottom: 1px solid #e2e8f0;">${i.name}</td>
                 <td style="padding: 0.5rem; border-bottom: 1px solid #e2e8f0;">${i.qty} ks</td>
-                <td style="padding: 0.5rem; border-bottom: 1px solid #e2e8f0; text-align: right; font-weight: 600;">${i.price * i.qty} K�</td>
+                <td style="padding: 0.5rem; border-bottom: 1px solid #e2e8f0; text-align: right; font-weight: 600;">${i.price * i.qty} Kč</td>
             </tr>
         `).join('');
         
         const html = `
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 1.5rem;">
                 <div>
-                    <h3 style="margin-bottom: 0.5rem; color: var(--color-primary); font-size: 1rem;">Z�kazn�k</h3>
+                    <h3 style="margin-bottom: 0.5rem; color: var(--color-primary); font-size: 1rem;">Zákazník</h3>
                     <div><strong>${order.customer_name}</strong></div>
                     <div><a href="mailto:${order.customer_email}" style="color: #0ea5e9;">${order.customer_email}</a></div>
                     <div>${order.customer_phone || ''}</div>
@@ -745,16 +745,16 @@ ${error.message}`);
                 </div>
             </div>
             
-            <h3 style="margin-bottom: 0.5rem; color: var(--color-primary); font-size: 1rem;">Polo�ky objedn�vky</h3>
+            <h3 style="margin-bottom: 0.5rem; color: var(--color-primary); font-size: 1rem;">Položky objednávky</h3>
             <table style="width: 100%; border-collapse: collapse; margin-bottom: 1rem;">
                 ${itemsHtml}
                 <tr>
                     <td colspan="2" style="padding: 0.5rem; text-align: right;">Doprava:</td>
-                    <td style="padding: 0.5rem; text-align: right;">${order.shipping_cost || 0} K�</td>
+                    <td style="padding: 0.5rem; text-align: right;">${order.shipping_cost || 0} Kč</td>
                 </tr>
                 <tr>
                     <td colspan="2" style="padding: 0.5rem; text-align: right; font-weight: 700; font-size: 1.1rem;">Celkem:</td>
-                    <td style="padding: 0.5rem; text-align: right; font-weight: 700; font-size: 1.1rem; color: var(--color-primary);">${order.total_price} K�</td>
+                    <td style="padding: 0.5rem; text-align: right; font-weight: 700; font-size: 1.1rem; color: var(--color-primary);">${order.total_price} Kč</td>
                 </tr>
             </table>
         `;
@@ -926,7 +926,7 @@ ${error.message}`);
 
     async function loadExpeditions() {
         const tbody = document.getElementById('expeditions-tbody');
-        tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: #64748b; padding: 2rem;">Na��t�m v�pravy...</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: #64748b; padding: 2rem;">Načítám výpravy...</td></tr>';
         
         try {
             const { data, error } = await window.supabase.from('expeditions').select('id, title, city, status, email_attachments').order('id', { ascending: true });
@@ -934,7 +934,7 @@ ${error.message}`);
             
             currentExpeditions = data || [];
             if (currentExpeditions.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: #64748b; padding: 2rem;">Zat�m ��dn� v�pravy v datab�zi.</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: #64748b; padding: 2rem;">Zatím žádné výpravy v databázi.</td></tr>';
                 return;
             }
 
@@ -971,7 +971,7 @@ ${error.message}`);
 
     function closeExpeditionModal() {
         document.getElementById('expedition-modal').classList.remove('active');
-        document.getElementById('exp-upload-status').innerText = 'Odkaz m��ete zkop�rovat i manu�ln� naho�e.';
+        document.getElementById('exp-upload-status').innerText = 'Odkaz můžete zkopírovat i manuálně nahoře.';
         document.getElementById('exp-upload-status').style.color = '#64748b';
     }
 
@@ -1006,7 +1006,7 @@ ${error.message}`);
                 attachmentsTextarea.value = currentUrls.join('\n');
                 
             } catch (error) {
-                console.error("Chyba p�i nahr�v�n�:", error);
+                console.error("Chyba při nahrávání:", error);
                 alert(`Nelze nahrát soubor ${file.name}: 
 
 ${error.message}`);
@@ -1031,7 +1031,7 @@ ${error.message}`);
             closeExpeditionModal();
             loadExpeditions();
         } catch (error) {
-            alert('Chyba p�i zapisu do datab�ze: ' + error.message);
+            alert('Chyba při zápisu do databáze: ' + error.message);
         }
     }
 
@@ -1039,7 +1039,7 @@ ${error.message}`);
 
     async function loadEmails() {
         const tbody = document.getElementById('emails-tbody');
-        tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: #64748b; padding: 2rem;">Na��t�m �ablony...</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: #64748b; padding: 2rem;">Načítám šablony...</td></tr>';
         
         try {
             const { data, error } = await window.supabase.from('email_templates').select('*').order('id', { ascending: true });
@@ -1047,7 +1047,7 @@ ${error.message}`);
             
             currentEmails = data || [];
             if (currentEmails.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: #64748b; padding: 2rem;">Zat�m ��dn� �ablony e-mail�. Vytvo�te je pomoc� SQL skriptu.</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: #64748b; padding: 2rem;">Zatím žádné šablony e-mailů. Vytvořte je pomocí SQL skriptu.</td></tr>';
                 return;
             }
 
@@ -1084,7 +1084,7 @@ ${error.message}`);
 
     function closeEmailModal() {
         document.getElementById('email-modal').classList.remove('active');
-        document.getElementById('email-upload-status').innerText = 'Nebo m��ete napsat odkaz/n�zev manu�ln� naho�e.';
+        document.getElementById('email-upload-status').innerText = 'Nebo můžete napsat odkaz/název manuálně nahoře.';
         document.getElementById('email-upload-status').style.color = '#64748b';
     }
 
@@ -1118,7 +1118,7 @@ ${error.message}`);
                 attachmentsTextarea.value = currentUrls.join('\n');
                 
             } catch (error) {
-                console.error("Chyba p�i nahr�v�n�:", error);
+                console.error("Chyba při nahrávání:", error);
                 alert(`Nelze nahrát soubor ${file.name}: 
 
 ${error.message}`);
@@ -1149,7 +1149,26 @@ ${error.message}`);
             closeEmailModal();
             loadEmails();
         } catch (error) {
-            alert('Chyba p�i zapisu do datab�ze: ' + error.message);
+            alert('Chyba při zápisu do databáze: ' + error.message);
         }
     }
 </script>
+
+
+<div class="modal-overlay" id="order-modal">
+    <div class="modal" style="width: 700px;">
+        <div class="modal-header">
+            <h2 class="modal-title" id="order-modal-title">Detail objednávky</h2>
+            <button class="modal-close" onclick="closeOrderModal()">×</button>
+        </div>
+        <div class="modal-body" id="order-modal-body" style="font-size: 0.95rem; line-height: 1.5; color: #334155;">
+            Načítám...
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn" style="background: #f1f5f9; color: #334155;" onclick="closeOrderModal()">Zavřít</button>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

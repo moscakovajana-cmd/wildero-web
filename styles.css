@@ -3206,6 +3206,8 @@ input:disabled+.slider {
     max-width: 500px;
     height: auto;
     z-index: 1;
+    margin-top: -3rem;
+    margin-bottom: -3rem;
 }
 
 .wilda-merch-card {

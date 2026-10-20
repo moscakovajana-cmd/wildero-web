@@ -434,6 +434,14 @@ function initFilters() {
             shopEmpty.style.display = visibleCount === 0 ? 'block' : 'none';
         });
     });
+
+    // Skryj kategorie, ve kterých zatím není žádný produkt
+    filterBtns.forEach(btn => {
+        const filter = slugify(btn.dataset.filter);
+        if (filter === 'all') return;
+        const hasProducts = Array.from(shopCards).some(card => (card.dataset.category || '').includes(filter));
+        btn.style.display = hasProducts ? '' : 'none';
+    });
 }
 
 // Inject card animation

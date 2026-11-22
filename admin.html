@@ -76,8 +76,18 @@
     </style>
 </head>
 <body>
+<div id="login-screen" style="position:fixed;inset:0;background:#f8fafc;display:flex;align-items:center;justify-content:center;z-index:9999;">
+    <form id="login-form" class="card" style="width:360px;max-width:92vw;" onsubmit="adminLogin(event)">
+        <h2 class="card-title">Wildero administrace</h2>
+        <p style="color:#64748b;margin:0 0 1rem;">Přihlas se stejným účtem jako do aplikace.</p>
+        <input id="login-email" type="email" placeholder="E-mail" required autocomplete="username" style="width:100%;padding:0.7rem;margin-bottom:0.6rem;border:1px solid #e2e8f0;border-radius:10px;">
+        <input id="login-password" type="password" placeholder="Heslo" required autocomplete="current-password" style="width:100%;padding:0.7rem;margin-bottom:0.8rem;border:1px solid #e2e8f0;border-radius:10px;">
+        <p id="login-error" style="color:#ef4444;min-height:1.2em;margin:0 0 0.6rem;"></p>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Přihlásit</button>
+    </form>
+</div>
 
-<div class="admin-layout">
+<div class="admin-layout" id="admin-layout" style="display:none;">
     <!-- Sidebar -->
     <aside class="sidebar">
         <div class="logo">🌿 Wildero Admin</div>
@@ -87,7 +97,7 @@
         <a class="nav-item" onclick="switchTab('shipping', this)">🚚 Doprava a Integrace</a>
         <a class="nav-item" onclick="switchTab('expeditions', this)">🌲 Správa výprav (App)</a>
         <a class="nav-item" onclick="switchTab('emails', this)">📧 E-maily a šablony</a>
-        <a class="nav-item" style="margin-top: auto; color: #ef4444;">🚪 Odhlásit se</a>
+        <a class="nav-item" style="margin-top: auto; color: #ef4444;" onclick="adminLogout()">🚪 Odhlásit se</a>
     </aside>
 
     <!-- Main Content -->
@@ -401,239 +411,48 @@
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">        let currentExpeditions = [];
-
-    async function loadExpeditions() {
-        const tbody = document.getElementById('expeditions-tbody');
-        tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: #64748b; padding: 2rem;">Načítám výpravy...</td></tr>';
-        
-        try {
-            const { data, error } = await window.supabase.from('expeditions').select('id, title, email_attachments').order('id', { ascending: true });
-            if (error) throw error;
-            
-            currentExpeditions = data || [];
-            if (currentExpeditions.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: #64748b; padding: 2rem;">Zatím žádné výpravy v databázi.</td></tr>';
-                return;
-            }
-
-            tbody.innerHTML = currentExpeditions.map(e => {
-                const attachCount = Array.isArray(e.email_attachments) ? e.email_attachments.length : 0;
-                return `
-                <tr>
-                    <td><strong>${e.title}</strong></td>
-                    <td><span class="status ${attachCount > 0 ? 'active' : 'inactive'}">${attachCount} souborů</span></td>
-                    <td>
-                        <button class="btn" style="background: #f1f5f9; padding: 0.4rem 0.8rem; font-size: 0.75rem;" onclick="openExpeditionModal('${e.id}')">Spravovat přílohy</button>
-                    </td>
-                </tr>
-                `;
-            }).join('');
-        } catch (e) {
-            console.error(e);
-            tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: #ef4444; padding: 2rem;">Chyba: ' + e.message + '</td></tr>';
-        }
-    }
-
-    function openExpeditionModal(id) {
-        const exp = currentExpeditions.find(e => e.id == id);
-        if (!exp) return;
-
-        document.getElementById('exp-id').value = exp.id;
-        document.getElementById('exp-title-display').innerText = exp.title;
-        document.getElementById('exp-attachments').value = (exp.email_attachments || []).join('\n');
-        
-        document.getElementById('expedition-modal').classList.add('active');
-    }
-
-    function closeExpeditionModal() {
-        document.getElementById('expedition-modal').classList.remove('active');
-        document.getElementById('exp-upload-status').innerText = 'Odkaz můžete zkopírovat i manuálně nahoře.';
-        document.getElementById('exp-upload-status').style.color = '#64748b';
-    }
-
-    async function handleExpFileUpload(e) {
-        const files = e.target.files;
-        if (!files || files.length === 0) return;
-        
-        const statusEl = document.getElementById('exp-upload-status');
-        const attachmentsTextarea = document.getElementById('exp-attachments');
-        
-        for (let i = 0; i < files.length; i++) {
-            const file = files[i];
-            const safeName = file.name.replace(/[^a-zA-Z0-9.\-_]/g, '_');
-            const fileName = `${Date.now()}_${safeName}`;
-            statusEl.innerText = `Nahrávám (${i+1}/${files.length}): ${safeName}...`;
-            statusEl.style.color = '#f59e0b';
-            
-            try {
-                // Upload to the same bucket email_attachments
-                const { error: uploadError } = await window.supabase.storage
-                    .from('email_attachments')
-                    .upload(fileName, file);
-
-                if (uploadError) throw uploadError;
-                
-                const { data } = window.supabase.storage
-                    .from('email_attachments')
-                    .getPublicUrl(fileName);
-                
-                const currentUrls = attachmentsTextarea.value ? attachmentsTextarea.value.trim().split('\n') : [];
-                currentUrls.push(data.publicUrl);
-                attachmentsTextarea.value = currentUrls.join('\n');
-                
-            } catch (error) {
-                console.error("Chyba při nahrávání:", error);
-                alert(`Nelze nahrát soubor ${file.name}: 
-
-${error.message}`);
-            }
-        }
-        
-        statusEl.innerText = 'Paráda! Soubory nahrány.';
-        statusEl.style.color = '#10b981';
-        e.target.value = '';
-    }
-
-    async function saveExpeditionAttachments(e) {
-        e.preventDefault();
-        
-        const id = document.getElementById('exp-id').value;
-        const rawAttachments = document.getElementById('exp-attachments').value.split('\n');
-        const attachmentsArray = rawAttachments.map(url => url.trim()).filter(url => url !== '');
-
-        try {
-            const { error } = await window.supabase.from('expeditions').update({ email_attachments: attachmentsArray }).eq('id', id);
-            if (error) throw error;
-            closeExpeditionModal();
-            loadExpeditions();
-        } catch (error) {
-            alert('Chyba při zápisu do databáze: ' + error.message);
-        }
-    }
-
-    let currentEmails = [];
-
-    async function loadEmails() {
-        const tbody = document.getElementById('emails-tbody');
-        tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: #64748b; padding: 2rem;">Načítám šablony...</td></tr>';
-        
-        try {
-            const { data, error } = await window.supabase.from('email_templates').select('*').order('id', { ascending: true });
-            if (error) throw error;
-            
-            currentEmails = data || [];
-            if (currentEmails.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: #64748b; padding: 2rem;">Zatím žádné šablony e-mailů. Vytvořte je pomocí SQL skriptu.</td></tr>';
-                return;
-            }
-
-            tbody.innerHTML = currentEmails.map(e => {
-                const attachCount = Array.isArray(e.default_attachments) ? e.default_attachments.length : 0;
-                return `
-                <tr>
-                    <td><strong>${e.id}</strong></td>
-                    <td>${e.subject}</td>
-                    <td><span class="status ${attachCount > 0 ? 'active' : 'inactive'}">${attachCount} souborů</span></td>
-                    <td>
-                        <button class="btn" style="background: #f1f5f9; padding: 0.4rem 0.8rem; font-size: 0.75rem;" onclick="openEmailModal('${e.id}')">Upravit</button>
-                    </td>
-                </tr>
-                `;
-            }).join('');
-        } catch (e) {
-            console.error(e);
-            tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: #ef4444; padding: 2rem;">Chyba: ' + e.message + '</td></tr>';
-        }
-    }
-
-    function openEmailModal(id) {
-        const email = currentEmails.find(e => e.id === id);
-        if (!email) return;
-
-        document.getElementById('email-id').value = email.id;
-        document.getElementById('email-subject').value = email.subject || '';
-        document.getElementById('email-body').value = email.body_html || '';
-        document.getElementById('email-attachments').value = (email.default_attachments || []).join('\n');
-        
-        document.getElementById('email-modal').classList.add('active');
-    }
-
-    function closeEmailModal() {
-        document.getElementById('email-modal').classList.remove('active');
-        document.getElementById('email-upload-status').innerText = 'Nebo můžete napsat odkaz/název manuálně nahoře.';
-        document.getElementById('email-upload-status').style.color = '#64748b';
-    }
-
-    async function handleEmailFileUpload(e) {
-        const files = e.target.files;
-        if (!files || files.length === 0) return;
-        
-        const statusEl = document.getElementById('email-upload-status');
-        const attachmentsTextarea = document.getElementById('email-attachments');
-        
-        for (let i = 0; i < files.length; i++) {
-            const file = files[i];
-            const safeName = file.name.replace(/[^a-zA-Z0-9.\-_]/g, '_');
-            const fileName = `${Date.now()}_${safeName}`;
-            statusEl.innerText = `Nahrávám (${i+1}/${files.length}): ${safeName}...`;
-            statusEl.style.color = '#f59e0b';
-            
-            try {
-                const { error: uploadError } = await window.supabase.storage
-                    .from('email_attachments')
-                    .upload(fileName, file);
-
-                if (uploadError) throw uploadError;
-                
-                const { data } = window.supabase.storage
-                    .from('email_attachments')
-                    .getPublicUrl(fileName);
-                
-                const currentUrls = attachmentsTextarea.value ? attachmentsTextarea.value.trim().split('\n') : [];
-                currentUrls.push(data.publicUrl);
-                attachmentsTextarea.value = currentUrls.join('\n');
-                
-            } catch (error) {
-                console.error("Chyba při nahrávání:", error);
-                alert(`Nelze nahrát soubor ${file.name}: 
-
-${error.message}`);
-            }
-        }
-        
-        statusEl.innerText = 'Paráda! PDF nahrána.';
-        statusEl.style.color = '#10b981';
-        e.target.value = '';
-    }
-
-    async function saveEmail(e) {
-        e.preventDefault();
-        
-        const id = document.getElementById('email-id').value;
-        const rawAttachments = document.getElementById('email-attachments').value.split('\n');
-        const attachmentsArray = rawAttachments.map(url => url.trim()).filter(url => url !== '');
-
-        const payload = {
-            subject: document.getElementById('email-subject').value,
-            body_html: document.getElementById('email-body').value,
-            default_attachments: attachmentsArray
-        };
-
-        try {
-            const { error } = await window.supabase.from('email_templates').update(payload).eq('id', id);
-            if (error) throw error;
-            closeEmailModal();
-            loadEmails();
-        } catch (error) {
-            alert('Chyba při zápisu do databáze: ' + error.message);
-        }
-    }
-</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
     const supabaseUrl = 'https://ttwyryduxqfssyetqhxw.supabase.co';
     const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR0d3lyeWR1eHFmc3N5ZXRxaHh3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ1MzU1ODcsImV4cCI6MjA4MDExMTU4N30.FvW-ejXi8XC4juPYKZkW2lS0CL6ui8bmP9mJblxGvp8';
     window.supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+    // --- Přihlášení: administrace je přístupná jen účtu s rolí admin ---
+    async function showAdminIfAllowed() {
+        const { data: { session } } = await window.supabase.auth.getSession();
+        if (!session) return false;
+        const { data: role } = await window.supabase.from('user_roles')
+            .select('role').eq('user_id', session.user.id).eq('role', 'admin').maybeSingle();
+        if (!role) {
+            await window.supabase.auth.signOut();
+            document.getElementById('login-error').textContent = 'Tento účet nemá oprávnění správce.';
+            return false;
+        }
+        document.getElementById('login-screen').style.display = 'none';
+        document.getElementById('admin-layout').style.display = '';
+        return true;
+    }
+
+    async function adminLogin(e) {
+        e.preventDefault();
+        document.getElementById('login-error').textContent = '';
+        const { error } = await window.supabase.auth.signInWithPassword({
+            email: document.getElementById('login-email').value,
+            password: document.getElementById('login-password').value,
+        });
+        if (error) {
+            document.getElementById('login-error').textContent = 'Nesprávný e-mail nebo heslo.';
+            return;
+        }
+        await showAdminIfAllowed();
+    }
+
+    async function adminLogout() {
+        await window.supabase.auth.signOut();
+        location.reload();
+    }
+
+    showAdminIfAllowed();
 
     let currentProducts = [];
 

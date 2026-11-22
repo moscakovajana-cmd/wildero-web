@@ -337,29 +337,24 @@ async function submitOrder(e) {
             status: 'new'
         };
 
-        console.log("Odesílám (DEBUG payload):", JSON.stringify(finalPayload, null, 2));
-
-        const { data, error } = await supabaseClient
+        // ID objednávky vytváříme už v prohlížeči – objednávky nejsou veřejně čitelné.
+        // Ceny a celková částka se z bezpečnostních důvodů přepočítají v databázi.
+        finalPayload.id = crypto.randomUUID();
+        const { error } = await supabaseClient
             .from('orders')
-            .insert([finalPayload])
-            .select();
-            
+            .insert([finalPayload]);
+
         if (error) {
             console.error("Supabase Error Object:", error);
             throw error;
         }
 
-        const insertedOrder = data[0];
+        const insertedOrder = { id: finalPayload.id };
         
         // Pokud je zvolen GoPay, vyvolej Edge Function
         if (paymentMethod === 'gopay') {
             const { data: gopayData, error: gopayError } = await supabaseClient.functions.invoke('create-gopay-order', {
-                body: {
-                    orderId: insertedOrder.id,
-                    orderNumber: insertedOrder.order_number,
-                    totalPrice: totalPrice,
-                    customerEmail: finalPayload.customer_email
-                }
+                body: { orderId: insertedOrder.id }
             });
 
             if (gopayError || !gopayData?.gw_url) {
